@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "title": "Sambit Mohapatra — Product Designer",
+    "description": "Sambit Mohapatra — Product Designer / UI UX Designer with a background in 3D animation.",
+    "author": "Sambit Mohapatra"
+  },
+  "theme": {
+    "colors": {
+      "bg": "#FEFAF1",
+      "bgAlt": "#F4EFE5",
+      "ink": "#121210",
+      "inkSoft": "#55534E",
+      "inkFaint": "#8C897F",
+      "line": "#E4E1D8",
+      "lineSoft": "#EDEAE1",
+      "statusDot": "#3FA85C",
+      "connectionBg": "#121210",
+      "connectionText": "#FAFAF8"
+    },
+    "fonts": {
+      "display": "Manrope",
+      "body": "Inter",
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    },
+    "layout": {
+      "container": "1360px"
+    }
+  },
+  "nav": {
+    "links": [
+      { "label": "Work", "href": "#work" },
+      { "label": "About", "href": "#about" },
+      { "label": "Experience", "href": "#experience" },
+      { "label": "Contact", "href": "#contact" }
+    ]
+  },
+  "hero": {
+    "statusLabel": "Hi, I'm Sambit",
+    "headline": "I Make Digital Things<br>Feel Human.",
+    "sub": "<span class=\"role-chip\" role=\"button\" tabindex=\"0\" data-role=\"uiux\" aria-label=\"UI/UX Designer\">UI/UX Designer</span><span class=\"sub-sep\" aria-hidden=\"true\">·</span><span class=\"role-chip\" role=\"button\" tabindex=\"0\" data-role=\"product\" aria-label=\"Product Designer\">Product Designer</span><span class=\"sub-sep\" aria-hidden=\"true\">·</span><span class=\"role-chip\" role=\"button\" tabindex=\"0\" data-role=\"visual\" aria-label=\"Visual Designer\">Visual Designer</span>",
+    "ctaPrimary": {
+      "label": "Let’s Connect",
+      "href": "https://mail.google.com/mail/?view=cm&fs=1&to=msambit783@gmail.com"
+    },
+    "ctaSecondary": {
+      "label": "Download Resume",
+      "href": "Sambit Mohapatra_Resume.pdf"
+    }
+  },
+  "work": {
+    "eyebrow": "Selected work",
+    "headline": "Five projects, one way of thinking about products.",
+    "projects": [
+      {
+        "id": "helphive",
+        "num": "01",
+        "title": "HelpHive",
+        "desc": "A hive full of helping hands, thoughtfully designed. 🐝",
+        "tags": "Product Design · UI/UX",
+        "link": "https://www.behance.net/gallery/253729875/HelpHive",
+        "linkLabel": "View case study →",
+        "image": "images/helphive.jpg",
+        "alt": "HelpHive home services app screens",
+        "gradientStart": "#F3E3C4",
+        "gradientEnd": "#E3BE7F",
+        "gradientAngle": 160,
+        "gradientStop": "75%"
+      },
+      {
+        "id": "greentok",
+        "num": "02",
+        "title": "GreenTok",
+        "desc": "GreenTök is a smarter, simpler way to care for your plants and help them thrive. 🌱",
+        "tags": "Product Design · UI/UX · Interaction Design",
+        "link": "https://www.behance.net/gallery/255667859/Greentok",
+        "linkLabel": "View case study →",
+        "image": "images/greentok.jpg",
+        "alt": "GreenTok plant-care app screens",
+        "gradientStart": "#DCE8DD",
+        "gradientEnd": "#B9CFBC",
+        "gradientAngle": 160,
+        "gradientStop": "70%"
+      },
+      {
+        "id": "learnix",
+        "num": "03",
+        "title": "Learnix",
+        "desc": "Learnix simplifies school management, communication, and daily operations. 🎓",
+        "tags": "Product Design · UI/UX · SaaS",
+        "link": "https://www.behance.net/gallery/254472747/Learnix-ERP",
+        "linkLabel": "View case study →",
+        "image": "images/Learnix.2.jpg",
+        "alt": "Learnix school ERP dashboard",
+        "gradientStart": "#D9E2F0",
+        "gradientEnd": "#A9BEDD",
+        "gradientAngle": 160,
+        "gradientStop": "75%"
+      },
+      {
+        "id": "mello",
+        "num": "04",
+        "title": "Mello",
+        "desc": "A focused productivity experience that keeps things simple and calm. ✨",
+        "tags": "UI · Visual Design · Interaction Design",
+        "link": "https://www.behance.net/gallery/255062297/Mello",
+        "linkLabel": "View case study →",
+        "image": "images/mello.jpg",
+        "alt": "Mello wellness app home screen",
+        "gradientStart": "#EBDFEF",
+        "gradientEnd": "#C7A9D6",
+        "gradientAngle": 160,
+        "gradientStop": "75%"
+      },
+      {
+        "id": "irctc",
+        "num": "05",
+        "title": "IRCTC Redesign",
+        "desc": "A fun IRCTC redesign, because booking a train shouldn't feel like an exam. 🚂",
+        "tags": "UX · Redesign",
+        "link": "https://www.behance.net/gallery/254976193/IRCTC-Redesign",
+        "linkLabel": "View case study →",
+        "image": "images/irctc.jpg",
+        "alt": "IRCTC Rail Connect redesigned home screen",
+        "gradientStart": "#D7DCEA",
+        "gradientEnd": "#8FA0C6",
+        "gradientAngle": 160,
+        "gradientStop": "75%"
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "About",
+    "statement": "I design digital experiences with a visual storyteller's eye and a product designer's mindset.",
+    "body": "My work sits at the intersection of product design, UX, visual craft, and AI assisted workflows. I create user focused products and intuitive experiences, shaped by my background in animation, composition, motion, and storytelling, using AI to explore ideas faster and push creative possibilities further."
+  },
+  "connection": {
+    "eyebrow": "A different dimension",
+    "headline": "Before interfaces, there were stories.",
+    "body": "My background in animation and visual storytelling shaped how I see composition, movement, hierarchy, and detail. Today, I bring that perspective into product design to create digital experiences that feel clear, intuitive, and purposeful."
+  },
+  "reel": {
+    "eyebrow": "3D Animation",
+    "headline": "A selection of work from my creative journey.",
+    "vimeoId": "995448287",
+    "note": ""
+  },
+  "clients": {
+    "eyebrow": "Selected Clients & Collaborations",
+    "list": [
+      {
+        "name": "DreamWorks",
+        "label": "DreamWorks",
+        "image": "images/client_dreamworks.png"
+      },
+      {
+        "name": "Disney",
+        "label": "Disney",
+        "image": "images/client_disney.png"
+      },
+      {
+        "name": "Nickelodeon",
+        "label": "Nickelodeon",
+        "image": "images/client_nickelodeon.svg"
+      },
+      {
+        "name": "SonyLIV",
+        "label": "SonyLIV",
+        "image": "images/client_sonyliv.png"
+      },
+      {
+        "name": "Graphic India",
+        "label": "Graphic India",
+        "image": "images/client_graphic_india.png"
+      },
+      {
+        "name": "Netflix",
+        "label": "Netflix",
+        "image": "images/client_netflix.png"
+      }
+    ]
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "headline": "Where the craft was built.",
+    "items": [
+      {
+        "role": "Junior Animator",
+        "company": "Cosmos Maya India Private Limited",
+        "dates": "Aug 2022 — Apr 2023",
+        "location": "Mumbai · On-site"
+      },
+      {
+        "role": "Junior Animator",
+        "company": "88 Pictures",
+        "dates": "Apr 2023 — Mar 2024",
+        "location": "Bengaluru · On-site"
+      },
+      {
+        "role": "Mid Animator",
+        "company": "Freelance Projects",
+        "dates": "Apr 2024 — Oct 2024",
+        "location": "Remote"
+      },
+      {
+        "role": "Visualizer & 3D Animation Specialist",
+        "company": "Xentrix Studios",
+        "dates": "Nov 2024 — Oct 2025",
+        "location": "Bengaluru · On-site"
+      },
+      {
+        "role": "Visualizer & 3D Animation Specialist",
+        "company": "Zebu Animation Studios",
+        "dates": "Nov 2025 — Present",
+        "location": "Bengaluru · On-site"
+      }
+    ]
+  },
+  "contact": {
+    "statement": "Let's make something worth experiencing.",
+    "email": "msambit783@gmail.com",
+    "ctaText": "Let’s Connect"
+  },
+  "footer": {
+    "name": "Sambit Mohapatra",
+    "role": "Designer · Animator",
+    "links": [
+      { "label": "Email", "href": "https://mail.google.com/mail/?view=cm&fs=1&to=msambit783@gmail.com", "icon": "images/email.png" },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/sambit-mohapatra-b227b61b0/", "icon": "images/linkedin.png" },
+      { "label": "Behance", "href": "https://www.behance.net/sambitmohapatra3", "icon": "images/behance.png" },
+      { "label": "Instagram", "href": "https://www.instagram.com/sambit_drawz_?stkn=MW14azE3czRvdWg4MA==", "icon": "images/instagram.png" },
+      { "label": "Vimeo", "href": "https://vimeo.com/995448287?share=copy&fl=cl&fe=ci", "icon": "images/vimeo.png" }
+    ]
+  }
+}

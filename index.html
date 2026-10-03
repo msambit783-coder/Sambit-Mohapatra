@@ -1,0 +1,5241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sambit Mohapatra — Product Designer</title>
+<meta name="description" content="Sambit Mohapatra — Product Designer / UI UX Designer with a background in 3D animation.">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" href="images/Browser%20favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FEFAF1;
+    --bg-alt: #F4EFE5;
+    --ink: #121210;
+    --ink-soft: #55534E;
+    --ink-faint: #8C897F;
+    --line: #E4E1D8;
+    --line-soft: #EDEAE1;
+    --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --ease: cubic-bezier(.16,.8,.24,1);
+    --container: 1360px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{
+    scroll-behavior:smooth;
+    scrollbar-width:none; /* Firefox */
+    -ms-overflow-style:none; /* IE and Edge */
+  }
+  /* Hide scrollbar for Chrome, Safari, and Edge */
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    background: transparent;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *:not(.cloud-drift-1):not(.cloud-drift-2){animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-weight:400;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+    font-feature-settings:"cv02","cv03","cv04","cv11";
+    overflow-x:hidden;
+    scrollbar-width:none; /* Firefox */
+  }
+  /* Only allow text selection directly on reading text elements; disable on UI, buttons, and empty space */
+  html, body, header, nav, footer, section, main, div, article, figure, ul, ol, button, a {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  p, h1, h2, h3, h4, h5, h6, blockquote, q, li, .chapter-desc, .hero-roles, .selectable-text, .contact-email, input, textarea, select {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  p *, h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, blockquote *, q *, li * {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  button, a, .btn, .nav-btn, .tag, .caption-pill, .card-arrow-badge, .cursor-badge-pill, .custom-cursor, #heroHand, .hero-hand, #draggableHand, .about-hand, .polaroid {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+  button *, a *, .btn * {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+  p, h1, h2, h3, h4, h5, h6, blockquote, q, li, span, a, div, section, main, article {
+    -webkit-user-drag: none;
+  }
+  #heroHand, .hero-hand, #draggableHand, .about-hand, .polaroid, [draggable="true"] {
+    -webkit-user-drag: auto !important;
+  }
+  ::selection{
+    background:rgba(187, 27, 18, 0.22);
+    color:inherit;
+  }
+  ::-moz-selection{
+    background:rgba(187, 27, 18, 0.22);
+    color:inherit;
+  }
+
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{
+    max-width:var(--container);
+    margin:0 auto;
+    padding:0 48px;
+  }
+  @media (max-width:900px){ .wrap{padding:0 24px;} }
+
+  h1,h2,h3{
+    font-family:var(--font-display);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+  }
+
+  .eyebrow{
+    font-family:var(--font-body);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(254,250,241,0.78);
+    backdrop-filter:blur(14px) saturate(160%);
+    -webkit-backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:1px solid transparent;
+    transition:border-color 0.4s var(--ease);
+  }
+  header.nav.scrolled{ border-bottom-color:var(--line); }
+  .nav-inner{
+    width:100%;
+    max-width:100%;
+    padding:18px 100px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
+  }
+  @media (max-width:1100px){ .nav-inner{padding:18px 48px;} }
+  @media (max-width:900px){ .nav-inner{padding:16px 28px;} }
+  @media (max-width:480px){ .nav-inner{padding:14px 20px;} }
+
+  /* left brand with blinking green dot on the left */
+  .nav-brand{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    user-select:none;
+  }
+  .status-dot-nav{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#3FA85C;
+    position:relative;
+    flex-shrink:0;
+    display:inline-block;
+    box-shadow:0 0 8px rgba(63, 168, 92, 0.6);
+    animation:dotBlink 2.4s ease-in-out infinite;
+  }
+  .status-dot-nav::after{
+    content:'';
+    position:absolute;
+    inset:-3px;
+    border-radius:50%;
+    background:#3FA85C;
+    opacity:0.45;
+    animation:statusPulseNav 2.4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  }
+  @keyframes dotBlink{
+    0%, 100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:0.45; transform:scale(0.85); }
+  }
+  @keyframes statusPulseNav{
+    0%{ transform:scale(0.8); opacity:0.75; }
+    60%{ transform:scale(2.2); opacity:0; }
+    100%{ transform:scale(2.2); opacity:0; }
+  }
+  .brand-name{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:0.96rem;
+    letter-spacing:-0.015em;
+    color:var(--ink);
+    line-height:1;
+    transition:opacity 0.2s var(--ease);
+  }
+  .nav-brand:hover .brand-name{ opacity:0.75; }
+
+  /* right nav links */
+  .nav-right{
+    display:flex;
+    align-items:center;
+  }
+  .nav-links{
+    display:flex;
+    gap:36px;
+    list-style:none;
+  }
+  .nav-links a{
+    font-size:0.94rem;
+    color:var(--ink-soft);
+    font-weight:500;
+    letter-spacing:0.01em;
+    position:relative;
+    padding:4px 0;
+    transition:color 0.3s var(--ease);
+  }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0%;height:1px;
+    background:var(--ink);
+    opacity:0.7;
+    transition:width 0.4s var(--ease);
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  .nav-toggle{
+    display:none;
+    background:none;border:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    padding:6px;
+    position:relative;
+  }
+  .nav-toggle span{
+    width:20px;height:1px;
+    background:var(--ink);
+    display:block;
+  }
+  @media (max-width:760px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:flex; }
+  }
+  @media (max-width:480px){
+    .nav-brand{ gap:8px; }
+    .brand-name{ font-size:0.88rem; }
+    .nav-status{ padding:3px 8px; }
+    .nav-status-text{ font-size:0.68rem; }
+  }
+  .mobile-menu{
+    position:fixed;
+    inset:0;
+    background:var(--bg);
+    z-index:99;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    padding:0 32px;
+    gap:28px;
+    transform:translateY(-100%);
+    transition:transform 0.5s var(--ease);
+  }
+  .mobile-menu.open{ transform:translateY(0); }
+  .mobile-menu a{
+    font-family:var(--font-display);
+    font-size:2rem;
+    font-weight:600;
+  }
+  .mobile-close{
+    position:absolute;
+    top:20px; right:24px;
+    background:none;border:none;
+    font-size:1.6rem;
+    cursor:pointer;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding-top:100px;
+    padding-bottom:120px;
+    position:relative;
+    overflow:hidden;
+    background:#FEFAF1;
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    z-index:0;
+    pointer-events:none;
+    user-select:none;
+    -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 95%, rgba(0,0,0,0.6) 98%, transparent 100%);
+    mask-image:linear-gradient(to bottom, #000 0%, #000 95%, rgba(0,0,0,0.6) 98%, transparent 100%);
+  }
+
+  /* Hero Artwork Elements: Boat & Cat */
+  .hero-boat,
+  .hero-cat {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    display: block;
+    will-change: transform, left, top, width, height;
+  }
+  .hero-cat {
+    left: calc(14.71% - 13px);
+    top: calc(79.28% + 20px);
+    width: 6.22%;
+    height: auto;
+    transform-origin: bottom center;
+    animation: catBreathe 3.8s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 230, 180, 0.42))
+            drop-shadow(0 0 20px rgba(255, 210, 140, 0.24))
+            drop-shadow(0 0 36px rgba(255, 190, 100, 0.12));
+  }
+  @keyframes catBreathe {
+    0%, 100% {
+      transform: scale(1, 1);
+    }
+    42% {
+      transform: scale(0.992, 1.02);
+    }
+    58% {
+      transform: scale(0.995, 1.016);
+    }
+  }
+  .hero-boat {
+    left: 66.27%;
+    top: calc(80.98% + 38px);
+    width: 5.56%;
+    height: auto;
+    mix-blend-mode: multiply;
+    opacity: 0.84;
+    animation: boatDriftLeft 22s cubic-bezier(0.4, 0.2, 0.6, 0.8) infinite alternate;
+  }
+  @keyframes boatDriftLeft {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(-1vw, -2px) rotate(-0.5deg);
+    }
+    50% {
+      transform: translate(-2.2vw, 1.5px) rotate(0.4deg);
+    }
+    75% {
+      transform: translate(-3.2vw, -1px) rotate(-0.3deg);
+    }
+    100% {
+      transform: translate(-4.2vw, 0.5px) rotate(-0.1deg);
+    }
+  }
+
+  /* hero clouds */
+  .hero-cloud{
+    position:absolute;
+    pointer-events:none;
+    user-select:none;
+    z-index:1;
+    transform:translateX(var(--px, 0px));
+    transition:transform 0.3s cubic-bezier(.16,.8,.24,1);
+    will-change:transform;
+  }
+  .hero-cloud img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .hero-cloud-1{
+    top:7%;
+    left:-1%;
+    width:clamp(300px, 35vw, 550px);
+    opacity:0.7;
+  }
+  .hero-cloud-2{
+    top:3%;
+    right:-5%;
+    width:clamp(250px, 28vw, 440px);
+    opacity:0.7;
+  }
+  .cloud-drift-1{
+    display:block;
+    width:100%;
+    animation:cloudDrift1 8s ease-in-out infinite alternate !important;
+    will-change:transform;
+  }
+  .cloud-drift-2{
+    display:block;
+    width:100%;
+    animation:cloudDrift2 10s ease-in-out infinite alternate !important;
+    will-change:transform;
+  }
+  @keyframes cloudDrift1{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(45px); }
+  }
+  @keyframes cloudDrift2{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-40px); }
+  }
+  @media (max-width:860px){
+    .hero-cloud-1{
+      top:5%;
+      left:-8%;
+      width:clamp(210px, 46vw, 340px);
+      opacity:0.75;
+    }
+    .hero-cloud-2{
+      top:10%;
+      right:-14%;
+      width:clamp(180px, 40vw, 290px);
+      opacity:0.7;
+    }
+  }
+  @media (max-width:480px){
+    .hero-cloud-1{
+      top:4%;
+      left:-12%;
+      width:200px;
+      opacity:0.65;
+    }
+    .hero-cloud-2{
+      top:12%;
+      right:-16%;
+      width:170px;
+      opacity:0.6;
+    }
+  }
+  .hero-fade{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:40px;
+    background:linear-gradient(to bottom,
+      rgba(254, 250, 241, 0) 0%,
+      rgba(254, 250, 241, 0.5) 45%,
+      #FEFAF1 100%
+    );
+    pointer-events:none;
+    z-index:1;
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .hero .eyebrow,
+  .hero-eyebrow{
+    margin-bottom:28px;
+    font-size:0.88rem;
+    letter-spacing:0.04em;
+    font-weight:500;
+    text-transform:none;
+    color:var(--ink-soft);
+    display:inline-block;
+    height:32px;
+    line-height:32px;
+    min-height:32px;
+    max-height:32px;
+    box-sizing:border-box;
+    position:relative;
+    white-space:nowrap;
+    contain:layout;
+  }
+  .hero-cursor{
+    display:inline-block;
+    font-weight:300;
+    margin:0;
+    padding:0;
+    color:var(--ink-faint);
+    animation:blinkCursor 0.6s infinite;
+    line-height:1;
+    vertical-align:baseline;
+  }
+  @keyframes blinkCursor{
+    0%, 100%{ opacity:1; }
+    50%{ opacity:0; }
+  }
+  .hero-hand{
+    position:absolute;
+    left:calc(100% + 6px);
+    top:50%;
+    transform:translateY(-50%) translateZ(0);
+    height:2.2em;
+    width:auto;
+    transform-origin:52% 90%;
+    opacity:0;
+    pointer-events:none;
+    user-select:none;
+    -webkit-user-drag:none;
+    touch-action:none;
+    transition:opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+    will-change:transform, opacity;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+  }
+  .hero-hand.is-waving{
+    opacity:1;
+    pointer-events:auto;
+    cursor:grab;
+    animation:handWave 1.8s ease-in-out 1 forwards;
+  }
+  .hero-hand.wave-ready{
+    opacity:1;
+    pointer-events:auto;
+    cursor:grab;
+    transform:translateY(-50%) translateZ(0);
+  }
+  .hero-hand.is-waving:not(.is-dragging):not(.is-snapping):hover,
+  .hero-hand.wave-ready:not(.is-dragging):not(.is-snapping):hover{
+    animation:handWaveHover 0.75s ease-in-out infinite !important;
+    filter:drop-shadow(0 4px 12px rgba(18,18,16,0.14));
+    cursor:grab;
+  }
+  .hero-hand.is-dragging,
+  .hero-hand.is-dragging:hover{
+    cursor:grabbing !important;
+    animation:none !important;
+    transition:none !important;
+    filter:drop-shadow(0 16px 32px rgba(18,18,16,0.28)) !important;
+    z-index:999 !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+  }
+  .hero-hand.is-snapping,
+  .hero-hand.is-snapping:hover{
+    cursor:grab;
+    animation:none !important;
+    transition:transform 0.82s cubic-bezier(0.22, 1.05, 0.36, 1), filter 0.5s ease !important;
+    z-index:999 !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+  }
+  .hero-hand:active{
+    cursor:grabbing;
+  }
+  .hero-hand.high-fiving{
+    animation:handHighFive 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1 forwards !important;
+  }
+  @keyframes handWave{
+    0%{ transform:translateY(-50%) translateZ(0) rotate(0deg); }
+    15%{ transform:translateY(-50%) translateZ(0) rotate(14deg); }
+    30%{ transform:translateY(-50%) translateZ(0) rotate(-8deg); }
+    45%{ transform:translateY(-50%) translateZ(0) rotate(14deg); }
+    60%{ transform:translateY(-50%) translateZ(0) rotate(-4deg); }
+    75%{ transform:translateY(-50%) translateZ(0) rotate(8deg); }
+    90%{ transform:translateY(-50%) translateZ(0) rotate(-2deg); }
+    100%{ transform:translateY(-50%) translateZ(0) rotate(0deg); }
+  }
+  @keyframes handWaveHover{
+    0%{ transform:translateY(-50%) translateZ(0) scale(1.18) rotate(0deg); }
+    25%{ transform:translateY(-54%) translateZ(0) scale(1.22) rotate(16deg); }
+    50%{ transform:translateY(-48%) translateZ(0) scale(1.2) rotate(-10deg); }
+    75%{ transform:translateY(-54%) translateZ(0) scale(1.22) rotate(14deg); }
+    100%{ transform:translateY(-50%) translateZ(0) scale(1.18) rotate(0deg); }
+  }
+  @keyframes handHighFive{
+    0%{ transform:translateY(-50%) translateZ(0) scale(0.9) rotate(-12deg); }
+    35%{ transform:translateY(-58%) translateZ(0) scale(1.36) rotate(24deg); }
+    65%{ transform:translateY(-48%) translateZ(0) scale(1.12) rotate(-6deg); }
+    100%{ transform:translateY(-50%) translateZ(0) scale(1) rotate(0deg); }
+  }
+  .hero-hand-toast{
+    position:absolute;
+    left:calc(100% + 48px);
+    top:50%;
+    transform:translateY(-50%) translateX(-6px) scale(0.86);
+    font-family:var(--font-display);
+    font-size:0.78rem;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    background:#FCFAF6;
+    border:1px solid rgba(18, 18, 16, 0.1);
+    padding:5px 14px 5px 12px;
+    border-radius:999px;
+    white-space:nowrap;
+    opacity:0;
+    pointer-events:none;
+    box-shadow:0 6px 20px rgba(18, 18, 16, 0.08), 0 1px 3px rgba(18, 18, 16, 0.04);
+    transition:opacity 0.22s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index:20;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+  }
+  /* Speech bubble pointer arrow pointing towards the waving hand */
+  .hero-hand-toast::before{
+    content:'';
+    position:absolute;
+    left:-4.5px;
+    top:50%;
+    transform:translateY(-50%) rotate(45deg);
+    width:8px;
+    height:8px;
+    background:#FCFAF6;
+    border-left:1px solid rgba(18, 18, 16, 0.1);
+    border-bottom:1px solid rgba(18, 18, 16, 0.1);
+    border-radius:1px;
+    pointer-events:none;
+  }
+  .toast-sparkle{
+    display:inline-block;
+  }
+  .hero-hand.is-waving:not(.is-dragging):not(.is-snapping):hover ~ .hero-hand-toast,
+  .hero-hand.wave-ready:not(.is-dragging):not(.is-snapping):hover ~ .hero-hand-toast,
+  .hero-hand-toast:hover,
+  .hero-hand-toast.show{
+    opacity:1;
+    transform:translateY(-50%) translateX(3px) scale(1);
+    pointer-events:auto;
+  }
+  .hero-hand.is-dragging ~ .hero-hand-toast,
+  .hero-hand.is-snapping ~ .hero-hand-toast{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+    display:none !important;
+  }
+
+  .connect-toast{
+    position:fixed;
+    bottom:28px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px) scale(0.95);
+    font-family:var(--font-display);
+    font-size:0.82rem;
+    font-weight:600;
+    letter-spacing:0.01em;
+    color:var(--ink);
+    background:#FCFAF6;
+    border:1px solid rgba(18, 18, 16, 0.12);
+    padding:8px 18px 8px 14px;
+    border-radius:999px;
+    white-space:nowrap;
+    opacity:0;
+    pointer-events:none;
+    box-shadow:0 12px 32px rgba(18, 18, 16, 0.14), 0 2px 6px rgba(18, 18, 16, 0.06);
+    transition:opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index:9999;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .connect-toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0) scale(1);
+    pointer-events:auto;
+  }
+  .connect-toast-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:rgba(10, 207, 131, 0.16);
+    color:#0ACF83;
+    font-size:0.75rem;
+    font-weight:700;
+  }
+
+
+  .eyebrow-status{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+  }
+  .status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#3FA85C;
+    flex-shrink:0;
+    position:relative;
+  }
+  .status-dot::after{
+    content:'';
+    position:absolute;
+    inset:-4px;
+    border-radius:50%;
+    background:#3FA85C;
+    opacity:0.35;
+    animation:statusPulse 2.2s ease-out infinite;
+  }
+  @keyframes statusPulse{
+    0%{ transform:scale(0.6); opacity:0.45; }
+    70%{ transform:scale(1.9); opacity:0; }
+    100%{ transform:scale(1.9); opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .status-dot::after{ animation:none; opacity:0; }
+  }
+  .hero h1{
+    font-size:clamp(1.9rem, 4.2vw, 3.6rem);
+    max-width:20ch;
+    letter-spacing:-0.025em;
+    line-height:1.25;
+    color:var(--ink);
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    transform:none !important;
+  }
+  .red-period{
+    display:inline-block;
+    width:0.18em;
+    height:0.18em;
+    min-width:0.18em;
+    min-height:0.18em;
+    aspect-ratio:1/1;
+    border-radius:0;
+    background:#BB1B12;
+    margin-left:0.08em;
+    vertical-align:0;
+    position:relative;
+    line-height:0;
+  }
+  .red-period svg{
+    display:block;
+    width:100%;
+    height:100%;
+  }
+  .hero .sub{
+    margin-top:clamp(34px, 3.5vw, 44px);
+    font-size:1.02rem;
+    color:var(--ink-soft);
+    line-height:1;
+    text-align:center;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .role-chip{
+    position:relative;
+    display:inline-block;
+    color:var(--ink-soft);
+    font-weight:500;
+    cursor:default;
+    user-select:none;
+    padding:2px 4px;
+    transition:color 0.25s var(--ease), opacity 0.25s var(--ease);
+  }
+  .role-chip:hover{
+    color:var(--ink);
+    font-weight:600;
+  }
+
+  /* Spotlight effect: softly dim other roles and separators on hover */
+  .hero .sub:hover .role-chip:not(:hover){
+    opacity:0.35;
+  }
+  .hero .sub:hover .sub-sep{
+    opacity:0.25;
+  }
+
+  .sub-sep{
+    margin:0 12px;
+    display:inline-block;
+    color:var(--ink-faint);
+    opacity:0.65;
+    font-size:0.9em;
+    vertical-align:0.04em;
+    pointer-events:none;
+    user-select:none;
+    transition:opacity 0.25s var(--ease);
+  }
+
+  @media (max-width:540px){
+    .hero .sub{
+      flex-wrap:wrap;
+      gap:4px 6px;
+    }
+    .sub-sep{
+      display:none;
+    }
+    .role-chip{
+      padding:4px 8px;
+      font-size:0.92rem;
+    }
+  }
+  .hero-actions{
+    margin-top:68px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+
+  /* premium hero buttons */
+  .btn{
+    font-family:var(--font-body);
+    font-size:0.96rem;
+    font-weight:600;
+    padding:16px 30px;
+    border-radius:10px;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    transition:transform 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  }
+  .btn-icon{
+    flex-shrink:0;
+    transition:transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .btn-primary{
+    background:#FFFFFF;
+    color:var(--ink);
+    border:1px solid rgba(18, 18, 16, 0.16);
+    box-shadow:0 8px 24px -2px rgba(18, 18, 16, 0.08);
+  }
+  .btn-primary:hover{
+    background:#FFFFFF;
+    border-color:rgba(18, 18, 16, 0.32);
+    color:var(--ink);
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px -2px rgba(18, 18, 16, 0.12);
+  }
+  .btn-primary:active{
+    transform:translateY(0) scale(0.98);
+  }
+  .btn-primary:hover .btn-icon,
+  .contact-cta-btn:hover .btn-icon{
+    animation: arrowNudge 1.12s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  @keyframes arrowNudge{
+    0%{ transform: translateX(0); }
+    19%{ transform: translateX(4.0px); }
+    38%{ transform: translateX(0); }
+    56%{ transform: translateX(2.0px); }
+    72%{ transform: translateX(0); }
+    86%{ transform: translateX(0.8px); }
+    97%, 100%{ transform: translateX(0); }
+  }
+  .btn[download]:hover .btn-icon,
+  .btn-download:hover .btn-icon{
+    animation: downloadBob 1.12s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  @keyframes downloadBob{
+    0%{ transform: translateY(0); }
+    19%{ transform: translateY(3.6px); }
+    38%{ transform: translateY(0); }
+    56%{ transform: translateY(1.8px); }
+    72%{ transform: translateY(0); }
+    86%{ transform: translateY(0.7px); }
+    97%, 100%{ transform: translateY(0); }
+  }
+  .btn-secondary{
+    background:var(--ink);
+    color:var(--bg);
+    border:1px solid var(--ink);
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 8px 22px rgba(18, 18, 16, 0.16);
+  }
+  .btn-secondary:hover{
+    background:#252522;
+    border-color:#252522;
+    color:var(--bg);
+    transform:translateY(-2px);
+    box-shadow:0 12px 26px rgba(18, 18, 16, 0.24);
+  }
+  .btn-secondary:active{
+    transform:translateY(0) scale(0.98);
+  }
+  /* Subtle diagonal glossy shine reflection */
+  .btn-secondary::after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 36%,
+      rgba(255, 255, 255, 0.12) 43%,
+      rgba(255, 255, 255, 0.40) 50%,
+      rgba(255, 255, 255, 0.12) 57%,
+      transparent 64%,
+      transparent 100%
+    );
+    transform:translateX(-130%);
+    pointer-events:none;
+    animation:buttonShine 2.8s linear infinite;
+  }
+  @keyframes buttonShine{
+    0%{
+      transform:translateX(-130%);
+    }
+    48%{
+      transform:translateX(130%);
+    }
+    100%{
+      transform:translateX(130%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .btn-secondary::after{
+      animation:none;
+      display:none;
+    }
+  }
+
+  /* scroll indicator */
+  .scroll-hint{
+    position:absolute;
+    bottom:36px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    z-index:2;
+    transition:opacity 0.4s var(--ease), visibility 0.4s var(--ease), transform 0.4s var(--ease);
+    animation:scrollBlink 2.2s ease-in-out infinite;
+  }
+  .scroll-hint.scrolled{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none;
+    transform:translate(-50%, 12px) !important;
+  }
+  .scroll-hint-label{
+    font-family:'Poppins', sans-serif;
+    font-size:0.62rem;
+    font-weight:500;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .scroll-hint-arrow{
+    color:var(--ink-soft);
+    font-size:0.85rem;
+    line-height:1;
+  }
+  @keyframes scrollBlink{
+    0%, 100%{ opacity:0.3; transform:translate(-50%, 0); }
+    50%{ opacity:1; transform:translate(-50%, 5px); }
+  }
+
+  /* ---------- Subtle Right-Side Scroll Indicator ("Very Hint Kinda") ---------- */
+  .scroll-indicator{
+    position:fixed;
+    right:0;
+    top:0;
+    bottom:0;
+    width:14px;
+    z-index:900;
+    display:flex;
+    justify-content:flex-end;
+    pointer-events:auto;
+    user-select:none;
+    -webkit-user-select:none;
+    opacity:0.22;
+    transition:opacity 0.6s cubic-bezier(0.16, 0.8, 0.24, 1);
+  }
+  .scroll-indicator:hover,
+  .scroll-indicator.is-scrolling,
+  .scroll-indicator.is-dragging{
+    opacity:0.75;
+  }
+  .scroll-indicator-track{
+    position:relative;
+    width:2px;
+    height:100%;
+    background:rgba(18, 18, 16, 0.06);
+    cursor:pointer;
+    transition:width 0.25s ease, background 0.25s ease;
+  }
+  .scroll-indicator:hover .scroll-indicator-track,
+  .scroll-indicator.is-dragging .scroll-indicator-track{
+    width:3.5px;
+    background:rgba(18, 18, 16, 0.12);
+  }
+  .scroll-indicator-fill{
+    position:absolute;
+    top:0;
+    right:0;
+    width:100%;
+    height:0;
+    background:rgba(18, 18, 16, 0.20);
+    pointer-events:none;
+    will-change:height;
+  }
+  .scroll-indicator-thumb{
+    position:absolute;
+    top:0;
+    right:0;
+    transform:translateY(0);
+    width:100%;
+    height:32px;
+    background:var(--ink);
+    border-radius:2px 0 0 2px;
+    cursor:grab;
+    pointer-events:none;
+    will-change:transform;
+    transition:background 0.25s ease;
+  }
+  .scroll-indicator:hover .scroll-indicator-thumb,
+  .scroll-indicator.is-dragging .scroll-indicator-thumb{
+    background:#121210;
+  }
+  .scroll-indicator.is-dragging .scroll-indicator-thumb{
+    cursor:grabbing;
+  }
+  @media (max-width:768px){
+    .scroll-indicator{
+      right:0;
+      top:0;
+      bottom:0;
+      width:10px;
+      opacity:0.18;
+    }
+  }
+
+  .link-arrow{
+    font-size:0.95rem;
+    font-weight:600;
+    padding-bottom:4px;
+    border-bottom:1px solid var(--line);
+    transition:border-color 0.3s var(--ease), opacity 0.3s var(--ease);
+  }
+  .link-arrow:hover{ border-color:var(--ink); }
+
+  @media (max-width:520px){
+    .hero-actions{ gap:14px; }
+    .btn{ padding:15px 22px; width:100%; justify-content:center; }
+  }
+
+  /* ---------- section shell ---------- */
+  section{
+    padding:150px 0;
+    position:relative;
+  }
+  @media (max-width:900px){ section{ padding:100px 0; } }
+  .section-head{
+    margin-bottom:56px;
+  }
+  .section-head h2{
+    font-size:clamp(1.7rem, 3.4vw, 2.6rem);
+    margin-top:12px;
+  }
+  .section-head .lede{
+    margin-top:16px;
+    color:var(--ink-soft);
+    font-size:1rem;
+    max-width:46ch;
+  }
+
+  /* ---------- work grid ---------- */
+  .work-section{
+    background:#FEFAF1;
+    padding-top:90px;
+    position:relative;
+  }
+  .work-section .section-head{
+    text-align:center;
+    margin-bottom:96px;
+  }
+  @media (max-width:860px){
+    .work-section .section-head{
+      margin-bottom:64px;
+    }
+  }
+  .work-section .section-head .eyebrow{
+    margin:0 auto;
+  }
+  .work-section .section-head h2{
+    font-family:var(--font-display);
+    font-size:28px;
+    margin:14px auto 0;
+    max-width:none;
+    white-space:nowrap;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.25;
+    color:var(--ink);
+  }
+  .work-section .section-head h2 .red-period{
+    display:inline-block;
+    width:6px;
+    height:6px;
+    min-width:6px;
+    min-height:6px;
+    aspect-ratio:1/1;
+    border-radius:0;
+    background:#BB1B12;
+    margin-left:0.14em;
+    vertical-align:0;
+    position:relative;
+    line-height:0;
+  }
+  .work-section .section-head h2 .red-period svg{
+    display:block;
+    width:100%;
+    height:100%;
+  }
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    row-gap:110px;
+    column-gap:110px;
+  }
+  @media (max-width:860px){
+    .projects-grid{
+      grid-template-columns:1fr;
+      gap:58px;
+    }
+  }
+
+  .chapter{
+    display:flex;
+    flex-direction:column;
+    padding:0;
+    border:none;
+    position:relative;
+    perspective:1200px;
+  }
+
+  .chapter-visual{
+    position:relative;
+    display:block;
+    width:100%;
+    aspect-ratio:16/11;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 20px 40px -20px rgba(18,18,16,0.12), 0 4px 12px rgba(18,18,16,0.03);
+    transform:translate3d(var(--glue-x, 0px), calc(var(--glue-y, 0px) + var(--glue-lift, 0px)), 0)
+              rotateX(var(--glue-rx, 0deg))
+              rotateY(var(--glue-ry, 0deg));
+    transform-style:preserve-3d;
+    transition:box-shadow 0.4s var(--ease);
+    will-change:transform;
+  }
+  .chapter-visual img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transform:scale(var(--img-scale, 1)) translate3d(var(--img-x, 0px), var(--img-y, 0px), 0);
+    transition:transform 0.45s var(--ease);
+    will-change:transform;
+  }
+  .chapter-visual:hover{
+    --glue-lift:-4px;
+    --img-scale:1.035;
+    box-shadow:0 24px 48px -16px rgba(18,18,16,0.176), 0 8px 21px rgba(18,18,16,0.064);
+  }
+
+  .card-arrow-badge{
+    position:absolute;
+    bottom:16px;
+    right:16px;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:rgba(48,47,44,0.88);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.18);
+    box-shadow:0 4px 16px rgba(18,18,16,0.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#FFFFFF;
+    z-index:3;
+    opacity:0.7;
+    pointer-events:none;
+    transition:opacity 0.35s var(--ease), transform 0.35s var(--ease), background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+  .card-arrow-badge svg{
+    display:block;
+    width:17px;
+    height:17px;
+    transition:transform 0.35s var(--ease);
+  }
+  .chapter-visual:hover .card-arrow-badge{
+    opacity:1;
+    transform:scale(1.1);
+    background:#1C1B18;
+    box-shadow:0 8px 24px rgba(18,18,16,0.28);
+  }
+  .chapter-visual:hover .card-arrow-badge svg{
+    transform:translate(1px, -1px);
+  }
+  @media (max-width:680px){
+    .card-arrow-badge{
+      bottom:12px;
+      right:12px;
+      width:32px;
+      height:32px;
+    }
+    .card-arrow-badge svg{
+      width:15px;
+      height:15px;
+    }
+  }
+
+  /* Thumbnail offsets */
+  .v-helphive{
+    margin-top:0.2px;
+  }
+  .v-helphive img{
+    object-position:center 0.2px;
+  }
+  .v-greentok{
+    margin-top:0.2px;
+  }
+  .v-greentok img{
+    object-position:center 0.2px;
+  }
+  .v-learnix{
+    margin-top:0.4px;
+  }
+  .v-learnix img{
+    object-position:center 0.4px;
+  }
+  @media (max-width:860px){
+    .v-helphive, .v-greentok, .v-learnix{
+      margin-top:0;
+    }
+  }
+
+  .chapter-scale{
+    will-change:transform;
+  }
+  .chapter.in .chapter-scale{ will-change:transform; }
+
+  .chapter-content{
+    display:flex;
+    flex-direction:column;
+    margin-top:22px;
+    flex:1;
+  }
+  .chapter-meta{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .chapter-meta .tag{
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+    background:rgba(18,18,16,0.04);
+    padding:3px 9px;
+    border-radius:12px;
+    border:1px solid var(--line-soft);
+  }
+  .chapter-num{
+    display:inline-block;
+    font-family:var(--font-display);
+    font-size:0.82rem;
+    color:var(--ink-faint);
+    font-weight:700;
+    letter-spacing:0.04em;
+    margin-bottom:12px;
+  }
+  .chapter-content h3{
+    font-size:20px;
+    letter-spacing:-0.02em;
+    margin-top:0;
+    margin-bottom:14px;
+  }
+  .chapter-desc{
+    margin-top:0;
+    color:var(--ink-soft);
+    font-size:0.95rem;
+    line-height:1.6;
+    max-width:44ch;
+    margin-bottom:18px;
+  }
+
+  /* project palettes */
+  .v-helphive{ background:linear-gradient(160deg,#F3E3C4,#E3BE7F 75%); }
+  .v-greentok{ background:linear-gradient(160deg,#DCE8DD,#B9CFBC 70%); }
+  .v-learnix{ background:linear-gradient(160deg,#D9E2F0,#A9BEDD 75%); }
+  .v-mello{ background:linear-gradient(160deg,#EBDFEF,#C7A9D6 75%); }
+  .v-irctc{ background:linear-gradient(160deg,#D7DCEA,#8FA0C6 75%); }
+
+  .case-link{
+    align-self:flex-start;
+    margin-top:auto;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.9rem;
+    font-weight:600;
+    opacity:0.75;
+    border-bottom:1px solid transparent;
+    transition:opacity 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.25s var(--ease);
+  }
+  .case-link:hover{
+    opacity:1;
+    border-color:var(--ink);
+    transform:translateX(3px);
+  }
+
+  /* ---------- about ---------- */
+  .about-section{
+    background-color: #FDF9EF;
+    background-image: url('images/About.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 130px 0 140px;
+    overflow: hidden;
+  }
+  .about-wrap{
+    max-width: 100%;
+    margin: 0;
+    padding-left: clamp(20px, 3.5vw, 56px);
+    padding-right: clamp(24px, 4vw, 72px);
+    display: grid;
+    grid-template-columns: 540px minmax(auto, 1040px);
+    gap: clamp(36px, 4vw, 64px);
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* polaroids stage */
+  .about-polaroids-col{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .polaroids-stage{
+    position: relative;
+    width: 530px;
+    height: 450px;
+    flex-shrink: 0;
+    perspective: 1200px;
+  }
+  .polaroid{
+    position: absolute;
+    background: #FFFFFF;
+    border-radius: 2px;
+    box-shadow: 0 16px 36px -6px rgba(18, 18, 16, 0.16), 0 4px 12px rgba(18, 18, 16, 0.06);
+    user-select: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    padding-bottom: 0px;
+    transform: translate3d(var(--px, 0px), calc(var(--py, 0px) + var(--lift-y, 0px)), 0)
+               rotate(var(--base-rot, 0deg))
+               rotateX(var(--tilt-x, 0deg))
+               rotateY(var(--tilt-y, 0deg))
+               scale(var(--scale, 1));
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), padding-bottom 0.35s var(--ease), z-index 0.2s ease;
+    will-change: transform, padding-bottom;
+  }
+  .polaroid:focus-visible{
+    outline: 2px solid #BB1B12;
+    outline-offset: 4px;
+  }
+  .polaroid img{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .polaroid-1{
+    --base-rot: -10deg;
+    width: 215px;
+    left: 0px;
+    top: 25px;
+    z-index: 1;
+  }
+  .polaroid-2{
+    --base-rot: 8deg;
+    width: 220px;
+    right: 0px;
+    top: 0px;
+    z-index: 1;
+  }
+  .polaroid-3{
+    --base-rot: -4.5deg;
+    width: 225px;
+    left: 135px;
+    top: 200px;
+    z-index: 2;
+  }
+
+  /* Hover & Active Lift */
+  @media (hover: hover) and (pointer: fine) {
+    .polaroid:hover:not(.is-expanded){
+      z-index: 15 !important;
+      --lift-y: -8px;
+      --scale: 1.07;
+      box-shadow: 0 26px 52px -10px rgba(18, 18, 16, 0.24), 0 8px 20px rgba(18, 18, 16, 0.08);
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), padding-bottom 0.35s var(--ease);
+    }
+    .polaroid:hover .polaroid-caption{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .polaroid.is-hovered:not(.is-expanded){
+    z-index: 15 !important;
+    --lift-y: -8px;
+    --scale: 1.07;
+    box-shadow: 0 26px 52px -10px rgba(18, 18, 16, 0.24), 0 8px 20px rgba(18, 18, 16, 0.08);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), padding-bottom 0.35s var(--ease);
+  }
+  .polaroid.is-hovered .polaroid-caption{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .polaroid.is-expanded{
+    z-index: 30 !important;
+    --px: 0px !important;
+    --py: 0px !important;
+    --lift-y: -16px;
+    --scale: 1.18;
+    --tilt-x: 0deg !important;
+    --tilt-y: 0deg !important;
+    padding-bottom: 44px;
+    box-shadow: 0 38px 72px -12px rgba(18, 18, 16, 0.32), 0 14px 28px rgba(18, 18, 16, 0.12);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), padding-bottom 0.35s var(--ease);
+  }
+
+  /* Polaroid Caption on white chin */
+  .polaroid-caption{
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.28s ease, transform 0.28s var(--ease);
+    z-index: 6;
+  }
+  .polaroid:hover .polaroid-caption,
+  .polaroid.is-hovered .polaroid-caption{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .polaroid.is-expanded .polaroid-caption{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .polaroid-3 .polaroid-caption{
+    bottom: 14px;
+  }
+  .caption-pill{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-family: 'Caveat', cursive, sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.86rem, 1.75vw, 1.05rem);
+    letter-spacing: 0.01em;
+    color: #121210;
+    line-height: 1.1;
+    transform: translateY(0);
+    transition: transform 0.35s var(--ease);
+  }
+  .polaroid.is-expanded .caption-pill{
+    transform: translateY(-44px);
+  }
+  .caption-title{
+    font-family: 'Caveat', cursive, sans-serif;
+    font-weight: 700;
+  }
+  .caption-arrow{
+    color: #BB1B12;
+    font-size: 0.85em;
+    font-weight: 800;
+    display: inline-block;
+    transition: transform 0.25s var(--ease);
+    margin-top: -1px;
+  }
+  .polaroid:hover .caption-arrow,
+  .polaroid.is-hovered .caption-arrow{
+    transform: translateX(2px);
+  }
+  .caption-tag{
+    font-family: 'Caveat', cursive, sans-serif;
+    font-weight: 700;
+    font-size: 0.86em;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #BB1B12;
+    background: rgba(187, 27, 18, 0.08);
+    padding: 1px 7px;
+    border-radius: 999px;
+    border: 1px solid rgba(187, 27, 18, 0.2);
+    line-height: 1.15;
+  }
+  .caption-detail{
+    position: absolute;
+    bottom: 4px;
+    left: 8px;
+    right: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(4px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.6rem, 1.1vw, 0.72rem);
+    letter-spacing: 0.01em;
+    color: #55534E;
+    line-height: 1.35;
+    text-align: center;
+    white-space: normal;
+    transition: opacity 0.18s ease, transform 0.22s var(--ease);
+  }
+  .polaroid.is-expanded .caption-detail{
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.28s ease 0.08s, transform 0.3s var(--ease) 0.08s;
+  }
+
+  /* masking tape */
+  .polaroid-tape{
+    position: absolute;
+    background: rgba(240, 230, 210, 0.78);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    z-index: 5;
+    pointer-events: none;
+    border-left: 2px dashed rgba(200, 185, 160, 0.4);
+    border-right: 2px dashed rgba(200, 185, 160, 0.4);
+  }
+  .tape-center{
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 66px;
+    height: 20px;
+  }
+  .polaroid-3 .tape-center{
+    transform: translateX(-50%) rotate(2.5deg);
+  }
+  .tape-corner-left{
+    top: -9px;
+    left: 16px;
+    transform: rotate(-9deg);
+    width: 48px;
+    height: 18px;
+  }
+  .tape-corner-right{
+    top: -9px;
+    right: 16px;
+    transform: rotate(11deg);
+    width: 48px;
+    height: 18px;
+  }
+
+  /* about content */
+  .about-content-col{
+    position: relative;
+    z-index: 2;
+  }
+  .about-eyebrow{
+    margin-bottom: 18px;
+    margin-left: clamp(20px, 2.4vw, 36px);
+  }
+  .about-text-grid{
+    display: grid;
+    grid-template-columns: minmax(340px, 1.05fr) 1.25fr;
+    gap: clamp(24px, 2.4vw, 36px);
+    align-items: start;
+  }
+  .about-statement{
+    margin: 0;
+    margin-left: clamp(20px, 2.4vw, 36px);
+    max-width: none;
+    font-size: 28px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .about-statement .red-period{
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    min-width: 7px;
+    min-height: 7px;
+    aspect-ratio: 1/1;
+    border-radius: 0;
+    background: #BB1B12;
+    margin-left: 0.12em;
+    vertical-align: 0;
+    position: relative;
+    line-height: 0;
+  }
+  .about-statement .red-period svg{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .about-body{
+    margin: 0;
+    max-width: 62ch;
+    color: var(--ink-soft);
+    font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+    line-height: 1.75;
+  }
+
+  @media (max-width: 1280px){
+    .about-wrap{
+      grid-template-columns: 460px 1fr;
+      gap: 36px;
+    }
+    .about-text-grid{
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .about-eyebrow,
+    .about-statement{
+      margin-left: 0;
+    }
+    .polaroids-stage{
+      width: 440px;
+      height: 380px;
+    }
+    .polaroid-1{ width: 180px; left: 0px; top: 20px; }
+    .polaroid-2{ width: 185px; right: 0px; top: 0px; }
+    .polaroid-3{ width: 190px; left: 110px; top: 165px; }
+  }
+
+  @media (max-width: 960px){
+    .about-section{
+      padding: 90px 0 100px;
+      background-position: left bottom;
+    }
+    .about-wrap{
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .about-polaroids-col{
+      justify-content: center;
+    }
+    .polaroids-stage{
+      width: 380px;
+      height: 330px;
+      margin: 0 auto;
+    }
+    .polaroid-1{ width: 155px; left: 0px; top: 15px; }
+    .polaroid-2{ width: 160px; right: 0px; top: 0px; }
+    .polaroid-3{ width: 165px; left: 95px; top: 140px; }
+    .about-text-grid{
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 480px){
+    .polaroids-stage{
+      width: 310px;
+      height: 275px;
+    }
+    .polaroid-1{ width: 125px; left: 0px; top: 12px; }
+    .polaroid-2{ width: 130px; right: 0px; top: 0px; }
+    .polaroid-3{ width: 135px; left: 80px; top: 120px; }
+    .polaroid.is-expanded{
+      --scale: 1.12;
+      --lift-y: -10px;
+      padding-bottom: 46px;
+    }
+    .polaroid-3 .polaroid-caption{ bottom: 12px; }
+    .polaroid.is-expanded .caption-pill{
+      transform: translateY(-46px);
+    }
+  }
+
+  /* ---------- animation connection (A different dimension) ---------- */
+  .connection-section{
+    position: relative;
+    overflow: hidden;
+    background: #080607;
+    color: #FAFAF8;
+    margin-top: 80px;
+    padding: 160px 0 180px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 740px;
+  }
+  .dimension-bg{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.55;
+  }
+  .dimension-cloud-3{
+    position: absolute;
+    left: -3%;
+    top: -4%;
+    width: clamp(270px, 36vw, 600px);
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.7;
+    animation: cloudDrift3 11s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes cloudDrift3{
+    0%{ transform: translate3d(0, 0, 0); }
+    100%{ transform: translate3d(28px, 0, 0); }
+  }
+  .dimension-branch{
+    position: absolute;
+    right: clamp(-50px, -3vw, -25px);
+    top: -24px;
+    width: clamp(140px, 16vw, 275px);
+    height: auto;
+    z-index: 3;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.65;
+    transform-origin: top right;
+    animation: branchSway 6.5s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes branchSway{
+    0%{ transform: rotate(0deg) translate3d(0, 0, 0); }
+    100%{ transform: rotate(-3.8deg) translate3d(-3px, 6px, 0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .dimension-branch,
+    .dimension-cloud-3{
+      animation: none !important;
+    }
+  }
+  .dimension-content{
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .dimension-eyebrow{
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 22px;
+  }
+  .dimension-title{
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.2vw, 4.2rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: #FFFFFF;
+    max-width: 18ch;
+    margin: 0 auto;
+  }
+  .dimension-red{
+    color: #E22B23;
+  }
+  .dimension-period{
+    display: inline-block;
+    width: 0.17em;
+    height: 0.17em;
+    min-width: 0.17em;
+    min-height: 0.17em;
+    aspect-ratio: 1/1;
+    border-radius: 0;
+    background: #E22B23;
+    margin-left: 0.06em;
+    vertical-align: 0.02em;
+  }
+  .dimension-desc{
+    margin: 24px auto 0;
+    max-width: 48ch;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: var(--font-body);
+    font-size: clamp(0.92rem, 1.15vw, 1.04rem);
+    line-height: 1.75;
+    font-weight: 400;
+  }
+  .dimension-divider{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .dimension-divider .divider-line{
+    width: 32px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.35);
+  }
+  .dimension-divider .divider-dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #E22B23;
+    box-shadow: 0 0 8px rgba(226, 43, 35, 0.75);
+  }
+  @media (max-width: 900px){
+    .connection-section{ padding: 130px 0 150px; min-height: 640px; }
+    .dimension-branch{
+      top: -16px;
+      right: -20px;
+      width: clamp(110px, 15vw, 175px);
+      opacity: 0.65;
+    }
+    .dimension-cloud-3{
+      width: 270px;
+      opacity: 0.65;
+    }
+  }
+  @media (max-width: 600px){
+    .connection-section{ padding: 110px 0 130px; min-height: 580px; }
+    .dimension-title{
+      font-size: clamp(1.9rem, 7.8vw, 2.6rem);
+    }
+    .dimension-branch{
+      top: -10px;
+      right: -12px;
+      width: 95px;
+      opacity: 0.65;
+    }
+    .dimension-cloud-3{
+      width: clamp(180px, 45vw, 230px);
+    }
+  }
+
+  /* ---------- animation reel ---------- */
+  .reel-section{
+    background:var(--bg);
+    overflow:hidden;
+    position:relative;
+    padding:100px 0 115px;
+  }
+  .reel-section .wrap{
+    position:relative;
+  }
+  .reel-section .eyebrow{
+    position:relative;
+    z-index:10;
+    text-align:center;
+    margin:0 auto;
+  }
+  .reel-section h2{
+    position:relative;
+    z-index:10;
+    font-family:var(--font-display);
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.25;
+    margin-top:14px;
+    color:var(--ink);
+    text-align:center;
+  }
+  .reel-stage{
+    position:relative;
+    margin-top:46px;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1;
+  }
+  .reel-frame{
+    margin-top:0;
+    width:100%;
+    max-width:840px;
+    aspect-ratio:16/9;
+    border-radius:18px;
+    background:linear-gradient(140deg,#171716,#000);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    border:1px solid #222;
+    z-index:1;
+  }
+  .reel-frame:before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.08), transparent 60%);
+  }
+  .reel-play{
+    width:66px;height:66px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:transform 0.4s var(--ease), background 0.4s var(--ease);
+    position:relative;
+    z-index:2;
+  }
+  .reel-frame:hover .reel-play{
+    transform:scale(1.08);
+    background:rgba(255,255,255,0.08);
+  }
+  .reel-play svg{ margin-left:4px; }
+  .reel-frame iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+    position:relative;
+    z-index:1;
+  }
+  .reel-note{
+    margin-top:18px;
+    font-size:0.82rem;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- clients ---------- */
+  .clients-section{ background:var(--bg-alt); }
+  .clients-row{
+    margin-top:clamp(70px, 6.2vw, 95px);
+    display:flex;
+    flex-wrap:nowrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:clamp(52px, 5vw, 76px);
+    width:100%;
+  }
+  .client-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+    flex:1 1 0;
+    min-width:0;
+  }
+  .client-logo{
+    height:54px;
+    width:auto;
+    max-width:165px;
+    object-fit:contain;
+    filter:grayscale(100%) opacity(0.55);
+    transform-origin:center center;
+    transition:filter 0.35s var(--ease), transform 0.35s var(--ease);
+    will-change:transform;
+  }
+  .client-logo[src*="nickelodeon"],
+  .client-logo.logo-nickelodeon{
+    transform:scale(1.28);
+  }
+  @media (max-width:900px){
+    .clients-row{
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:42px 50px;
+    }
+    .client-item{ flex:0 1 auto; gap:18px; }
+    .client-logo{ height:42px; max-width:130px; }
+  }
+  .client-item:hover .client-logo{
+    filter:grayscale(0%) opacity(1);
+    transform:translateY(-6px) scale(1.15);
+  }
+  .client-item:hover .client-logo[src*="nickelodeon"],
+  .client-item:hover .client-logo.logo-nickelodeon{
+    transform:translateY(-6px) scale(1.48);
+  }
+  .client-label{
+    font-family:var(--font-body);
+    font-size:0.82rem;
+    font-weight:500;
+    letter-spacing:0.02em;
+    color:var(--ink-faint);
+    display:inline-block;
+    transform-origin:center top;
+    transition:color 0.35s var(--ease), transform 0.35s var(--ease);
+    will-change:transform;
+  }
+  .client-item:hover .client-label{
+    color:var(--ink);
+    transform:translateY(4px) scale(1.1);
+  }
+  .client-name{
+    font-family:var(--font-display);
+    font-size:1.15rem;
+    font-weight:600;
+    color:var(--ink-faint);
+    letter-spacing:-0.01em;
+    transition:color 0.35s var(--ease);
+  }
+  .client-name:hover{ color:var(--ink); }
+
+  /* ---------- experience ---------- */
+  .exp-section{
+    background-color:var(--bg);
+    background-image:url('images/Experience.png');
+    background-repeat:no-repeat;
+    background-position:center bottom;
+    background-size:100% auto;
+    position:relative;
+    overflow:hidden;
+    padding:110px 0 140px;
+  }
+  .exp-tree{
+    position:absolute;
+    top:0;
+    left:clamp(-45px, -2.5vw, -25px);
+    width:clamp(200px, 20vw, 320px);
+    height:auto;
+    pointer-events:none;
+    user-select:none;
+    z-index:1;
+    opacity:0.78;
+    transform-origin:top left;
+    animation:treeBreeze 8s ease-in-out infinite;
+    will-change:transform;
+  }
+  @keyframes treeBreeze{
+    0%, 100%{
+      transform:rotate(0deg) translate(0, 0);
+    }
+    38%{
+      transform:rotate(1.5deg) translate(2px, 3px);
+    }
+    68%{
+      transform:rotate(-0.8deg) translate(-1px, 1px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .exp-tree{ animation:none !important; }
+  }
+  .exp-container{
+    max-width:860px;
+    margin:0 auto;
+    padding:0 40px;
+    position:relative;
+    z-index:2;
+  }
+  .exp-eyebrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    font-family:var(--font-body);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    font-weight:600;
+    text-align:center;
+    margin:0 auto;
+  }
+  .exp-eyebrow-line{
+    display:inline-block;
+    width:42px;
+    height:1px;
+    background:var(--line, #D5D1C8);
+  }
+  .exp-heading{
+    font-family:var(--font-display);
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+    margin-top:14px;
+    color:var(--ink);
+    line-height:1.25;
+    text-align:center;
+  }
+  .exp-timeline{
+    position:relative;
+    margin-top:52px;
+  }
+  .exp-timeline-line{
+    position:absolute;
+    left:-10px;
+    width:1px;
+    background:rgba(18, 18, 16, 0.10);
+    transform:translateX(-50%);
+    z-index:1;
+    pointer-events:none;
+  }
+  .exp-timeline-line::after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:var(--line-prog, 0%);
+    background:rgba(226, 74, 50, 0.40);
+    transition:height 0.2s ease-out;
+  }
+  .exp-row{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:38px 0 38px 36px;
+    gap:24px;
+  }
+  .exp-row:not(:last-child)::after{
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:36px;
+    right:0;
+    height:1px;
+    background:rgba(18, 18, 16, 0.07);
+    pointer-events:none;
+  }
+  .exp-dot{
+    position:absolute;
+    left:-10px;
+    top:49px;
+    transform:translate(-50%, -50%);
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#E24A32;
+    box-shadow:0 0 0 2.5px rgba(226, 74, 50, 0.16);
+    z-index:2;
+    opacity:0.18;
+    transition:opacity 0.25s cubic-bezier(.16,.8,.24,1);
+    will-change:opacity;
+  }
+  .exp-role h4{
+    font-family:var(--font-display);
+    font-size:1.12rem;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  .exp-role .company{
+    font-family:var(--font-body);
+    font-size:0.88rem;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+  .exp-meta{
+    text-align:right;
+    flex-shrink:0;
+  }
+  .exp-meta .dates{
+    font-family:var(--font-body);
+    font-size:0.88rem;
+    font-weight:500;
+    color:var(--ink-soft);
+  }
+  .exp-meta .location{
+    font-family:var(--font-body);
+    font-size:0.82rem;
+    color:var(--ink-faint);
+    margin-top:4px;
+  }
+  /* ---------- contact ---------- */
+  .contact-section{
+    background:#FAF5EC;
+    padding:0;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-scene{
+    position:relative;
+    width:100%;
+    min-height:clamp(620px, 56.4vw, 980px);
+    aspect-ratio:1670 / 942;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .contact-bg-img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center bottom;
+    z-index:1;
+    pointer-events:none;
+    user-select:none;
+  }
+
+  .contact-wind-chime{
+    position:absolute;
+    top:19.1%;
+    left:7.2%;
+    width:clamp(32px, 3.5vw, 54px);
+    height:auto;
+    z-index:4;
+    cursor:pointer;
+    transform-origin:51.3% 0;
+    transition:transform 0.4s var(--ease);
+  }
+  .contact-wind-chime:hover{
+    transform:rotate(6deg);
+  }
+  .wind-chime-img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .lantern-glow{
+    position:absolute;
+    z-index:2;
+    pointer-events:none;
+    user-select:none;
+    border-radius:50%;
+    background:radial-gradient(
+      ellipse at 50% 50%,
+      rgba(255, 255, 200, 1.0) 0%,
+      rgba(255, 220, 95, 0.92) 20%,
+      rgba(255, 160, 40, 0.60) 45%,
+      rgba(255, 100, 15, 0.25) 70%,
+      rgba(255, 60, 0, 0) 100%
+    );
+    mix-blend-mode:screen;
+    filter:blur(3.5px);
+    transform-origin:center center;
+    animation:lanternFlicker 3.6s ease-in-out infinite alternate;
+  }
+  @keyframes lanternFlicker{
+    0%{ opacity:0.85; transform:scale(0.96); filter:blur(3px); }
+    28%{ opacity:0.98; transform:scale(1.03); filter:blur(4px); }
+    55%{ opacity:0.88; transform:scale(0.98); filter:blur(3.5px); }
+    82%{ opacity:1.0; transform:scale(1.05); filter:blur(4.5px); }
+    100%{ opacity:0.87; transform:scale(0.99); filter:blur(3.5px); }
+  }
+  .contact-cherry-branch{
+    position:absolute;
+    top:0;
+    right:0;
+    width:clamp(230px, 26vw, 415px);
+    height:auto;
+    z-index:3;
+    pointer-events:none;
+    user-select:none;
+    opacity:0.85;
+    transform-origin:top right;
+    animation:contactCherrySway 4.5s ease-in-out infinite alternate;
+    will-change:transform;
+  }
+  @keyframes contactCherrySway{
+    0%{ transform:rotate(-10deg) translate3d(0, 0, 0); }
+    100%{ transform:rotate(-12.4deg) translate3d(-3px, 4px, 0); }
+  }
+  .contact-wrap{
+    position:relative;
+    z-index:10;
+    text-align:center;
+    max-width:820px;
+    padding:40px 24px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+  .contact-statement{
+    font-size:50px;
+    max-width:24ch;
+    margin:0 auto;
+    font-family:var(--font-display);
+    font-weight:700;
+    letter-spacing:-0.025em;
+    line-height:1.15;
+  }
+  .contact-email-row{
+    margin-top:72px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    position:relative;
+  }
+  .contact-email{
+    font-size:clamp(1.1rem,2.4vw,1.5rem);
+    font-weight:500;
+    border-bottom:1px solid var(--line);
+    padding-bottom:6px;
+    display:inline-block;
+    transition:border-color 0.3s var(--ease);
+  }
+  .contact-email:hover{ border-color:var(--ink); }
+  .email-copy-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:30px;
+    height:30px;
+    padding:0;
+    border-radius:50%;
+    background:rgba(255, 255, 255, 0.55);
+    border:1px solid rgba(18, 18, 16, 0.12);
+    color:var(--ink-soft);
+    opacity:0.65;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(18, 18, 16, 0.04);
+    transition:opacity 0.25s var(--ease), background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease), color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  }
+  .email-copy-btn:hover{
+    opacity:1;
+    background:#FFFFFF;
+    color:var(--ink);
+    border-color:rgba(18, 18, 16, 0.28);
+    transform:scale(1.08);
+    box-shadow:0 3px 10px rgba(18, 18, 16, 0.08);
+  }
+  .email-copy-btn:active{
+    transform:scale(0.95);
+  }
+  .email-copy-btn.copied{
+    opacity:1;
+    background:rgba(10, 207, 131, 0.14);
+    border-color:rgba(10, 207, 131, 0.5);
+    color:#09975f;
+  }
+  .contact-cta{
+    margin-top:40px;
+    position:relative;
+    z-index:5;
+  }
+  .contact-cta .btn-primary{
+    background:#FFFFFF;
+    color:var(--ink);
+    border:1px solid rgba(18, 18, 16, 0.14);
+    box-shadow:0 8px 24px -2px rgba(18, 18, 16, 0.08);
+  }
+  .contact-cta .btn-primary:hover{
+    background:#FFFFFF;
+    border-color:rgba(18, 18, 16, 0.32);
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px -2px rgba(18, 18, 16, 0.12);
+  }
+
+  @media (max-width:900px){
+    .reel-section{ padding:80px 0 95px; }
+    .reel-stage{ margin-top:38px; }
+    .exp-section{ padding:110px 0 130px; }
+    .exp-tree{ width:clamp(120px, 17vw, 180px); opacity:0.78; left:-20px; }
+    .exp-container{ padding:0 32px; }
+    .contact-scene{ min-height:600px; aspect-ratio:auto; }
+    .contact-statement{ font-size:clamp(32px, 4.5vw, 46px); }
+  }
+  @media (max-width:600px){
+    .reel-section{ padding:65px 0 80px; }
+    .reel-stage{ margin-top:28px; }
+    .reel-play{ width:54px; height:54px; }
+    .reel-frame{ border-radius:14px; }
+    .exp-section{ padding:90px 0 110px; background-size:cover; }
+    .exp-tree{ width:105px; top:-5px; left:-15px; opacity:0.75; }
+    .exp-container{ padding:0 20px 0 34px; }
+    .contact-scene{ min-height:560px; }
+    .contact-statement{ font-size:clamp(26px, 7vw, 42px); word-break:normal; }
+    .contact-email-row{ margin-top:44px; }
+    .contact-email{ font-size:1.05rem; }
+    .contact-cta{ margin-top:32px; }
+    .work-section .section-head h2,
+    .reel-section h2,
+    .exp-heading{ font-size:clamp(22px, 5.5vw, 28px); white-space:normal; }
+    .about-br{ display:none; }
+    .contact-wrap{ padding:64px 20px 80px; }
+    .contact-wind-chime{ width:30px; }
+    .exp-timeline{ margin-top:32px; }
+    .exp-timeline-line{ left:-10px; }
+    .exp-row{ padding:28px 0 28px 22px; flex-direction:column; align-items:flex-start; gap:6px; }
+    .exp-row:not(:last-child)::after{ left:22px; }
+    .exp-dot{ left:-10px; width:10px; height:10px; top:35px; }
+    .exp-role h4{ font-size:1rem; }
+    .exp-role .company{ font-size:0.8rem; }
+    .exp-meta{ text-align:left; }
+    .exp-meta .dates{ font-size:0.8rem; }
+    .exp-meta .location{ font-size:0.75rem; }
+  }
+
+  /* ---------- Easter Egg Cat Game ---------- */
+  .easter-cat-btn{
+    position:absolute;
+    width:96px;
+    height:96px;
+    cursor:pointer;
+    background:transparent;
+    border:none;
+    padding:0;
+    outline:none;
+    z-index:10;
+    touch-action:manipulation;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
+    transition:left 0.5s var(--ease), top 0.5s var(--ease), right 0.5s var(--ease), bottom 0.5s var(--ease), width 0.4s var(--ease), height 0.4s var(--ease);
+  }
+  .easter-cat-btn:focus-visible{
+    outline:2px dashed #E22B23;
+    outline-offset:4px;
+    border-radius:50%;
+  }
+  .easter-cat-btn.sleeping{
+    cursor:default;
+    width:118px;
+    height:68px;
+  }
+  .easter-cat-inner{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform-origin:center bottom;
+    transition:transform 0.25s ease-out;
+  }
+  .easter-cat-img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+    pointer-events:none;
+    transform-origin:center bottom;
+    filter:drop-shadow(0 4px 10px rgba(18,18,16,0.07));
+  }
+  .easter-cat-btn.idle .easter-cat-img{
+    animation:catBreathing 3.6s ease-in-out infinite;
+  }
+  .easter-cat-btn.sleeping .easter-cat-img{
+    animation:catSleepingBreathe 3.8s ease-in-out infinite;
+  }
+  @keyframes catBreathing{
+    0%, 100%{ transform:scale(1, 1); }
+    50%{ transform:scale(1.03, 0.97); }
+  }
+  @keyframes catSleepingBreathe{
+    0%, 100%{ transform:scale(1, 1); }
+    50%{ transform:scale(1.025, 0.975); }
+  }
+  .cat-toast{
+    position:absolute;
+    top:-20px;
+    left:50%;
+    transform:translateX(-50%) translateY(4px) scale(0.88);
+    font-family:var(--font-display);
+    font-size:0.68rem;
+    font-weight:700;
+    letter-spacing:0.03em;
+    font-style:italic;
+    color:#BB1B12;
+    background:rgba(254,250,241,0.98);
+    border:1px solid rgba(187,27,18,0.30);
+    padding:2px 7px;
+    border-radius:8px;
+    white-space:nowrap;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow:0 3px 10px rgba(18,18,16,0.08), 0 1px 3px rgba(187,27,18,0.06);
+    z-index:20;
+    display:inline-flex;
+    align-items:center;
+  }
+  .cat-toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(-10px) scale(1);
+  }
+  .cat-toast-char{
+    display:inline-block;
+    opacity:0;
+    font-style:italic;
+    transform:translateY(4px) scale(0.8);
+    animation:catCharPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  @keyframes catCharPop{
+    0%{ opacity:0; transform:translateY(4px) scale(0.8); }
+    60%{ opacity:1; transform:translateY(-2px) scale(1.08); }
+    100%{ opacity:1; transform:translateY(0) scale(1); }
+  }
+  .cat-zzz{
+    position:absolute;
+    top:-20px;
+    right:-8px;
+    display:none;
+    pointer-events:none;
+    font-family:var(--font-display);
+    font-weight:700;
+    color:#121210;
+  }
+  .easter-cat-btn.sleeping .cat-zzz{
+    display:flex;
+    gap:3px;
+  }
+  .cat-zzz span{
+    display:inline-block;
+    opacity:0;
+    animation:floatZ 2.4s ease-in-out infinite;
+  }
+  .cat-zzz span:nth-child(1){ font-size:0.68rem; animation-delay:0s; }
+  .cat-zzz span:nth-child(2){ font-size:0.82rem; animation-delay:0.4s; }
+  .cat-zzz span:nth-child(3){ font-size:0.95rem; animation-delay:0.8s; }
+  @keyframes floatZ{
+    0%{ opacity:0; transform:translate(0, 4px) scale(0.8); }
+    40%{ opacity:0.85; transform:translate(3px, -6px) scale(1); }
+    80%{ opacity:0.2; transform:translate(6px, -14px) scale(1.1); }
+    100%{ opacity:0; transform:translate(8px, -18px) scale(1.1); }
+  }
+  .cat-hint{
+    margin-top:-8px;
+    font-family:var(--font-body);
+    font-size:0.86rem;
+    font-weight:500;
+    letter-spacing:0.02em;
+    color:var(--ink-soft);
+    background:rgba(255, 255, 255, 0.76);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    border:1px solid rgba(18, 18, 16, 0.08);
+    box-shadow:0 4px 16px rgba(18, 18, 16, 0.04);
+    padding:6px 16px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    opacity:0.85;
+    transition:opacity 0.4s ease, transform 0.3s var(--ease), background 0.3s var(--ease);
+    user-select:none;
+  }
+  .cat-hint:hover{
+    opacity:1;
+    transform:translateY(-1px);
+    background:rgba(255, 255, 255, 0.95);
+  }
+  .cat-hint-icon{
+    color:#BB1B12;
+    font-size:0.78rem;
+  }
+  .cat-hint-paw{
+    font-size:0.90rem;
+  }
+  .cat-hint.hidden{
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(4px);
+  }
+  .cat-quest-complete{
+    margin-top:32px;
+    opacity:0;
+    transform:translateY(12px);
+    transition:opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    pointer-events:none;
+  }
+  .cat-quest-complete.visible{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .quest-badge{
+    font-family:var(--font-display);
+    font-size:0.72rem;
+    font-weight:800;
+    letter-spacing:0.18em;
+    color:#E22B23;
+    text-transform:uppercase;
+  }
+  .quest-msg{
+    margin-top:3px;
+    font-size:0.80rem;
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+  .quest-leave{
+    margin-top:28px;
+    font-size:0.74rem;
+    font-style:normal;
+    color:var(--ink-faint);
+    opacity:0;
+    transition:opacity 0.6s ease;
+  }
+  .quest-leave.visible{
+    opacity:0.85;
+  }
+  @media (max-width:768px){
+    .contact-section{ padding:140px 0 120px; }
+    .contact-wrap{ min-height:400px; padding:0 24px; }
+    .easter-cat-btn{ width:62px; height:62px; }
+    .easter-cat-btn.sleeping{ width:72px; height:42px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .easter-cat-btn{ transition:none !important; }
+    .easter-cat-inner{ transition:none !important; }
+    .easter-cat-img{ animation:none !important; }
+    .cat-toast{ transition:none !important; }
+    .cat-toast-char{ animation:none !important; opacity:1 !important; transform:none !important; }
+    .cat-quest-complete{ transition:none !important; }
+    .contact-cherry-branch{ animation:none !important; }
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:50px 0;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  .footer-brand .name{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1rem;
+  }
+  .footer-brand .role{
+    font-size:0.85rem;
+    color:var(--ink-faint);
+    margin-top:4px;
+  }
+  .footer-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  .footer-icon-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    border-radius:8px;
+    transition:transform 0.3s cubic-bezier(0.16, 0.8, 0.24, 1), filter 0.3s ease;
+  }
+  .footer-icon-link:hover{
+    transform:translateY(-3px) scale(1.08);
+    filter:drop-shadow(0 4px 10px rgba(18,18,16,0.12));
+  }
+  .footer-icon{
+    width:28px;
+    height:28px;
+    object-fit:contain;
+    display:block;
+    border-radius:6px;
+    pointer-events:none;
+    filter:grayscale(100%) opacity(0.70);
+    transition:filter 0.3s cubic-bezier(0.16, 0.8, 0.24, 1);
+  }
+  .footer-icon-link:hover .footer-icon{
+    filter:grayscale(0%) opacity(1);
+  }
+  .footer-links a:not(.footer-icon-link){
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    transition:color 0.3s var(--ease);
+  }
+  .footer-links a:not(.footer-icon-link):hover{ color:var(--ink); }
+
+  /* ---------- Back to Top Button ---------- */
+  .back-to-top{
+    position:fixed;
+    bottom:28px;
+    right:24px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:#FEFAF1;
+    border:1px solid rgba(18, 18, 16, 0.16);
+    box-shadow:0 4px 14px rgba(18, 18, 16, 0.09), 0 1px 3px rgba(18, 18, 16, 0.05);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink);
+    z-index:900;
+    cursor:pointer;
+    outline:none;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translateY(10px) scale(0.92);
+    transition:opacity 0.3s var(--ease), visibility 0.3s var(--ease), transform 0.3s var(--ease), background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .back-to-top.visible{
+    opacity:0.82;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateY(0) scale(1);
+  }
+  .back-to-top:hover{
+    opacity:1;
+    background:#FFFFFF;
+    color:#BB1B12;
+    border-color:rgba(187, 27, 18, 0.4);
+    transform:translateY(-2px) scale(1.05);
+    box-shadow:0 6px 20px rgba(18, 18, 16, 0.14), 0 2px 6px rgba(187, 27, 18, 0.1);
+  }
+  .back-to-top:active{
+    transform:translateY(0) scale(0.96);
+  }
+  .back-to-top-icon{
+    width:18px;
+    height:18px;
+    transition:transform 0.25s var(--ease);
+  }
+  .back-to-top:hover .back-to-top-icon{
+    transform:translateY(-1px);
+  }
+  @media (max-width: 768px){
+    .back-to-top{
+      bottom:20px;
+      right:16px;
+      width:40px;
+      height:40px;
+    }
+    .back-to-top-icon{
+      width:16px;
+      height:16px;
+    }
+  }
+
+  /* ---------- video loading screen ---------- */
+  #loadingScreen{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    z-index:99999;
+    background:#F3EEE3; /* exact match to video paper tone (243, 238, 227) */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    opacity:1;
+    visibility:visible;
+    transform:none !important;
+    transition:opacity 0.8s cubic-bezier(.16,.8,.24,1), visibility 0.8s cubic-bezier(.16,.8,.24,1);
+    user-select:none;
+    -webkit-user-select:none;
+    cursor:default;
+  }
+  #loadingScreen.loaded{
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none;
+    transform:none !important;
+  }
+  .loading-video-wrap{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#F3EEE3;
+  }
+  #loadingVideo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+  }
+
+  /* Status Bar & Percentage Meter (matching reference image) */
+  .loader-status-container{
+    position:absolute;
+    left:50%;
+    top:calc(50% + 47px);
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    z-index:10;
+    pointer-events:none;
+    transition:opacity 0.6s ease;
+  }
+  @media (max-height: 720px){
+    .loader-status-container{
+      top:calc(50% + 12px);
+    }
+  }
+  .loader-tagline{
+    margin-bottom:46px;
+    font-family:'Poppins', sans-serif;
+    font-size:24px;
+    font-weight:500;
+    font-style:normal;
+    letter-spacing:8px;
+    text-transform:uppercase;
+    color:#2B2922;
+    line-height:1;
+    text-align:center;
+    width:100%;
+    margin-left:8px; /* optical balance for letter-spacing */
+    white-space:nowrap;
+  }
+  @media (max-width: 480px){
+    .loader-tagline{
+      font-size:18px;
+      letter-spacing:6px;
+      margin-bottom:34px;
+      margin-left:6px;
+    }
+  }
+  .loader-progress-track{
+    width:320px;
+    height:11px;
+    background:#D6D2CD;
+    border-radius:999px;
+    overflow:hidden;
+    position:relative;
+  }
+  .loader-progress-bar{
+    height:100%;
+    width:0%;
+    background:#BB1B12;
+    border-radius:999px;
+    transition:width 0.04s linear;
+  }
+  .loader-percent{
+    margin-top:24px;
+    font-family:'Poppins', sans-serif;
+    font-size:18px;
+    font-weight:500;
+    font-style:normal;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#2B2922;
+    line-height:1;
+    text-align:center;
+    width:100%;
+    margin-left:0;
+  }
+
+  /* ---------- Native Hardware Custom Cursor (32px, 0ms Delay, 100% Custom Everywhere) ---------- */
+  *, *::before, *::after {
+    cursor: url('images/cursor-default-32.png') 1 0, default !important;
+  }
+  html, body {
+    cursor: url('images/cursor-default-32.png') 1 0, default !important;
+  }
+  p, h1, h2, h3, h4, h5, h6, blockquote, q, li, span, .chapter-desc, .hero-roles, .selectable-text, .contact-email {
+    cursor: url('images/cursor-default-32.png') 1 0, default !important;
+  }
+  input, textarea, select {
+    cursor: text !important;
+  }
+  a, button, [role="button"], .nav-btn, .caption-pill, .tag, .contact-cta-btn, .back-to-top, #easterCat, #windChime, .reel-play, .scroll-indicator, .scroll-indicator-track,
+  a *, button *, [role="button"] *, .nav-btn *, .caption-pill *, .tag *, .contact-cta-btn *, .back-to-top *, #easterCat *, #windChime *, .reel-play *, .scroll-indicator *, .scroll-indicator-track * {
+    cursor: url('images/cursor-pointer-32.png') 5 0, pointer !important;
+  }
+  .polaroid, .polaroids-stage, #heroHand, .hero-hand, #draggableHand, .about-hand,
+  .polaroid *, .polaroids-stage *, #heroHand *, .hero-hand *, #draggableHand *, .about-hand * {
+    cursor: url('images/cursor-grab-32.png') 15 15, grab !important;
+  }
+  .polaroid:active, .polaroid.is-dragging, #heroHand:active, .hero-hand:active, #draggableHand:active, .about-hand:active, .scroll-indicator.is-dragging,
+  .polaroid:active *, .polaroid.is-dragging *, #heroHand:active *, .hero-hand:active *, #draggableHand:active *, .about-hand:active *, .scroll-indicator.is-dragging * {
+    cursor: url('images/cursor-grabbing-32.png') 15 15, grabbing !important;
+  }
+  /* ---------- "A Different Dimension" Dark Mode Cursor Adaptation ---------- */
+  #dimension,
+  #dimension *,
+  #dimension *::before,
+  #dimension *::after {
+    cursor: url('images/cursor-default-dark-32.png') 1 0, default !important;
+  }
+  #dimension a,
+  #dimension button,
+  #dimension [role="button"],
+  #dimension a *,
+  #dimension button *,
+  #dimension [role="button"] * {
+    cursor: url('images/cursor-pointer-dark-32.png') 5 0, pointer !important;
+  }
+
+  /* Hide DOM simulated cursor visual so OS hardware cursor handles pointer at 0 latency */
+  .cursor-visual {
+    display: none !important;
+  }
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 2147483647;
+    transition: none !important;
+  }
+  .custom-cursor.is-hidden {
+    display: none !important;
+  }
+  .cursor-art{
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: none !important;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    display: none;
+    filter: drop-shadow(0 2px 5px rgba(18, 18, 16, 0.28));
+    transition: none !important;
+  }
+  /* 1. Default: Sumi-e Arrow with Sakura (23px x 24px, tip at 1,0) */
+  .cursor-art-default{
+    width: 23px;
+    height: 24px;
+    margin-left: -1px;
+    margin-top: 0px;
+    transform-origin: 1px 0px;
+  }
+  .custom-cursor.cursor-state-default .cursor-art-default{
+    display: block;
+  }
+  /* 2. Pointerclick: Pointing Finger Hand (23px x 24px, fingertip at 7,0) */
+  .cursor-art-pointer{
+    width: 23px;
+    height: 24px;
+    margin-left: -7px;
+    margin-top: 0px;
+    transform-origin: 7px 0px;
+  }
+  .custom-cursor.cursor-state-pointer .cursor-art-pointer{
+    display: block;
+  }
+  /* 3. Grab: Open Palm Hand (24px x 23px, palm center at 11,11) */
+  .cursor-art-grab{
+    width: 24px;
+    height: 23px;
+    margin-left: -11px;
+    margin-top: -11px;
+    transform-origin: 11px 11px;
+  }
+  .custom-cursor.cursor-state-grab .cursor-art-grab{
+    display: block;
+  }
+  /* 4. Grabbing: Clenched Fist Hand (24px x 20px, fist center at 11,10) */
+  .cursor-art-grabbing{
+    width: 24px;
+    height: 20px;
+    margin-left: -11px;
+    margin-top: -10px;
+    transform-origin: 11px 10px;
+  }
+  .custom-cursor.cursor-state-grabbing .cursor-art-grabbing{
+    display: block;
+  }
+
+  /* Tactile Press Impulse on Click for interactive/draggable elements */
+  .custom-cursor.is-down.cursor-state-pointer .cursor-art,
+  .custom-cursor.is-down.cursor-state-grab .cursor-art,
+  .custom-cursor.is-down.cursor-state-grabbing .cursor-art{
+    transform: scale(0.9) !important;
+  }
+
+  /* Context Action Badge Pill */
+  .cursor-badge-pill{
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 2147483647;
+    will-change: transform;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    border-radius: 999px;
+    background: #121210;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.30);
+    padding: 3px 8px;
+    box-sizing: border-box;
+    height: 19px;
+  }
+  .cursor-badge-text{
+    font-family: var(--font-body);
+    font-size: 0.50rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    line-height: 1;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .custom-cursor.has-badge .cursor-badge-pill{
+    opacity: 1;
+  }
+  .custom-cursor.badge-video .cursor-badge-pill{
+    background: #E22B23;
+    border: none;
+    box-shadow: 0 4px 14px -2px rgba(226, 43, 35, 0.5);
+  }
+  .custom-cursor.badge-work .cursor-badge-pill{
+    background: #121210;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .custom-cursor.badge-polaroid .cursor-badge-pill{
+    background: rgba(254, 250, 241, 0.96);
+    border: 1px solid rgba(187, 27, 18, 0.4);
+    box-shadow: 0 3px 10px rgba(18, 18, 16, 0.12);
+  }
+  .custom-cursor.badge-polaroid .cursor-badge-text{
+    color: #BB1B12;
+  }
+  .custom-cursor.badge-cat .cursor-badge-pill{
+    background: #E22B23;
+    border: none;
+    box-shadow: 0 4px 12px rgba(226, 43, 35, 0.4);
+  }
+  .custom-cursor.badge-chime .cursor-badge-pill{
+    background: #121210;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    width: 24px;
+    height: 24px;
+    padding: 0;
+  }
+  .custom-cursor.badge-chime .cursor-badge-text{
+    font-size: 0.70rem;
+    line-height: 1;
+  }
+  .custom-cursor.badge-top .cursor-badge-pill{
+    background: #121210;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 4px 12px rgba(18, 18, 16, 0.25);
+  }
+  @media (hover: none) and (pointer: coarse){
+    .custom-cursor{
+      display: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom Illustrated Japanese Art Cursor & Action Badges -->
+<div class="custom-cursor cursor-state-default" id="customCursor" aria-hidden="true">
+  <div class="cursor-visual" id="cursorVisual">
+    <img src="images/cursor-default.png" class="cursor-art cursor-art-default" alt="" draggable="false">
+    <img src="images/cursor-pointer.png" class="cursor-art cursor-art-pointer" alt="" draggable="false">
+    <img src="images/cursor-grab.png" class="cursor-art cursor-art-grab" alt="" draggable="false">
+    <img src="images/cursor-grabbing.png" class="cursor-art cursor-art-grabbing" alt="" draggable="false">
+  </div>
+  <div class="cursor-badge-pill" id="cursorBadgePill">
+    <span class="cursor-badge-text" id="cursorBadgeText"></span>
+  </div>
+</div>
+
+<div id="loadingScreen" aria-label="Loading animation" role="dialog">
+  <div class="loading-video-wrap">
+    <video id="loadingVideo" autoplay muted playsinline preload="auto">
+      <source src="video/Final.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="loader-status-container" id="loaderStatusContainer">
+    <div class="loader-tagline">MAKING AN ENTRANCE</div>
+    <div class="loader-progress-track">
+      <div class="loader-progress-bar" id="loaderProgressBar"></div>
+    </div>
+    <div class="loader-percent" id="loaderPercent">0 %</div>
+  </div>
+</div>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand" aria-label="Sambit Mohapatra — Home">
+      <span class="status-dot-nav" aria-hidden="true"></span>
+      <span class="brand-name">Sambit Mohapatra</span>
+    </a>
+    <nav class="nav-right" aria-label="Main Navigation">
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">×</button>
+  <a href="#work">Work</a>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <img src="images/Hero BG.png" class="hero-bg" alt="" aria-hidden="true">
+    <img src="images/boat.png" class="hero-boat" id="heroBoat" alt="" aria-hidden="true" draggable="false">
+    <img src="images/Cat_sit.png" class="hero-cat" id="heroCat" alt="" aria-hidden="true" draggable="false">
+    <div class="hero-cloud hero-cloud-1" aria-hidden="true">
+      <div class="cloud-drift-1">
+        <img src="images/cloud 1.png" alt="" draggable="false">
+      </div>
+    </div>
+    <div class="hero-cloud hero-cloud-2" aria-hidden="true">
+      <div class="cloud-drift-2">
+        <img src="images/cloud 2.png" alt="" draggable="false">
+      </div>
+    </div>
+    <div class="hero-fade" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="eyebrow hero-eyebrow" id="heroIntro">
+        <span id="heroIntroText" data-text="Hi, I'm Sambit"></span><span class="hero-cursor" id="heroIntroCursor" style="display:none;" aria-hidden="true">|</span><img src="images/warm hand.png" class="hero-hand" id="heroHand" alt="👋" aria-hidden="true" draggable="false"><span class="hero-hand-toast" id="heroHandToast" aria-hidden="true"><span class="toast-text">Human touch added</span> <span class="toast-sparkle" aria-hidden="true">✨</span></span>
+      </p>
+      <h1>I Make Digital Things<br><span style="white-space:nowrap;">Feel Human<span class="red-period" aria-label="."><svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="6" height="6" fill="#BB1B12"/></svg></span></span></h1>
+      <p class="sub hero-roles" id="heroRoles">
+        <span class="role-chip" data-role="uiux">UI/UX Designer</span>
+        <span class="sub-sep" aria-hidden="true">·</span>
+        <span class="role-chip" data-role="product">Product Designer</span>
+        <span class="sub-sep" aria-hidden="true">·</span>
+        <span class="role-chip" data-role="visual">Visual Designer</span>
+      </p>
+      <div class="hero-actions">
+        <a href="Sambit Mohapatra_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-download" aria-label="Open Sambit's resume in a new tab">
+          Download Resume
+          <svg class="btn-icon" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 1.5V10.5M8 10.5L4.5 7M8 10.5L11.5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2.5 12.5V13.5C2.5 14.0523 2.94772 14.5 3.5 14.5H12.5C13.0523 14.5 13.5 14.0523 13.5 13.5V12.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=msambit783@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary connect-btn" id="heroConnectBtn" aria-label="Let's connect via Gmail">
+          Let’s Connect
+          <svg class="btn-icon" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+      <div class="connect-toast" id="connectToast" aria-live="polite">
+        <span class="connect-toast-icon">✓</span>
+        <span class="toast-msg-text">Opening Gmail · Email copied to clipboard!</span>
+      </div>
+    </div>
+    <div class="scroll-hint" id="scrollHint" aria-hidden="true">
+      <span class="scroll-hint-label">Scroll</span>
+      <span class="scroll-hint-arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section class="work-section" id="work">
+    <div class="wrap section-head reveal">
+      <p class="eyebrow">Selected work</p>
+      <h2>Five projects, one way of thinking about products<span class="red-period" aria-label="."><svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="6" height="6" fill="#BB1B12"/></svg></span></h2>
+    </div>
+
+    <div class="wrap">
+      <div class="projects-grid">
+
+        <!-- 01 HelpHive -->
+        <article class="chapter reveal">
+          <a href="https://www.behance.net/gallery/253729875/HelpHive" target="_blank" rel="noopener" class="chapter-visual v-helphive chapter-scale" aria-label="View HelpHive case study on Behance">
+            <img src="images/helphive.jpg" alt="HelpHive home services app screens" loading="lazy">
+            <span class="card-arrow-badge" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 14 14" fill="none">
+                <path d="M3.5 10.5L10.5 3.5M10.5 3.5H5.5M10.5 3.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <div class="chapter-content">
+            <span class="chapter-num">01</span>
+            <h3>HelpHive</h3>
+            <p class="chapter-desc">A hive of helping hands, thoughtfully designed around trust and care. 🐝</p>
+            <div class="chapter-meta"><span class="tag">Product Design</span><span class="tag">UI/UX</span></div>
+          </div>
+        </article>
+
+        <!-- 02 GreenTok -->
+        <article class="chapter reveal">
+          <a href="https://www.behance.net/gallery/255667859/Greentok" target="_blank" rel="noopener" class="chapter-visual v-greentok chapter-scale" aria-label="View GreenTok case study on Behance">
+            <img src="images/greentok.jpg" alt="GreenTok plant-care app screens" loading="lazy">
+            <span class="card-arrow-badge" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 14 14" fill="none">
+                <path d="M3.5 10.5L10.5 3.5M10.5 3.5H5.5M10.5 3.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <div class="chapter-content">
+            <span class="chapter-num">02</span>
+            <h3>GreenTok</h3>
+            <p class="chapter-desc">GreenTōk is a smarter, simpler way to care for your plants and help them thrive. 🌱</p>
+            <div class="chapter-meta"><span class="tag">Product Design</span><span class="tag">UI/UX</span><span class="tag">Interaction Design</span></div>
+          </div>
+        </article>
+
+        <!-- 03 Learnix -->
+        <article class="chapter reveal">
+          <a href="https://www.behance.net/gallery/254472747/Learnix-ERP" target="_blank" rel="noopener" class="chapter-visual v-learnix chapter-scale" aria-label="View Learnix case study on Behance">
+            <img src="images/Learnix.2.jpg" alt="Learnix school ERP dashboard" loading="lazy">
+            <span class="card-arrow-badge" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 14 14" fill="none">
+                <path d="M3.5 10.5L10.5 3.5M10.5 3.5H5.5M10.5 3.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <div class="chapter-content">
+            <span class="chapter-num">03</span>
+            <h3>Learnix</h3>
+            <p class="chapter-desc">Learnix simplifies school management, communication, and daily operations. 🎓</p>
+            <div class="chapter-meta"><span class="tag">Product Design</span><span class="tag">UI/UX</span><span class="tag">SaaS</span></div>
+          </div>
+        </article>
+
+        <!-- 04 Mello -->
+        <article class="chapter reveal">
+          <a href="https://www.behance.net/gallery/255062297/Mello" target="_blank" rel="noopener" class="chapter-visual v-mello chapter-scale" aria-label="View Mello case study on Behance">
+            <img src="images/mello.jpg" alt="Mello wellness app home screen" loading="lazy">
+            <span class="card-arrow-badge" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 14 14" fill="none">
+                <path d="M3.5 10.5L10.5 3.5M10.5 3.5H5.5M10.5 3.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <div class="chapter-content">
+            <span class="chapter-num">04</span>
+            <h3>Mello</h3>
+            <p class="chapter-desc">A focused productivity experience that keeps things simple and calm. ✨</p>
+            <div class="chapter-meta"><span class="tag">UI</span><span class="tag">Visual Design</span><span class="tag">Interaction Design</span></div>
+          </div>
+        </article>
+
+        <!-- 05 IRCTC Redesign -->
+        <article class="chapter reveal">
+          <a href="https://www.behance.net/gallery/254976193/IRCTC-Redesign" target="_blank" rel="noopener" class="chapter-visual v-irctc chapter-scale" aria-label="View IRCTC case study on Behance">
+            <img src="images/irctc.jpg" alt="IRCTC Rail Connect redesigned home screen" loading="lazy">
+            <span class="card-arrow-badge" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 14 14" fill="none">
+                <path d="M3.5 10.5L10.5 3.5M10.5 3.5H5.5M10.5 3.5V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+          <div class="chapter-content">
+            <span class="chapter-num">05</span>
+            <h3>IRCTC Redesign</h3>
+            <p class="chapter-desc">A fun IRCTC redesign, because booking a train shouldn't feel like an exam. 🚂</p>
+            <div class="chapter-meta"><span class="tag">UX</span><span class="tag">Redesign</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about" data-section="about">
+    <div class="wrap about-wrap">
+      <div class="about-polaroids-col reveal">
+        <div class="polaroids-stage" id="polaroidsStage">
+          <div class="polaroid polaroid-1" id="polaroid1" role="button" tabindex="0" aria-label="Animator. Click to expand." data-id="1">
+            <div class="polaroid-tape tape-center"></div>
+            <img src="images/photo3.jpg" alt="Sambit Mohapatra in denim jacket" loading="lazy">
+            <div class="polaroid-caption" aria-hidden="true">
+              <div class="caption-pill">
+                <span class="caption-title">Animator</span>
+              </div>
+              <p class="caption-detail">Movement, timing &amp; visual storytelling</p>
+            </div>
+          </div>
+          <div class="polaroid polaroid-2" id="polaroid2" role="button" tabindex="0" aria-label="Visual Storyteller. Click to expand." data-id="2">
+            <div class="polaroid-tape tape-corner-left"></div>
+            <div class="polaroid-tape tape-corner-right"></div>
+            <img src="images/photo1.jpg" alt="Sambit watching sunset at the beach" loading="lazy">
+            <div class="polaroid-caption" aria-hidden="true">
+              <div class="caption-pill">
+                <span class="caption-title">Visual Storyteller</span>
+              </div>
+              <p class="caption-detail">Framing narrative &amp; human emotion</p>
+            </div>
+          </div>
+          <div class="polaroid polaroid-3" id="polaroid3" role="button" tabindex="0" aria-label="Designer. Click to expand." data-id="3">
+            <div class="polaroid-tape tape-center"></div>
+            <img src="images/photo2.jpg" alt="Sambit Mohapatra" loading="lazy">
+            <div class="polaroid-caption" aria-hidden="true">
+              <div class="caption-pill">
+                <span class="caption-title">Designer</span>
+              </div>
+              <p class="caption-detail">User-focused design with motion &amp; interaction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content-col reveal">
+        <p class="eyebrow about-eyebrow">About</p>
+        <div class="about-text-grid">
+          <h2 class="about-statement">I design digital experiences<br class="about-br">with a visual storyteller's eye<br class="about-br">and a product designer's<br class="about-br">mindset<span class="red-period" aria-label="."><svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="6" height="6" fill="#BB1B12"/></svg></span></h2>
+          <p class="about-body">My work sits at the intersection of product design, UX, visual craft, and AI assisted workflows. I create user focused products and intuitive experiences, shaped by my background in animation, composition, motion, and storytelling, using AI to explore ideas faster and push creative possibilities further.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANIMATION CONNECTION -->
+  <section class="connection-section reveal" id="dimension">
+    <img src="images/A DIFFERENT DIMENSION 22.png" class="dimension-bg" alt="" aria-hidden="true">
+    <img src="images/cloud 3.png" class="dimension-cloud-3" alt="" aria-hidden="true">
+    <img src="images/branch.png" class="dimension-branch" alt="" aria-hidden="true">
+    <div class="wrap dimension-content">
+      <p class="dimension-eyebrow">A DIFFERENT DIMENSION</p>
+      <h2 class="dimension-title">Before interfaces,<br>there were <span class="dimension-red">stories<span class="dimension-period" aria-label="."></span></span></h2>
+      <p class="dimension-desc">My background in animation and visual storytelling shaped how I see composition, movement, hierarchy, and detail. Today, I bring that perspective into product design to create digital experiences that feel clear, intuitive, and purposeful.</p>
+    </div>
+  </section>
+
+  <!-- 3D / ANIMATION -->
+  <section class="reel-section" id="animation">
+    <div class="wrap">
+      <p class="eyebrow reveal">3D Animation</p>
+      <h2 class="reveal">A selection of work from my creative journey<span class="red-period" aria-label="."><svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="6" height="6" fill="#BB1B12"/></svg></span></h2>
+      <div class="reel-stage reveal">
+        <div class="reel-frame" id="reelFrame" role="button" tabindex="0" aria-label="Play animation reel">
+          <span class="reel-play">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="none"><path d="M1 1L19 11L1 21V1Z" fill="white"/></svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="exp-section" id="experience">
+    <img src="images/Left tree.png" class="exp-tree" alt="" aria-hidden="true" onerror="this.style.display='none'">
+    <div class="wrap exp-container">
+      <p class="exp-eyebrow eyebrow reveal">Experience</p>
+      <h2 class="exp-heading reveal">Where the craft was built<span class="red-period" aria-label="."><svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="6" height="6" fill="#BB1B12"/></svg></span></h2>
+
+      <div class="exp-list exp-timeline reveal" id="expTimeline">
+        <div class="exp-timeline-line" id="expLine" aria-hidden="true"></div>
+        <div class="exp-row" data-index="0">
+          <span class="exp-dot" aria-hidden="true"></span>
+          <div class="exp-role">
+            <h4>Cosmos Maya India Private Limited</h4>
+            <p class="company">Junior Animator</p>
+          </div>
+          <div class="exp-meta">
+            <div class="dates">Aug 2022 — Apr 2023</div>
+            <div class="location">Mumbai · On-site</div>
+          </div>
+        </div>
+
+        <div class="exp-row" data-index="1">
+          <span class="exp-dot" aria-hidden="true"></span>
+          <div class="exp-role">
+            <h4>88 Pictures</h4>
+            <p class="company">Junior Animator</p>
+          </div>
+          <div class="exp-meta">
+            <div class="dates">Apr 2023 — Mar 2024</div>
+            <div class="location">Bengaluru · On-site</div>
+          </div>
+        </div>
+
+        <div class="exp-row" data-index="2">
+          <span class="exp-dot" aria-hidden="true"></span>
+          <div class="exp-role">
+            <h4>Freelance Projects</h4>
+            <p class="company">Mid Animator</p>
+          </div>
+          <div class="exp-meta">
+            <div class="dates">Apr 2024 — Oct 2024</div>
+            <div class="location">Remote</div>
+          </div>
+        </div>
+
+        <div class="exp-row" data-index="3">
+          <span class="exp-dot" aria-hidden="true"></span>
+          <div class="exp-role">
+            <h4>Xentrix Studios</h4>
+            <p class="company">Visualizer &amp; 3D Animation Specialist</p>
+          </div>
+          <div class="exp-meta">
+            <div class="dates">Nov 2024 — Oct 2025</div>
+            <div class="location">Bengaluru · On-site</div>
+          </div>
+        </div>
+
+        <div class="exp-row" data-index="4">
+          <span class="exp-dot" aria-hidden="true"></span>
+          <div class="exp-role">
+            <h4>Zebu Animation Studios</h4>
+            <p class="company">Visualizer &amp; 3D Animation Specialist</p>
+          </div>
+          <div class="exp-meta">
+            <div class="dates">Nov 2025 — Present</div>
+            <div class="location">Bengaluru · On-site</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="clients-section">
+    <div class="wrap" style="text-align:center;">
+      <p class="eyebrow reveal">Selected Clients &amp; Collaborations</p>
+      <div class="clients-row reveal">
+        <div class="client-item">
+          <img class="client-logo" src="images/client_dreamworks.png" alt="DreamWorks" onerror="this.style.display='none'">
+          <span class="client-label">DreamWorks</span>
+        </div>
+        <div class="client-item">
+          <img class="client-logo" src="images/client_disney.png" alt="Disney" onerror="this.style.display='none'">
+          <span class="client-label">Disney</span>
+        </div>
+        <div class="client-item">
+          <img class="client-logo logo-nickelodeon" src="images/client_nickelodeon.svg" alt="Nickelodeon" onerror="this.style.display='none'">
+          <span class="client-label">Nickelodeon</span>
+        </div>
+        <div class="client-item">
+          <img class="client-logo" src="images/client_sonyliv.png" alt="SonyLIV" onerror="this.style.display='none'">
+          <span class="client-label">SonyLIV</span>
+        </div>
+        <div class="client-item">
+          <img class="client-logo" src="images/client_graphic_india.png" alt="Graphic India" onerror="this.style.display='none'">
+          <span class="client-label">Graphic India</span>
+        </div>
+        <div class="client-item">
+          <img class="client-logo" src="images/client_netflix.png" alt="Netflix" onerror="this.style.display='none'">
+          <span class="client-label">Netflix</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-scene" id="catBounds">
+      <img src="images/Thankyou.png" class="contact-bg-img" alt="" aria-hidden="true">
+      <div class="lantern-glow" id="lanternGlow" aria-hidden="true"></div>
+      <div class="contact-wind-chime" id="windChime" aria-label="Wind chime" role="button" tabindex="0">
+        <picture>
+          <source srcset="images/wind_chime.webp" type="image/webp">
+          <img src="images/wind_chime.gif" alt="Animated wind chime" class="wind-chime-img">
+        </picture>
+      </div>
+      <img src="images/cherry.png" class="contact-cherry-branch" id="cherryBranch" alt="" aria-hidden="true">
+
+      <div class="wrap contact-wrap">
+        <h2 class="contact-statement reveal">Let's make something worth experiencing<span class="red-period" aria-label="."><svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="6" height="6" fill="#BB1B12"/></svg></span></h2>
+        <div class="contact-email-row reveal">
+          <a href="mailto:msambit783@gmail.com" class="contact-email">msambit783@gmail.com</a>
+          <button class="email-copy-btn" id="emailCopyBtn" type="button" aria-label="Copy email address" title="Copy email address">
+            <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0ACF83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none;">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="contact-cta reveal" id="contactCta">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=msambit783@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary connect-btn contact-cta-btn" id="contactConnectBtn" aria-label="Let's connect via Gmail">
+            Let’s Connect
+            <svg class="btn-icon" width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="cat-quest-complete" id="catQuestComplete" aria-live="polite">
+          <div class="quest-badge">QUEST COMPLETE ✦</div>
+          <p class="quest-msg">You found the hidden little guy.</p>
+          <p class="quest-leave" id="questLeave">Okay... now you can leave.</p>
+        </div>
+
+        <p class="cat-hint" id="catHint"><span class="cat-hint-icon">✦</span> Psst... there might be a little friend hiding around here <span class="cat-hint-paw">🐾</span></p>
+      </div>
+
+      <!-- Easter Egg Cat -->
+      <button class="easter-cat-btn idle" id="easterCat" aria-label="A little hidden cat" tabindex="0">
+        <div class="easter-cat-inner" id="catInner">
+          <img class="easter-cat-img" id="catSprite" src="images/cat_idle.png" alt="Little cat" draggable="false">
+        </div>
+        <span class="cat-toast" id="catToast" aria-live="polite"></span>
+        <span class="cat-zzz" id="catZzz" aria-hidden="true"><span>z</span><span>z</span><span>z</span></span>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <div class="name">Sambit Mohapatra</div>
+      <div class="role">Designer · Animator</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=msambit783@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email Sambit via Gmail" title="Let's Connect via Gmail (msambit783@gmail.com)" class="footer-icon-link connect-btn" id="footerConnectBtn">
+        <img src="images/email.png" alt="Email" class="footer-icon" draggable="false">
+      </a>
+      <a href="https://www.linkedin.com/in/sambit-mohapatra-b227b61b0/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer-icon-link">
+        <img src="images/linkedin.png" alt="LinkedIn" class="footer-icon" draggable="false">
+      </a>
+      <a href="https://www.behance.net/sambitmohapatra3" target="_blank" rel="noopener" aria-label="Behance" class="footer-icon-link">
+        <img src="images/behance.png" alt="Behance" class="footer-icon" draggable="false">
+      </a>
+      <a href="https://www.instagram.com/sambit_drawz_?stkn=MW14azE3czRvdWg4MA==" target="_blank" rel="noopener" aria-label="Instagram" class="footer-icon-link">
+        <img src="images/instagram.png" alt="Instagram" class="footer-icon" draggable="false">
+      </a>
+      <a href="https://vimeo.com/995448287?share=copy&fl=cl&fe=ci" target="_blank" rel="noopener" aria-label="Vimeo" class="footer-icon-link">
+        <img src="images/vimeo.png" alt="Vimeo" class="footer-icon" draggable="false">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Thin Right-Side Scroll Indicator ("Very Hint Kinda") -->
+<div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
+  <div class="scroll-indicator-track" id="scrollTrack">
+    <div class="scroll-indicator-fill" id="scrollFill"></div>
+    <div class="scroll-indicator-thumb" id="scrollThumb"></div>
+  </div>
+</div>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" type="button" aria-label="Go to top" title="Go to top">
+  <svg class="back-to-top-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<script>
+  // ---------- VIDEO LOADING SCREEN & STATUS BAR CONTROLLER ----------
+  (function() {
+    const loader = document.getElementById('loadingScreen');
+    const video = document.getElementById('loadingVideo');
+    const percentEl = document.getElementById('loaderPercent');
+    const barEl = document.getElementById('loaderProgressBar');
+    if (!loader || !video) return;
+
+    let dismissed = false;
+    function dismissLoader() {
+      if (dismissed) return;
+      dismissed = true;
+      if (percentEl) percentEl.textContent = '100 %';
+      if (barEl) barEl.style.width = '100%';
+      loader.classList.add('loaded');
+      try { video.pause(); } catch(e) {}
+      setTimeout(() => {
+        if (loader.parentNode) loader.remove();
+      }, 850);
+      if (typeof window.startHeroIntroTyping === 'function') {
+        window.startHeroIntroTyping();
+      }
+    }
+
+    // Smooth real-time update of percentage and status bar
+    function updateProgress() {
+      if (dismissed) return;
+      if (video.duration && video.duration > 0) {
+        const raw = Math.min(1, Math.max(0, video.currentTime / video.duration));
+        const p = Math.min(1, raw * 2.0); /* 2× speed — bar reaches 100% faster */
+        const currentPercent = Math.min(100, Math.floor(p * 100));
+        if (percentEl) percentEl.textContent = currentPercent + ' %';
+        if (barEl) barEl.style.width = (p * 100) + '%';
+        if (p >= 0.995) {
+          setTimeout(dismissLoader, 150);
+          return;
+        }
+      }
+      requestAnimationFrame(updateProgress);
+    }
+    requestAnimationFrame(updateProgress);
+
+    // Reveal when video naturally ends (safety)
+    video.addEventListener('ended', () => {
+      setTimeout(dismissLoader, 150);
+    });
+
+    // Keyboard shortcut to skip (Escape, Space, Enter)
+    window.addEventListener('keydown', (e) => {
+      if (!dismissed && (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter')) {
+        dismissLoader();
+      }
+    });
+
+    // Safety fallback timeout (in case video never loads)
+    setTimeout(dismissLoader, 12000);
+
+    // Ensure autoplay starts
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        setTimeout(dismissLoader, 1500);
+      });
+    }
+  })();
+
+  // Sticky nav border & scroll hint hide
+  const nav = document.getElementById('siteNav');
+  const scrollHint = document.getElementById('scrollHint');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+    if (scrollHint) {
+      scrollHint.classList.toggle('scrolled', window.scrollY > 20);
+    }
+  }, { passive:true });
+
+  // Hero clouds subtle horizontal interactive depth
+  const heroSec = document.querySelector('.hero');
+  const cloud1 = document.querySelector('.hero-cloud-1');
+  const cloud2 = document.querySelector('.hero-cloud-2');
+  if (heroSec && cloud1 && cloud2 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let targetX1 = 0, targetX2 = 0;
+    let currentX1 = 0, currentX2 = 0;
+    let heroRect = null;
+    window.addEventListener('resize', () => { heroRect = null; }, { passive: true });
+    window.addEventListener('scroll', () => { heroRect = null; }, { passive: true });
+
+    heroSec.addEventListener('mousemove', (e) => {
+      if (!heroRect) heroRect = heroSec.getBoundingClientRect();
+      const relX = (e.clientX - heroRect.left) / heroRect.width - 0.5;
+      targetX1 = relX * 14;
+      targetX2 = -relX * 16;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateCloudParallax);
+      }
+    });
+
+    heroSec.addEventListener('mouseleave', () => {
+      targetX1 = 0; targetX2 = 0;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateCloudParallax);
+      }
+    });
+
+    function updateCloudParallax() {
+      currentX1 += (targetX1 - currentX1) * 0.06;
+      currentX2 += (targetX2 - currentX2) * 0.06;
+
+      cloud1.style.setProperty('--px', currentX1.toFixed(2) + 'px');
+      cloud2.style.setProperty('--px', currentX2.toFixed(2) + 'px');
+
+      if (Math.abs(targetX1 - currentX1) > 0.05 || Math.abs(targetX2 - currentX2) > 0.05) {
+        requestAnimationFrame(updateCloudParallax);
+      } else {
+        ticking = false;
+      }
+    }
+  }
+
+  // Hero Artwork Elements: Boat & Cat Positioning (pinned to Hero BG artwork)
+  const heroCatEl = document.getElementById('heroCat');
+  const heroBoatEl = document.getElementById('heroBoat');
+  function applyHeroElementsPosition() {
+    if (!heroSec) return;
+    const sw = heroSec.clientWidth;
+    const sh = heroSec.clientHeight;
+    const imgAspect = 1672 / 941;
+    const heroAspect = sw / (sh || 1);
+
+    let rw, rh, ox, oy;
+    if (heroAspect > imgAspect) {
+      rw = sw;
+      rh = sw / imgAspect;
+      ox = 0;
+      oy = (sh - rh) / 2;
+    } else {
+      rh = sh;
+      rw = sh * imgAspect;
+      ox = (sw - rw) / 2;
+      oy = 0;
+    }
+
+    const scale = rw / 1672;
+
+    if (heroCatEl) {
+      const catW = Math.round(104 * scale);
+      const catH = Math.round(92 * scale);
+      const catX = Math.round(ox + 0.14713 * rw - 13 * scale);
+      const catY = Math.round(oy + 0.79277 * rh + 20 * scale);
+      if (catX + catW < -10) {
+        heroCatEl.style.display = 'none';
+      } else {
+        heroCatEl.style.display = 'block';
+        heroCatEl.style.width = catW + 'px';
+        heroCatEl.style.height = catH + 'px';
+        heroCatEl.style.left = catX + 'px';
+        heroCatEl.style.top = catY + 'px';
+      }
+    }
+
+    if (heroBoatEl) {
+      const boatW = Math.round(93 * scale);
+      const boatH = Math.round(62 * scale);
+      const boatX = Math.round(ox + 0.66268 * rw);
+      const boatY = Math.round(oy + 0.80978 * rh + 38 * scale);
+      if (boatX > sw + 20 || boatX + boatW < -20) {
+        heroBoatEl.style.display = 'none';
+      } else {
+        heroBoatEl.style.display = 'block';
+        heroBoatEl.style.width = boatW + 'px';
+        heroBoatEl.style.height = boatH + 'px';
+        heroBoatEl.style.left = boatX + 'px';
+        heroBoatEl.style.top = boatY + 'px';
+      }
+    }
+  }
+  applyHeroElementsPosition();
+  window.addEventListener('resize', applyHeroElementsPosition, { passive: true });
+
+  // Global Connect & Copy Toast handler
+  let connectToastTimer = null;
+  function showConnectToast(msg) {
+    const toast = document.getElementById('connectToast');
+    if (!toast) return;
+    const msgEl = toast.querySelector('.toast-msg-text') || toast.lastElementChild;
+    if (msg && msgEl) msgEl.textContent = msg;
+    toast.classList.add('show');
+    if (connectToastTimer) clearTimeout(connectToastTimer);
+    connectToastTimer = setTimeout(function() {
+      toast.classList.remove('show');
+    }, 3200);
+  }
+
+  (function initConnectAndCopyButtons() {
+    const connectBtns = document.querySelectorAll('.connect-btn, #heroConnectBtn, #contactConnectBtn, #footerConnectBtn');
+    connectBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const email = 'msambit783@gmail.com';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).catch(function() {});
+        }
+        showConnectToast('Opening Gmail · Email copied to clipboard!');
+      });
+    });
+
+    const copyBtn = document.getElementById('emailCopyBtn');
+    if (copyBtn) {
+      const copyIcon = copyBtn.querySelector('.copy-icon');
+      const checkIcon = copyBtn.querySelector('.check-icon');
+      const copyText = copyBtn.querySelector('.copy-text');
+      let copyResetTimer = null;
+
+      copyBtn.addEventListener('click', function() {
+        const email = 'msambit783@gmail.com';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).catch(function() {});
+        }
+        copyBtn.classList.add('copied');
+        if (copyIcon) copyIcon.style.display = 'none';
+        if (checkIcon) checkIcon.style.display = 'inline-block';
+        if (copyText) copyText.textContent = 'Copied!';
+
+        showConnectToast('Email copied to clipboard: ' + email);
+
+        if (copyResetTimer) clearTimeout(copyResetTimer);
+        copyResetTimer = setTimeout(function() {
+          copyBtn.classList.remove('copied');
+          if (copyIcon) copyIcon.style.display = 'inline-block';
+          if (checkIcon) checkIcon.style.display = 'none';
+          if (copyText) copyText.textContent = 'Copy';
+        }, 2500);
+      });
+    }
+  })();
+
+  // ---------- HERO INTRO TYPEWRITER EFFECT ----------
+  let heroIntroStarted = false;
+  window.startHeroIntroTyping = function() {
+    if (heroIntroStarted) return;
+    heroIntroStarted = true;
+
+    const el = document.getElementById('heroIntroText');
+    if (!el) return;
+    const fullText = el.getAttribute('data-text') || el.textContent.trim();
+    if (!fullText) return;
+    const cursor = document.getElementById('heroIntroCursor');
+    const hand = document.getElementById('heroHand');
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = fullText;
+      if (cursor) cursor.remove();
+      if (hand) hand.classList.add('wave-ready');
+      return;
+    }
+
+    setTimeout(function() {
+      if (cursor) cursor.style.display = 'inline-block';
+      el.textContent = '';
+      let idx = 0;
+      setTimeout(function typeChar() {
+        if (idx < fullText.length) {
+          el.textContent += fullText.charAt(idx);
+          idx++;
+          if (idx === fullText.length) {
+            if (cursor) cursor.remove();
+            if (hand) {
+              hand.classList.add('is-waving');
+              setTimeout(function() {
+                if (hand.classList.contains('is-waving')) {
+                  hand.classList.remove('is-waving');
+                  hand.classList.add('wave-ready');
+                }
+              }, 1900);
+            }
+            return;
+          }
+          setTimeout(typeChar, 70);
+        }
+      }, 100);
+    }, 300);
+  };
+
+  // Interactive Hero Hand: Waving hover, speech balloon, and draggable spring physics
+  (function initHeroHandInteractions() {
+    const hand = document.getElementById('heroHand');
+    if (!hand) return;
+    const handToast = document.getElementById('heroHandToast');
+
+    hand.addEventListener('animationend', function(e) {
+      if (e.animationName === 'handWave') {
+        hand.classList.remove('is-waving');
+        hand.classList.add('wave-ready');
+      } else if (e.animationName === 'handHighFive') {
+        hand.classList.remove('high-fiving');
+        hand.classList.add('wave-ready');
+      }
+    });
+
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let currentDx = 0;
+    let currentDy = 0;
+    let snapTimeout = null;
+
+    function startDrag(clientX, clientY) {
+      clearTimeout(snapTimeout);
+      isDragging = true;
+      startX = clientX - currentDx;
+      startY = clientY - currentDy;
+
+      hand.classList.remove('is-snapping');
+      hand.classList.add('is-dragging');
+      if (handToast) {
+        handToast.classList.remove('show');
+        handToast.style.transform = '';
+      }
+    }
+
+    function moveDrag(clientX, clientY) {
+      if (!isDragging) return;
+      currentDx = clientX - startX;
+      currentDy = clientY - startY;
+
+      const tilt = Math.max(-28, Math.min(28, currentDx * 0.12));
+      hand.style.transform = 'translateY(-50%) translate3d(' + currentDx.toFixed(1) + 'px, ' + currentDy.toFixed(1) + 'px, 0) scale(1.15) rotate(' + tilt.toFixed(1) + 'deg)';
+    }
+
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+
+      hand.classList.remove('is-dragging');
+      hand.classList.add('is-snapping');
+
+      // Force reflow so transition starts smoothly from current drag coordinates
+      void hand.offsetWidth;
+
+      hand.style.transform = 'translateY(-50%) translate3d(0, 0, 0) scale(1) rotate(0deg)';
+
+      currentDx = 0;
+      currentDy = 0;
+
+      clearTimeout(snapTimeout);
+      snapTimeout = setTimeout(function() {
+        hand.classList.remove('is-snapping');
+        hand.style.transform = '';
+      }, 850);
+    }
+
+    // Pointer events (Chrome, Edge, Firefox, Safari)
+    hand.addEventListener('pointerdown', function(e) {
+      if (e.button !== 0 && e.pointerType === 'mouse') return;
+      e.preventDefault();
+      try { hand.setPointerCapture(e.pointerId); } catch(err) {}
+      startDrag(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('pointermove', function(e) {
+      if (isDragging) {
+        moveDrag(e.clientX, e.clientY);
+      }
+    }, { passive: true });
+
+    window.addEventListener('pointerup', function(e) {
+      if (isDragging) {
+        try { hand.releasePointerCapture(e.pointerId); } catch(err) {}
+        endDrag();
+      }
+    }, { passive: true });
+
+    window.addEventListener('pointercancel', endDrag, { passive: true });
+
+    // Mouse events fallback
+    hand.addEventListener('mousedown', function(e) {
+      if (e.button === 0) {
+        e.preventDefault();
+        startDrag(e.clientX, e.clientY);
+      }
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      if (isDragging) {
+        moveDrag(e.clientX, e.clientY);
+      }
+    }, { passive: true });
+
+    window.addEventListener('mouseup', function(e) {
+      if (isDragging) {
+        endDrag();
+      }
+    }, { passive: true });
+
+    // Touch events fallback
+    hand.addEventListener('touchstart', function(e) {
+      if (e.touches && e.touches[0]) {
+        e.preventDefault();
+        startDrag(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchmove', function(e) {
+      if (isDragging && e.touches && e.touches[0]) {
+        moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', function() {
+      if (isDragging) endDrag();
+    }, { passive: true });
+  })();
+
+  // Fallback: If loading screen does not exist or is already dismissed/hidden
+  (function checkLoaderFallback() {
+    const loader = document.getElementById('loadingScreen');
+    if (!loader || loader.classList.contains('loaded') || getComputedStyle(loader).display === 'none') {
+      setTimeout(function() {
+        if (typeof window.startHeroIntroTyping === 'function') {
+          window.startHeroIntroTyping();
+        }
+      }, 400);
+    }
+  })();
+
+  // ---------- THUMBNAIL CARDS GLUE EFFECT ----------
+  (function initThumbnailGlue() {
+    const cards = document.querySelectorAll('.chapter-visual');
+    if (!cards.length) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
+
+    cards.forEach(card => {
+      let targetX = 0;
+      let targetY = 0;
+      let currX = 0;
+      let currY = 0;
+      let isHovered = false;
+      let rafId = null;
+
+      function update() {
+        currX += (targetX - currX) * 0.12;
+        currY += (targetY - currY) * 0.12;
+
+        card.style.setProperty('--glue-x', currX.toFixed(2) + 'px');
+        card.style.setProperty('--glue-y', currY.toFixed(2) + 'px');
+        card.style.setProperty('--glue-rx', (-currY * 0.28).toFixed(2) + 'deg');
+        card.style.setProperty('--glue-ry', (currX * 0.28).toFixed(2) + 'deg');
+
+        // Opposing parallax for inner image provides layered depth
+        card.style.setProperty('--img-x', (-currX * 0.35).toFixed(2) + 'px');
+        card.style.setProperty('--img-y', (-currY * 0.35).toFixed(2) + 'px');
+
+        const remaining = Math.abs(targetX - currX) + Math.abs(targetY - currY);
+        if (isHovered || remaining > 0.05) {
+          rafId = requestAnimationFrame(update);
+        } else {
+          card.style.setProperty('--glue-x', '0px');
+          card.style.setProperty('--glue-y', '0px');
+          card.style.setProperty('--glue-rx', '0deg');
+          card.style.setProperty('--glue-ry', '0deg');
+          card.style.setProperty('--img-x', '0px');
+          card.style.setProperty('--img-y', '0px');
+          rafId = null;
+        }
+      }
+
+      card.addEventListener('mouseenter', () => {
+        isHovered = true;
+        if (!rafId) {
+          rafId = requestAnimationFrame(update);
+        }
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const nx = Math.max(-1, Math.min(1, (e.clientX - centerX) / (rect.width / 2)));
+        const ny = Math.max(-1, Math.min(1, (e.clientY - centerY) / (rect.height / 2)));
+
+        // Magnetic follow: max 12px horizontal, 9px vertical
+        targetX = nx * 12;
+        targetY = ny * 9;
+
+        if (!rafId) {
+          rafId = requestAnimationFrame(update);
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        isHovered = false;
+        targetX = 0;
+        targetY = 0;
+        if (!rafId) {
+          rafId = requestAnimationFrame(update);
+        }
+      });
+    });
+  })();
+
+  // ---------- INTERACTIVE POLAROIDS (Parallax, Tilt, Caption & Expand) ----------
+  const polaroidsStage = document.getElementById('polaroidsStage');
+  const aboutSec = document.getElementById('about');
+  if (polaroidsStage) {
+    const polaroids = Array.from(polaroidsStage.querySelectorAll('.polaroid'));
+    const p1 = document.getElementById('polaroid1');
+    const p2 = document.getElementById('polaroid2');
+    const p3 = document.getElementById('polaroid3');
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let targetX1 = 0, targetY1 = 0;
+    let targetX2 = 0, targetY2 = 0;
+    let targetX3 = 0, targetY3 = 0;
+    let currX1 = 0, currY1 = 0;
+    let currX2 = 0, currY2 = 0;
+    let currX3 = 0, currY3 = 0;
+    let parallaxTicking = false;
+
+    function renderParallax() {
+      currX1 += (targetX1 - currX1) * 0.08;
+      currY1 += (targetY1 - currY1) * 0.08;
+      currX2 += (targetX2 - currX2) * 0.08;
+      currY2 += (targetY2 - currY2) * 0.08;
+      currX3 += (targetX3 - currX3) * 0.08;
+      currY3 += (targetY3 - currY3) * 0.08;
+
+      if (p1 && !p1.classList.contains('is-expanded')) {
+        p1.style.setProperty('--px', currX1.toFixed(2) + 'px');
+        p1.style.setProperty('--py', currY1.toFixed(2) + 'px');
+      }
+      if (p2 && !p2.classList.contains('is-expanded')) {
+        p2.style.setProperty('--px', currX2.toFixed(2) + 'px');
+        p2.style.setProperty('--py', currY2.toFixed(2) + 'px');
+      }
+      if (p3 && !p3.classList.contains('is-expanded')) {
+        p3.style.setProperty('--px', currX3.toFixed(2) + 'px');
+        p3.style.setProperty('--py', currY3.toFixed(2) + 'px');
+      }
+
+      const diff = Math.abs(targetX1 - currX1) + Math.abs(targetY1 - currY1) +
+                   Math.abs(targetX2 - currX2) + Math.abs(targetY2 - currY2) +
+                   Math.abs(targetX3 - currX3) + Math.abs(targetY3 - currY3);
+      if (diff > 0.05) {
+        requestAnimationFrame(renderParallax);
+      } else {
+        parallaxTicking = false;
+      }
+    }
+
+    if (!reducedMotion && aboutSec) {
+      let stageRect = null;
+      window.addEventListener('resize', () => { stageRect = null; }, { passive: true });
+      window.addEventListener('scroll', () => { stageRect = null; }, { passive: true });
+
+      aboutSec.addEventListener('mousemove', (e) => {
+        if (!stageRect) stageRect = polaroidsStage.getBoundingClientRect();
+        const stageCenterX = stageRect.left + stageRect.width / 2;
+        const stageCenterY = stageRect.top + stageRect.height / 2;
+        const normX = Math.max(-1, Math.min(1, (e.clientX - stageCenterX) / (window.innerWidth * 0.4)));
+        const normY = Math.max(-1, Math.min(1, (e.clientY - stageCenterY) / (window.innerHeight * 0.4)));
+
+        // Distinct depth speeds
+        targetX1 = normX * -14;
+        targetY1 = normY * -10;
+        targetX2 = normX * 8;
+        targetY2 = normY * 6;
+        targetX3 = normX * -22;
+        targetY3 = normY * -16;
+
+        if (!parallaxTicking) {
+          parallaxTicking = true;
+          requestAnimationFrame(renderParallax);
+        }
+      }, { passive: true });
+
+      aboutSec.addEventListener('mouseleave', () => {
+        targetX1 = 0; targetY1 = 0;
+        targetX2 = 0; targetY2 = 0;
+        targetX3 = 0; targetY3 = 0;
+        if (!parallaxTicking) {
+          parallaxTicking = true;
+          requestAnimationFrame(renderParallax);
+        }
+      });
+    }
+
+    // Hover 3D tilt + click expansion
+    polaroids.forEach((card) => {
+      card.addEventListener('mouseenter', () => {
+        if (!card.classList.contains('is-expanded')) {
+          card.classList.add('is-hovered');
+        }
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        if (card.classList.contains('is-expanded') || reducedMotion) return;
+        const rect = card.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const nx = (e.clientX - cx) / (rect.width / 2);
+        const ny = (e.clientY - cy) / (rect.height / 2);
+        const maxTilt = 7;
+        const tiltX = (-ny * maxTilt).toFixed(2);
+        const tiltY = (nx * maxTilt).toFixed(2);
+        card.style.setProperty('--tilt-x', tiltX + 'deg');
+        card.style.setProperty('--tilt-y', tiltY + 'deg');
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.classList.remove('is-hovered');
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+      });
+
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isAlreadyExpanded = card.classList.contains('is-expanded');
+        polaroids.forEach(c => {
+          c.classList.remove('is-expanded');
+          c.style.setProperty('--tilt-x', '0deg');
+          c.style.setProperty('--tilt-y', '0deg');
+        });
+        if (isAlreadyExpanded) {
+          card.classList.add('is-hovered');
+        } else {
+          card.classList.add('is-expanded');
+        }
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
+        }
+      });
+    });
+
+    document.addEventListener('click', () => {
+      polaroids.forEach(c => {
+        c.classList.remove('is-expanded');
+        c.classList.remove('is-hovered');
+        c.style.setProperty('--tilt-x', '0deg');
+        c.style.setProperty('--tilt-y', '0deg');
+      });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        polaroids.forEach(c => {
+          c.classList.remove('is-expanded');
+          c.classList.remove('is-hovered');
+          c.style.setProperty('--tilt-x', '0deg');
+          c.style.setProperty('--tilt-y', '0deg');
+        });
+      }
+    });
+  }
+
+  // Mobile menu
+  const toggle = document.getElementById('navToggle');
+  const closeBtn = document.getElementById('mobileClose');
+  const menu = document.getElementById('mobileMenu');
+  toggle.addEventListener('click', () => menu.classList.add('open'));
+  closeBtn.addEventListener('click', () => menu.classList.remove('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Reveal on scroll
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if (reduced) {
+    revealEls.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  }
+
+  // Chapter subtle scale-in
+  const chapters = document.querySelectorAll('.chapter');
+  const io2 = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in');
+    });
+  }, { threshold: 0.15 });
+  chapters.forEach(c => io2.observe(c));
+
+  // Load Vimeo reel on click/keypress (lazy embed)
+  const reelFrame = document.getElementById('reelFrame');
+  if (reelFrame) {
+    const loadReel = () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://player.vimeo.com/video/995448287?badge=0&autopause=0&player_id=0&app_id=58479&muted=1&autoplay=1';
+      iframe.setAttribute('title', '3d Animation Reel');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      reelFrame.innerHTML = '';
+      reelFrame.appendChild(iframe);
+      reelFrame.removeAttribute('role');
+      reelFrame.removeAttribute('tabindex');
+      reelFrame.style.cursor = 'default';
+    };
+    reelFrame.addEventListener('click', loadReel);
+    reelFrame.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        loadReel();
+      }
+    });
+  }
+
+  // ---------- Work Experience Timeline Alignment & Scroll Interaction ----------
+  (function initExperienceTimeline() {
+    const line = document.getElementById('expLine');
+    const rows = Array.from(document.querySelectorAll('.exp-row'));
+    if (!rows.length) return;
+
+    const dots = rows.map(r => r.querySelector('.exp-dot'));
+
+    function alignTimeline() {
+      rows.forEach((row, i) => {
+        const dot = dots[i];
+        const h4 = row.querySelector('.exp-role h4');
+        if (dot && h4) {
+          const rowRect = row.getBoundingClientRect();
+          const h4Rect = h4.getBoundingClientRect();
+          const h4CenterY = (h4Rect.top - rowRect.top) + (h4.offsetHeight / 2);
+          dot.style.top = h4CenterY + 'px';
+        }
+      });
+
+      if (line) {
+        const firstRow = rows[0];
+        const lastRow = rows[rows.length - 1];
+        const firstDot = dots[0];
+        const lastDot = dots[dots.length - 1];
+        if (firstDot && lastDot) {
+          const firstDotY = firstRow.offsetTop + firstDot.offsetTop;
+          const lastDotY = lastRow.offsetTop + lastDot.offsetTop;
+          line.style.top = firstDotY + 'px';
+          line.style.height = Math.max(0, lastDotY - firstDotY) + 'px';
+        }
+      }
+    }
+
+    let ticking = false;
+
+    function updateScrollProgress() {
+      const vh = window.innerHeight;
+      const triggerEnter = vh * 0.74;
+      const triggerFull = vh * 0.52;
+      const span = triggerEnter - triggerFull;
+
+      rows.forEach((row, i) => {
+        const dot = dots[i];
+        if (!dot) return;
+
+        const dotRect = dot.getBoundingClientRect();
+        const dotY = dotRect.top + dotRect.height / 2;
+
+        let currentT = 0;
+        if (dotY <= triggerFull) {
+          currentT = 1;
+        } else if (dotY < triggerEnter) {
+          const raw = (triggerEnter - dotY) / span;
+          currentT = raw * raw * (3 - 2 * raw);
+        }
+
+        const finalOpacity = 0.18 + 0.82 * currentT;
+        dot.style.opacity = finalOpacity.toFixed(3);
+      });
+
+      if (line && rows.length > 1) {
+        const firstDot = dots[0];
+        const lastDot = dots[dots.length - 1];
+        if (firstDot && lastDot) {
+          const firstDotCenterY = firstDot.getBoundingClientRect().top + firstDot.offsetHeight / 2;
+          const lastDotCenterY = lastDot.getBoundingClientRect().top + lastDot.offsetHeight / 2;
+          const totalDist = lastDotCenterY - firstDotCenterY;
+
+          if (totalDist > 0) {
+            const currentReach = triggerFull - firstDotCenterY;
+            const lineProgFraction = Math.min(1, Math.max(0, currentReach / totalDist));
+            line.style.setProperty('--line-prog', (lineProgFraction * 100).toFixed(1) + '%');
+          }
+        }
+      }
+
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateScrollProgress);
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      alignTimeline();
+      onScroll();
+    }, { passive: true });
+    window.addEventListener('load', () => {
+      alignTimeline();
+      updateScrollProgress();
+    });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        alignTimeline();
+        updateScrollProgress();
+      });
+    }
+
+    alignTimeline();
+    updateScrollProgress();
+  })();
+
+  // ---------- Easter Egg Cat Game ----------
+  (function() {
+    const catBtn = document.getElementById('easterCat');
+    const catInner = document.getElementById('catInner');
+    const catSprite = document.getElementById('catSprite');
+    const catToast = document.getElementById('catToast');
+    const catHint = document.getElementById('catHint');
+    const questBox = document.getElementById('catQuestComplete');
+    const questLeave = document.getElementById('questLeave');
+    const contactCta = document.getElementById('contactCta');
+    const ctaBtn = document.getElementById('ctaBtn');
+    if (!catBtn || !catSprite) return;
+
+    const chime = document.getElementById('windChime');
+    const lanternGlow = document.getElementById('lanternGlow');
+    const cherryBranch = document.getElementById('cherryBranch');
+
+    if (chime) {
+      function playChimeSound() {
+        try {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) return;
+          const ctx = new AudioCtx();
+          const freqs = [1760, 2093, 2637, 3136];
+          freqs.forEach((f, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.08);
+            gain.gain.setValueAtTime(0.08, ctx.currentTime + i * 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + i * 0.08 + 1.2);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(ctx.currentTime + i * 0.08);
+            osc.stop(ctx.currentTime + i * 0.08 + 1.25);
+          });
+        } catch(e) {}
+      }
+      chime.addEventListener('click', () => {
+        playChimeSound();
+        chime.style.transform = 'rotate(8deg) scale(1.05)';
+        setTimeout(() => { chime.style.transform = ''; }, 450);
+      });
+      chime.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          playChimeSound();
+          chime.style.transform = 'rotate(8deg) scale(1.05)';
+          setTimeout(() => { chime.style.transform = ''; }, 450);
+        }
+      });
+    }
+
+    if (!catBtn || !catSprite) return;
+
+    const catBounds = document.getElementById('catBounds');
+
+    // 5 stages matching the reference drawing with exact artwork percentage coordinates (normX, normBottom):
+    // 1: Sitting idle beside lantern (bottom-left)
+    // 2: Walking on wooden lower roof (upper-left)
+    // 3: Leaping past right plant over bench (mid-right)
+    // 4: Peeking over boulder (mid-left)
+    // 5: Sleeping on deck center (center foreground)
+    const stages = [
+      {
+        normX: 0.037,
+        normBottom: 0.088,
+        baseW: 96,
+        baseH: 96,
+        pose: 'images/cat_idle.png',
+        flip: false,
+        toast: ''
+      },
+      {
+        normX: 0.042,
+        normBottom: 0.505,
+        baseW: 104,
+        baseH: 104,
+        pose: 'images/cat_walk.png',
+        flip: false,
+        toast: 'Meow! 🐾'
+      },
+      {
+        normX: 0.845,
+        normBottom: 0.191, // raised 20px up on bench
+        baseW: 108,
+        baseH: 108,
+        pose: 'images/cat_run.png',
+        flip: false,
+        toast: 'Whoosh! 💨'
+      },
+      {
+        normX: 0.244,
+        normBottom: 0.096, // lowered 3px more down
+        baseW: 96,
+        baseH: 96,
+        pose: 'images/cat_peek.png',
+        flip: false,
+        toast: 'Almost! ✨'
+      },
+      {
+        normX: 0.500,
+        normBottom: 0.068,
+        baseW: 118,
+        baseH: 68,
+        center: true,
+        pose: 'images/cat_sleep.png',
+        flip: false,
+        toast: 'Purr... 💤'
+      }
+    ];
+
+    let currentStage = 0;
+    let isBusy = false;
+    let isCompleted = false;
+
+    function getRenderedBgRect() {
+      const scene = catBounds || catBtn.parentElement;
+      const sw = scene ? scene.clientWidth : window.innerWidth;
+      const sh = scene ? scene.clientHeight : window.innerHeight;
+      const imgAspect = 1670 / 942;
+      const sceneAspect = sw / (sh || 1);
+
+      let rw, rh, ox, ob;
+      if (sceneAspect > imgAspect) {
+        rw = sw;
+        rh = sw / imgAspect;
+        ox = 0;
+        ob = 0;
+      } else {
+        rh = sh;
+        rw = sh * imgAspect;
+        ox = (sw - rw) / 2;
+        ob = 0;
+      }
+      return { left: ox, bottom: ob, width: rw, height: rh };
+    }
+
+    function applyStagePosition(st) {
+      if (!st) return;
+      const scene = catBounds || catBtn.parentElement;
+      const sw = scene ? scene.clientWidth : window.innerWidth;
+      const sh = scene ? scene.clientHeight : window.innerHeight;
+      const bg = getRenderedBgRect();
+      const scale = Math.max(0.68, Math.min(1.35, bg.width / 1670));
+
+      const w = Math.round((st.baseW || 68) * scale);
+      const h = Math.round((st.baseH || 68) * scale);
+      catBtn.style.width = w + 'px';
+      catBtn.style.height = h + 'px';
+
+      const x = bg.left + st.normX * bg.width;
+      const b = bg.bottom + st.normBottom * bg.height;
+
+      // Ensure cat remains comfortably visible even on narrow screen viewports
+      const clampedX = Math.max(14, Math.min(sw - w - 14, Math.round(x)));
+      const clampedB = Math.max(12, Math.min(sh - h - 12, Math.round(b)));
+
+      catBtn.style.left = clampedX + 'px';
+      catBtn.style.bottom = clampedB + 'px';
+      catBtn.style.top = 'auto';
+      catBtn.style.right = 'auto';
+
+      if (st.center) {
+        catBtn.style.transform = 'translateX(-50%)';
+      } else {
+        catBtn.style.transform = 'none';
+      }
+      catSprite.src = st.pose;
+      const flipScale = st.flip ? -1 : 1;
+      catInner.style.transform = 'scaleX(' + flipScale + ')';
+    }
+
+    function applyWindChimePosition() {
+      if (!chime) return;
+      const bg = getRenderedBgRect();
+      const scale = Math.max(0.62, Math.min(1.25, bg.width / 1670));
+      const chimeW = Math.round(54 * scale);
+      const chimeH = Math.round(chimeW * (720 / 372));
+      const anchorXInChime = chimeW * (191 / 372);
+
+      const normX = 0.0719;
+      const normBottom = 0.809; // raised higher under roof rafter
+
+      const targetX = bg.left + normX * bg.width;
+      const targetBottom = bg.bottom + normBottom * bg.height;
+
+      if (targetX + chimeW < 0) {
+        chime.style.display = 'none';
+        return;
+      }
+      chime.style.display = 'block';
+
+      chime.style.width = chimeW + 'px';
+      chime.style.height = chimeH + 'px';
+      chime.style.left = Math.round(targetX - anchorXInChime) + 'px';
+      chime.style.bottom = Math.round(targetBottom - chimeH) + 'px';
+      chime.style.top = 'auto';
+      chime.style.right = 'auto';
+    }
+
+    function applyLanternGlowPosition() {
+      if (!lanternGlow) return;
+      const bg = getRenderedBgRect();
+      const scale = Math.max(0.68, Math.min(1.35, bg.width / 1670));
+      const glowW = Math.round(155 * scale);
+      const glowH = Math.round(125 * scale);
+      const targetX = bg.left + 0.1156 * bg.width;
+      const targetBottom = bg.bottom + 0.2962 * bg.height;
+
+      if (targetX + glowW / 2 < 0) {
+        lanternGlow.style.display = 'none';
+        return;
+      }
+      lanternGlow.style.display = 'block';
+      lanternGlow.style.width = glowW + 'px';
+      lanternGlow.style.height = glowH + 'px';
+      lanternGlow.style.left = Math.round(targetX - glowW / 2) + 'px';
+      lanternGlow.style.bottom = Math.round(targetBottom - glowH / 2) + 'px';
+      lanternGlow.style.top = 'auto';
+      lanternGlow.style.right = 'auto';
+    }
+
+    function applyCherryPosition() {
+      if (!cherryBranch) return;
+      const bg = getRenderedBgRect();
+      const scene = catBounds || catBtn.parentElement;
+      const sw = scene ? scene.clientWidth : window.innerWidth;
+      const sh = scene ? scene.clientHeight : window.innerHeight;
+
+      if (sw <= 600) {
+        cherryBranch.style.width = 'clamp(100px, 24vw, 130px)';
+        cherryBranch.style.height = 'auto';
+        cherryBranch.style.left = 'auto';
+        cherryBranch.style.right = '-45px';
+        cherryBranch.style.top = '0px';
+        cherryBranch.style.bottom = 'auto';
+        return;
+      }
+
+      const scale = bg.width / 1670;
+      const branchW = Math.round(415 * scale);
+      const targetX = bg.left + 0.773 * bg.width;
+      const targetTop = (sh - bg.height) - Math.round(32 * scale);
+
+      cherryBranch.style.width = branchW + 'px';
+      cherryBranch.style.height = 'auto';
+      cherryBranch.style.left = Math.round(targetX) + 'px';
+      cherryBranch.style.right = 'auto';
+      cherryBranch.style.top = Math.round(targetTop) + 'px';
+      cherryBranch.style.bottom = 'auto';
+    }
+
+    applyStagePosition(stages[0]);
+    applyWindChimePosition();
+    applyLanternGlowPosition();
+    applyCherryPosition();
+
+    window.addEventListener('resize', () => {
+      applyStagePosition(stages[currentStage]);
+      applyWindChimePosition();
+      applyLanternGlowPosition();
+      applyCherryPosition();
+    }, { passive: true });
+
+    let toastTimer = null;
+    function showToast(text) {
+      if (!text) return;
+      if (toastTimer) {
+        clearTimeout(toastTimer);
+        toastTimer = null;
+      }
+      catToast.innerHTML = '';
+      const chars = Array.from(text);
+      chars.forEach((ch, idx) => {
+        const span = document.createElement('span');
+        span.className = 'cat-toast-char';
+        span.textContent = ch === ' ' ? '\u00A0' : ch;
+        span.style.animationDelay = (idx * 26) + 'ms';
+        catToast.appendChild(span);
+      });
+      catToast.classList.remove('show');
+      void catToast.offsetWidth;
+      catToast.classList.add('show');
+      toastTimer = setTimeout(() => {
+        catToast.classList.remove('show');
+        toastTimer = null;
+      }, 1800);
+    }
+
+    function onCatch() {
+      if (isBusy || isCompleted) return;
+      isBusy = true;
+      catBtn.classList.remove('idle');
+
+      currentStage++;
+
+      if (currentStage < stages.length) {
+        const nextSt = stages[currentStage];
+        showToast(nextSt.toast);
+
+        if (currentStage === 1 && catHint) {
+          catHint.classList.add('hidden');
+        }
+
+        catRect = null;
+        setTimeout(() => {
+          applyStagePosition(nextSt);
+          catRect = null;
+          if (currentStage === stages.length - 1) {
+            handleFinalCatch();
+          } else {
+            setTimeout(() => {
+              isBusy = false;
+              catRect = null;
+              catBtn.classList.add('idle');
+            }, 500);
+          }
+        }, 120);
+      }
+    }
+
+    function handleFinalCatch() {
+      isCompleted = true;
+      catBtn.setAttribute('tabindex', '-1');
+      catBtn.style.pointerEvents = 'none';
+
+      if (questBox) {
+        questBox.classList.add('visible');
+      }
+
+      setTimeout(() => {
+        catSprite.src = 'images/cat_sleep.png';
+        catBtn.classList.add('sleeping');
+        catBtn.classList.remove('idle');
+        catInner.style.transform = 'none';
+        catRect = null;
+        isBusy = false;
+
+        if (questLeave) {
+          questLeave.classList.add('visible');
+        }
+      }, 700);
+    }
+
+    catBtn.addEventListener('click', onCatch);
+    catBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onCatch();
+      }
+    });
+
+    let catRect = null;
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('resize', () => { catRect = null; }, { passive: true });
+      window.addEventListener('scroll', () => { catRect = null; }, { passive: true });
+      catBtn.addEventListener('mouseenter', () => { catRect = catBtn.getBoundingClientRect(); });
+
+      document.addEventListener('mousemove', (e) => {
+        if (isBusy) return;
+        if (!catRect) catRect = catBtn.getBoundingClientRect();
+        const catCenterX = catRect.left + catRect.width / 2;
+        const catCenterY = catRect.top + catRect.height / 2;
+        const dx = e.clientX - catCenterX;
+        const dy = e.clientY - catCenterY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        const isFlipped = stages[currentStage] && stages[currentStage].flip;
+        const flipScale = isFlipped ? -1 : 1;
+
+        if (dist < 190) {
+          const tx = Math.max(-5, Math.min(5, dx * 0.03));
+          const ty = Math.max(-4, Math.min(4, dy * 0.03));
+          const rot = Math.max(-4, Math.min(4, dx * 0.025));
+          catInner.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) rotate(' + rot + 'deg) scaleX(' + flipScale + ')';
+        } else {
+          catInner.style.transform = 'scaleX(' + flipScale + ')';
+        }
+      });
+    }
+  })();
+
+  // ---------- Custom Illustrated Japanese Art Cursor ----------
+  (function initCustomCursor() {
+    function setup() {
+      let cursor = document.getElementById('customCursor');
+      if (!cursor) {
+        cursor = document.createElement('div');
+        cursor.className = 'custom-cursor cursor-state-default';
+        cursor.id = 'customCursor';
+        cursor.setAttribute('aria-hidden', 'true');
+        cursor.innerHTML = '<div class="cursor-visual" id="cursorVisual">' +
+          '<img src="images/cursor-default.png" class="cursor-art cursor-art-default" alt="" draggable="false">' +
+          '<img src="images/cursor-pointer.png" class="cursor-art cursor-art-pointer" alt="" draggable="false">' +
+          '<img src="images/cursor-grab.png" class="cursor-art cursor-art-grab" alt="" draggable="false">' +
+          '<img src="images/cursor-grabbing.png" class="cursor-art cursor-art-grabbing" alt="" draggable="false">' +
+          '</div><div class="cursor-badge-pill" id="cursorBadgePill"><span class="cursor-badge-text" id="cursorBadgeText"></span></div>';
+        document.body.prepend(cursor);
+      }
+
+      const visual = document.getElementById('cursorVisual') || cursor.querySelector('.cursor-visual');
+      const badgePill = document.getElementById('cursorBadgePill') || cursor.querySelector('.cursor-badge-pill');
+      const badgeText = document.getElementById('cursorBadgeText') || cursor.querySelector('.cursor-badge-text');
+      if (!visual) return;
+
+      let mouseX = -100, mouseY = -100;
+      let prevMouseX = -100, prevMouseY = -100;
+      let badgeX = -100, badgeY = -100;
+      let isVisible = false;
+      let isDown = false;
+      let isHoveringInteractive = false;
+      let isHoveringDraggable = false;
+      let currentBadge = '';
+      let currentState = 'default';
+
+      function setState(state) {
+        if (currentState !== state) {
+          cursor.classList.remove('cursor-state-' + currentState);
+          currentState = state;
+          cursor.classList.add('cursor-state-' + currentState);
+        }
+      }
+
+      function updateState() {
+        if (isHoveringDraggable) {
+          setState(isDown ? 'grabbing' : 'grab');
+        } else if (isHoveringInteractive) {
+          setState('pointer');
+        } else {
+          setState('default');
+        }
+      }
+
+      function setBadge(name, text) {
+        if (currentBadge !== name) {
+          clearBadge();
+          currentBadge = name;
+          cursor.classList.add('has-badge', 'badge-' + name);
+          if (badgeText) badgeText.textContent = text;
+        }
+      }
+
+      function clearBadge() {
+        if (currentBadge) {
+          cursor.classList.remove('has-badge', 'badge-' + currentBadge);
+          currentBadge = '';
+          if (badgeText) badgeText.textContent = '';
+        }
+      }
+
+      // Smooth floating badge pill follow (0-delay native hardware cursor handles pointer)
+      function render() {
+        if (isVisible && badgePill && currentBadge) {
+          const targetBadgeX = mouseX + 20;
+          const targetBadgeY = mouseY + 14;
+          badgeX += (targetBadgeX - badgeX) * 0.35;
+          badgeY += (targetBadgeY - badgeY) * 0.35;
+          badgePill.style.transform = 'translate3d(' + badgeX.toFixed(1) + 'px, ' + badgeY.toFixed(1) + 'px, 0)';
+        }
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+
+      function onMouseMove(e) {
+        if (e.pointerType === 'touch') return;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        // Auto-heal isDown if mouse button was released without mouseup event
+        if (isDown && e.buttons === 0) {
+          isDown = false;
+          cursor.classList.remove('is-down');
+          updateState();
+        }
+
+        if (!isVisible) {
+          isVisible = true;
+          badgeX = mouseX + 20;
+          badgeY = mouseY + 14;
+          document.documentElement.classList.add('has-custom-cursor');
+          cursor.classList.add('is-visible');
+        }
+      }
+
+      window.addEventListener('mousemove', onMouseMove, { passive: true });
+      window.addEventListener('pointermove', onMouseMove, { passive: true });
+      window.addEventListener('dragover', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!isVisible) {
+          isVisible = true;
+          document.documentElement.classList.add('has-custom-cursor');
+          cursor.classList.add('is-visible');
+        }
+      }, { passive: true });
+
+      // Prevent native HTML5 text dragging in capture phase before Chromium Aura suppresses pointer stream
+      function handleDragStart(e) {
+        let t = e.target;
+        if (t && t.nodeType === 3) t = t.parentElement;
+        if (!t || !t.closest || !t.closest('#heroHand, .hero-hand, #draggableHand, .about-hand, .polaroid, [draggable="true"]')) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        }
+      }
+      document.addEventListener('dragstart', handleDragStart, true);
+      window.addEventListener('dragstart', handleDragStart, true);
+
+      document.documentElement.addEventListener('mouseleave', (e) => {
+        if (!e.relatedTarget && (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight)) {
+          isVisible = false;
+          isDown = false;
+          cursor.classList.remove('is-visible', 'is-down');
+          document.documentElement.classList.remove('has-custom-cursor');
+          updateState();
+        }
+      });
+
+      function deselectIfOutside(e) {
+        if (e.button !== 0 && e.button !== undefined) return;
+        const sel = window.getSelection();
+        if (!sel || sel.isCollapsed || sel.rangeCount === 0) return;
+
+        let t = e.target;
+        if (t && t.nodeType === 3) t = t.parentElement;
+        if (!t) return;
+
+        // If clicking an active draggable (polaroid, hand), don't interfere
+        if (t.closest && t.closest('#heroHand, .hero-hand, #draggableHand, .about-hand, .polaroid, [draggable="true"]')) {
+          return;
+        }
+
+        // On double/triple click (detail >= 2), allow native word/paragraph selection
+        if (e.detail >= 2) {
+          return;
+        }
+
+        // In all other cases (tapping outside on background, or clicking to start a new selection):
+        // Immediately clear previous selection so Chromium never enters an OLE drag on selected text
+        // and the custom cursor is never replaced by the OS system cursor!
+        sel.removeAllRanges();
+      }
+
+      document.addEventListener('pointerdown', deselectIfOutside, true);
+      document.addEventListener('mousedown', deselectIfOutside, true);
+
+      function onMouseDown(e) {
+        if (e.button !== 0 && e.button !== undefined) return;
+        if (e.clientX !== undefined && e.clientX > 0 && e.clientY > 0) {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        }
+
+        isDown = true;
+        if (isHoveringInteractive || isHoveringDraggable) {
+          cursor.classList.add('is-down');
+        }
+        updateState();
+      }
+
+      function onMouseUp(e) {
+        if (e && e.clientX !== undefined && e.clientX > 0 && e.clientY > 0) {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        }
+        isDown = false;
+        cursor.classList.remove('is-down');
+        updateState();
+      }
+
+      window.addEventListener('pointerdown', onMouseDown, { passive: true });
+      window.addEventListener('mousedown', onMouseDown, { passive: true });
+      window.addEventListener('pointerup', onMouseUp, { passive: true });
+      window.addEventListener('pointercancel', onMouseUp, { passive: true });
+      window.addEventListener('mouseup', onMouseUp, { passive: true });
+      window.addEventListener('dragend', onMouseUp, { passive: true });
+      window.addEventListener('blur', onMouseUp);
+      window.addEventListener('dblclick', onMouseUp, { passive: true });
+
+      document.addEventListener('mouseover', (e) => {
+        // While user is actively holding mouse down (dragging an object or selecting text), maintain current state
+        if (isDown) return;
+
+        let target = e.target;
+        if (!target) return;
+        if (target.nodeType === 3) target = target.parentElement;
+        if (!target || !target.closest) return;
+
+        // 1. Text inputs -> native cursor
+        if (target.closest('input, textarea, select')) {
+          cursor.classList.add('is-hidden');
+          document.documentElement.classList.remove('has-custom-cursor');
+          return;
+        } else {
+          cursor.classList.remove('is-hidden');
+          if (isVisible) {
+            document.documentElement.classList.add('has-custom-cursor');
+          }
+        }
+
+        // 2. Video badge ("PLAY ▶")
+        if (target.closest('#reelFrame, .reel-frame, .reel-play')) {
+          setBadge('video', 'PLAY ▶');
+          isHoveringInteractive = true;
+          isHoveringDraggable = false;
+          updateState();
+          return;
+        }
+
+        // 3. Project case study badge ("VIEW ↗")
+        if (target.closest('.chapter-visual, .chapter a')) {
+          setBadge('work', 'VIEW ↗');
+          isHoveringInteractive = true;
+          isHoveringDraggable = false;
+          updateState();
+          return;
+        }
+
+        // 4. Polaroid badge ("CLICK") -> Draggable (ONLY on the card itself, not the background stage)
+        if (target.closest('.polaroid')) {
+          setBadge('polaroid', 'CLICK');
+          isHoveringDraggable = true;
+          isHoveringInteractive = false;
+          updateState();
+          return;
+        }
+
+        // 5. Easter Egg Cat ("CLICK 🐾" or "PURR 💤" when sleeping)
+        if (target.closest('#easterCat, .easter-cat-btn')) {
+          if (target.closest('.easter-cat-btn.sleeping')) {
+            setBadge('cat', 'PURR 💤');
+          } else {
+            setBadge('cat', 'CLICK 🐾');
+          }
+          isHoveringInteractive = true;
+          isHoveringDraggable = false;
+          updateState();
+          return;
+        }
+
+        // 6. Wind chime ("♫")
+        if (target.closest('#windChime, .contact-wind-chime')) {
+          setBadge('chime', '♫');
+          isHoveringInteractive = true;
+          isHoveringDraggable = false;
+          updateState();
+          return;
+        }
+
+        // 7. Draggable hand illustration (Hero hand & about hand)
+        if (target.closest('#heroHand, .hero-hand, #draggableHand, .about-hand')) {
+          clearBadge();
+          isHoveringDraggable = true;
+          isHoveringInteractive = false;
+          updateState();
+          return;
+        }
+
+        // 8. Back to top button ("TOP ↑")
+        if (target.closest('#backToTop, .back-to-top')) {
+          setBadge('top', 'TOP ↑');
+          isHoveringInteractive = true;
+          isHoveringDraggable = false;
+          updateState();
+          return;
+        }
+
+        // Clear badge if outside specialized zones
+        clearBadge();
+        isHoveringDraggable = false;
+
+        // 9. General interactive elements (links, buttons, pills, tags, controls)
+        if (target.closest('a, button, [role="button"], .nav-btn, .caption-pill, .tag, .contact-cta-btn, .back-to-top, .scroll-indicator, .scroll-indicator-track')) {
+          isHoveringInteractive = true;
+        } else {
+          isHoveringInteractive = false;
+        }
+        updateState();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setup);
+    } else {
+      setup();
+    }
+  })();
+
+  // ---------- THIN RIGHT-SIDE SCROLL INDICATOR ("VERY HINT KINDA") ----------
+  (function initScrollIndicator() {
+    const indicator = document.getElementById('scrollIndicator');
+    const track = document.getElementById('scrollTrack');
+    const fill = document.getElementById('scrollFill');
+    const thumb = document.getElementById('scrollThumb');
+    if (!indicator || !track || !fill || !thumb) return;
+
+    let hideTimer = null;
+    let isDragging = false;
+    let isTicking = false;
+    const thumbHeight = 32;
+
+    function update() {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
+      const trackHeight = track.clientHeight;
+      const availableTrack = Math.max(0, trackHeight - thumbHeight);
+      const thumbY = progress * availableTrack;
+
+      thumb.style.transform = 'translateY(' + thumbY.toFixed(1) + 'px)';
+      fill.style.height = (thumbY + thumbHeight).toFixed(1) + 'px';
+      isTicking = false;
+    }
+
+    function onScroll() {
+      if (!isTicking) {
+        isTicking = true;
+        requestAnimationFrame(update);
+      }
+      indicator.classList.add('is-scrolling');
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(function() {
+        if (!isDragging) {
+          indicator.classList.remove('is-scrolling');
+        }
+      }, 1200);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function() {
+      update();
+    }, { passive: true });
+
+    function scrollFromEvent(e) {
+      const trackRect = track.getBoundingClientRect();
+      const clickY = e.clientY - trackRect.top;
+      const trackHeight = trackRect.height;
+      const availableTrack = Math.max(1, trackHeight - thumbHeight);
+      const progress = Math.min(1, Math.max(0, (clickY - thumbHeight / 2) / availableTrack));
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      return progress * maxScroll;
+    }
+
+    track.addEventListener('pointerdown', function(e) {
+      if (e.button !== 0 && e.button !== undefined) return;
+      isDragging = true;
+      indicator.classList.add('is-dragging');
+      if (track.setPointerCapture && e.pointerId !== undefined) {
+        try { track.setPointerCapture(e.pointerId); } catch(err) {}
+      }
+
+      const targetScroll = scrollFromEvent(e);
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+
+      function onPointerMove(moveEvent) {
+        if (!isDragging) return;
+        const moveTarget = scrollFromEvent(moveEvent);
+        window.scrollTo({ top: moveTarget, behavior: 'auto' });
+      }
+
+      function onPointerUp(upEvent) {
+        isDragging = false;
+        indicator.classList.remove('is-dragging');
+        track.removeEventListener('pointermove', onPointerMove);
+        track.removeEventListener('pointerup', onPointerUp);
+        track.removeEventListener('pointercancel', onPointerUp);
+        if (track.releasePointerCapture && e.pointerId !== undefined) {
+          try { track.releasePointerCapture(e.pointerId); } catch(err) {}
+        }
+        onScroll();
+      }
+
+      track.addEventListener('pointermove', onPointerMove);
+      track.addEventListener('pointerup', onPointerUp);
+      track.addEventListener('pointercancel', onPointerUp);
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', update);
+    } else {
+      update();
+    }
+  })();
+
+  // ---------- BACK TO TOP CONTROLLER ----------
+  (function() {
+    const btn = document.getElementById('backToTop');
+    const aboutSec = document.getElementById('about');
+    if (!btn) return;
+
+    let isVisible = false;
+    function checkScroll() {
+      let show = false;
+      if (aboutSec) {
+        // Only visible once the user has scrolled past the About section
+        const rect = aboutSec.getBoundingClientRect();
+        show = rect.bottom < 80;
+      } else {
+        show = window.scrollY > 1600;
+      }
+      if (show !== isVisible) {
+        isVisible = show;
+        btn.classList.toggle('visible', show);
+      }
+    }
+
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', checkScroll, { passive: true });
+    checkScroll();
+
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  })();
+</script>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+</body>
+</html>
