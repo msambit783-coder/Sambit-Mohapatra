@@ -988,27 +988,27 @@
     right:0;
     top:0;
     bottom:0;
-    width:22px;
+    width:18px;
     z-index:900;
     display:flex;
     justify-content:flex-end;
     align-items:stretch;
-    padding-right:4px;
+    padding-right:3px;
     pointer-events:auto;
     user-select:none;
     -webkit-user-select:none;
     cursor:pointer;
-    opacity:0.42;
+    opacity:0.35;
     transition:opacity 0.35s cubic-bezier(0.16, 0.8, 0.24, 1);
   }
   .scroll-indicator:hover,
   .scroll-indicator.is-scrolling,
   .scroll-indicator.is-dragging{
-    opacity:1;
+    opacity:0.9;
   }
   .scroll-indicator-track{
     position:relative;
-    width:5px;
+    width:3.5px;
     height:100%;
     background:rgba(18, 18, 16, 0.08);
     border-radius:999px;
@@ -1017,8 +1017,8 @@
   }
   .scroll-indicator:hover .scroll-indicator-track,
   .scroll-indicator.is-dragging .scroll-indicator-track{
-    width:8px;
-    background:rgba(18, 18, 16, 0.16);
+    width:5px;
+    background:rgba(18, 18, 16, 0.14);
   }
   .scroll-indicator-fill{
     position:absolute;
@@ -1027,7 +1027,7 @@
     right:0;
     width:100%;
     height:0;
-    background:rgba(187, 27, 18, 0.18);
+    background:rgba(18, 18, 16, 0.12);
     border-radius:999px;
     pointer-events:none;
     will-change:height;
@@ -1035,7 +1035,7 @@
   }
   .scroll-indicator:hover .scroll-indicator-fill,
   .scroll-indicator.is-dragging .scroll-indicator-fill{
-    background:rgba(187, 27, 18, 0.30);
+    background:rgba(18, 18, 16, 0.20);
   }
   .scroll-indicator-thumb{
     position:absolute;
@@ -1047,36 +1047,36 @@
     height:48px;
     background:#121210;
     border-radius:999px;
-    box-shadow:0 1px 4px rgba(18, 18, 16, 0.25);
+    box-shadow:0 1px 3px rgba(18, 18, 16, 0.2);
     cursor:grab;
     pointer-events:none;
     will-change:transform;
     transition:background 0.2s ease, box-shadow 0.2s ease;
   }
   .scroll-indicator:hover .scroll-indicator-thumb{
-    background:#BB1B12;
-    box-shadow:0 2px 8px rgba(187, 27, 18, 0.45);
+    background:#121210;
+    box-shadow:0 2px 6px rgba(18, 18, 16, 0.3);
   }
   .scroll-indicator.is-dragging .scroll-indicator-thumb{
-    background:#96150E;
+    background:#000000;
     cursor:grabbing;
-    box-shadow:0 2px 10px rgba(187, 27, 18, 0.6);
+    box-shadow:0 2px 8px rgba(18, 18, 16, 0.4);
   }
   @media (max-width:768px){
     .scroll-indicator{
       right:0;
       top:0;
       bottom:0;
-      width:16px;
-      padding-right:3px;
-      opacity:0.35;
+      width:14px;
+      padding-right:2px;
+      opacity:0.3;
     }
     .scroll-indicator-track{
-      width:4px;
+      width:3px;
     }
     .scroll-indicator:hover .scroll-indicator-track,
     .scroll-indicator.is-dragging .scroll-indicator-track{
-      width:6px;
+      width:4px;
     }
   }
 
