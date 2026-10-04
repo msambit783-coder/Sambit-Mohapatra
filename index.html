@@ -22,6 +22,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="images/cat_idle.png" as="image">
+<link rel="preload" href="images/cat_walk.png" as="image">
+<link rel="preload" href="images/cat_run.png" as="image">
+<link rel="preload" href="images/cat_peek.png" as="image">
+<link rel="preload" href="images/cat_sleep.png" as="image">
 <style>
   :root{
     --bg: #FEFAF1;
@@ -2502,7 +2507,7 @@
     touch-action:manipulation;
     user-select:none;
     -webkit-tap-highlight-color:transparent;
-    transition:left 0.5s var(--ease), top 0.5s var(--ease), right 0.5s var(--ease), bottom 0.5s var(--ease), width 0.4s var(--ease), height 0.4s var(--ease);
+    transition:left 0.42s cubic-bezier(0.25, 1, 0.5, 1), bottom 0.42s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s ease, height 0.35s ease;
   }
   .easter-cat-btn:focus-visible{
     outline:2px dashed #E22B23;
@@ -2515,6 +2520,7 @@
     height:68px;
   }
   .easter-cat-inner{
+    position:relative;
     width:100%;
     height:100%;
     display:flex;
@@ -2524,6 +2530,8 @@
     transition:transform 0.25s ease-out;
   }
   .easter-cat-img{
+    position:absolute;
+    inset:0;
     width:100%;
     height:100%;
     object-fit:contain;
@@ -2531,11 +2539,18 @@
     pointer-events:none;
     transform-origin:center bottom;
     filter:drop-shadow(0 4px 10px rgba(18,18,16,0.07));
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.15s ease;
   }
-  .easter-cat-btn.idle .easter-cat-img{
+  .easter-cat-img.is-active{
+    opacity:1;
+    visibility:visible;
+  }
+  .easter-cat-btn.idle .easter-cat-img.is-active{
     animation:catBreathing 3.6s ease-in-out infinite;
   }
-  .easter-cat-btn.sleeping .easter-cat-img{
+  .easter-cat-btn.sleeping .easter-cat-img.is-active{
     animation:catSleepingBreathe 3.8s ease-in-out infinite;
   }
   @keyframes catBreathing{
@@ -3620,7 +3635,11 @@
       <!-- Easter Egg Cat -->
       <button class="easter-cat-btn idle" id="easterCat" aria-label="A little hidden cat" tabindex="0">
         <div class="easter-cat-inner" id="catInner">
-          <img class="easter-cat-img" id="catSprite" src="images/cat_idle.png" alt="Little cat" draggable="false">
+          <img class="easter-cat-img cat-sprite-0 is-active" id="catSprite0" src="images/cat_idle.png" alt="Little cat" draggable="false">
+          <img class="easter-cat-img cat-sprite-1" id="catSprite1" src="images/cat_walk.png" alt="" draggable="false">
+          <img class="easter-cat-img cat-sprite-2" id="catSprite2" src="images/cat_run.png" alt="" draggable="false">
+          <img class="easter-cat-img cat-sprite-3" id="catSprite3" src="images/cat_peek.png" alt="" draggable="false">
+          <img class="easter-cat-img cat-sprite-4" id="catSprite4" src="images/cat_sleep.png" alt="" draggable="false">
         </div>
         <span class="cat-toast" id="catToast" aria-live="polite"></span>
         <span class="cat-zzz" id="catZzz" aria-hidden="true"><span>z</span><span>z</span><span>z</span></span>
@@ -4533,14 +4552,14 @@
   (function() {
     const catBtn = document.getElementById('easterCat');
     const catInner = document.getElementById('catInner');
-    const catSprite = document.getElementById('catSprite');
+    const catSprites = catInner ? Array.from(catInner.querySelectorAll('.easter-cat-img')) : [];
     const catToast = document.getElementById('catToast');
     const catHint = document.getElementById('catHint');
     const questBox = document.getElementById('catQuestComplete');
     const questLeave = document.getElementById('questLeave');
     const contactCta = document.getElementById('contactCta');
     const ctaBtn = document.getElementById('ctaBtn');
-    if (!catBtn || !catSprite) return;
+    if (!catBtn || !catInner || catSprites.length === 0) return;
 
     const chime = document.getElementById('windChime');
     const lanternGlow = document.getElementById('lanternGlow');
@@ -4582,7 +4601,7 @@
       });
     }
 
-    if (!catBtn || !catSprite) return;
+    if (!catBtn || !catInner) return;
 
     const catBounds = document.getElementById('catBounds');
 
@@ -4667,8 +4686,9 @@
       return { left: ox, bottom: ob, width: rw, height: rh };
     }
 
-    function applyStagePosition(st) {
+    function applyStagePosition(st, stageIndex) {
       if (!st) return;
+      const idx = (typeof stageIndex === 'number') ? stageIndex : currentStage;
       const scene = catBounds || catBtn.parentElement;
       const sw = scene ? scene.clientWidth : window.innerWidth;
       const sh = scene ? scene.clientHeight : window.innerHeight;
@@ -4697,7 +4717,16 @@
       } else {
         catBtn.style.transform = 'none';
       }
-      catSprite.src = st.pose;
+
+      // Immediately activate the matching pre-rendered sprite
+      catSprites.forEach((img, i) => {
+        if (i === idx) {
+          img.classList.add('is-active');
+        } else {
+          img.classList.remove('is-active');
+        }
+      });
+
       const flipScale = st.flip ? -1 : 1;
       catInner.style.transform = 'scaleX(' + flipScale + ')';
     }
@@ -4782,13 +4811,13 @@
       cherryBranch.style.bottom = 'auto';
     }
 
-    applyStagePosition(stages[0]);
+    applyStagePosition(stages[0], 0);
     applyWindChimePosition();
     applyLanternGlowPosition();
     applyCherryPosition();
 
     window.addEventListener('resize', () => {
-      applyStagePosition(stages[currentStage]);
+      applyStagePosition(stages[currentStage], currentStage);
       applyWindChimePosition();
       applyLanternGlowPosition();
       applyCherryPosition();
@@ -4835,19 +4864,19 @@
         }
 
         catRect = null;
-        setTimeout(() => {
-          applyStagePosition(nextSt);
-          catRect = null;
-          if (currentStage === stages.length - 1) {
-            handleFinalCatch();
-          } else {
-            setTimeout(() => {
-              isBusy = false;
-              catRect = null;
-              catBtn.classList.add('idle');
-            }, 500);
-          }
-        }, 120);
+        // Instantly move and switch pre-rendered sprite simultaneously with ZERO delay
+        applyStagePosition(nextSt, currentStage);
+        catRect = null;
+
+        if (currentStage === stages.length - 1) {
+          handleFinalCatch();
+        } else {
+          setTimeout(() => {
+            isBusy = false;
+            catRect = null;
+            catBtn.classList.add('idle');
+          }, 430);
+        }
       }
     }
 
@@ -4860,8 +4889,8 @@
         questBox.classList.add('visible');
       }
 
+      // Smoothly mark as sleeping as the cat finishes moving to the deck center (420ms)
       setTimeout(() => {
-        catSprite.src = 'images/cat_sleep.png';
         catBtn.classList.add('sleeping');
         catBtn.classList.remove('idle');
         catInner.style.transform = 'none';
@@ -4871,7 +4900,7 @@
         if (questLeave) {
           questLeave.classList.add('visible');
         }
-      }, 700);
+      }, 420);
     }
 
     catBtn.addEventListener('click', onCatch);

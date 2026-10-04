@@ -2510,13 +2510,14 @@ function generateFullHTML(d) {
   '  @media (max-width:900px){.reel-section{padding:80px 0 95px;}.reel-stage{margin-top:38px;}.exp-section{padding:110px 0 130px;}.exp-tree{width:clamp(120px, 17vw, 180px);opacity:0.78;left:-20px;}.exp-container{padding:0 32px;}.contact-scene{min-height:600px;aspect-ratio:auto;}.contact-statement{font-size:clamp(32px, 4.5vw, 46px);}}\n' +
   '  @media (max-width:600px){.reel-section{padding:65px 0 80px;}.reel-stage{margin-top:28px;}.reel-play{width:54px;height:54px;}.reel-frame{border-radius:14px;}.exp-section{padding:90px 0 110px;background-size:cover;}.exp-tree{width:105px;top:-5px;left:-15px;opacity:0.75;}.exp-container{padding:0 20px 0 34px;}.contact-scene{min-height:560px;}.contact-statement{font-size:clamp(26px, 7vw, 42px);word-break:normal;}.contact-email{font-size:1.05rem;margin-top:44px;}.contact-cta{margin-top:32px;}.work-section .section-head h2, .reel-section h2, .exp-heading{font-size:clamp(22px, 5.5vw, 28px);}.contact-wrap{padding:64px 20px 80px;}.contact-wind-chime{width:30px;}.exp-timeline{margin-top:32px;}.exp-timeline-line{left:-10px;}.exp-row{padding:28px 0 28px 22px;flex-direction:column;align-items:flex-start;gap:6px;}.exp-row:not(:last-child)::after{left:22px;}.exp-dot{left:-10px;width:10px;height:10px;top:35px;}.exp-role h4{font-size:1rem;}.exp-role .company{font-size:0.8rem;}.exp-meta{text-align:left;}.exp-meta .dates{font-size:0.8rem;}.exp-meta .location{font-size:0.75rem;}}\n' +
   '  /* Easter Egg Cat */\n' +
-  '  .easter-cat-btn{position:absolute;width:96px;height:96px;cursor:pointer;background:transparent;border:none;padding:0;outline:none;z-index:10;touch-action:manipulation;user-select:none;-webkit-tap-highlight-color:transparent;transition:left 0.5s var(--ease), top 0.5s var(--ease), right 0.5s var(--ease), bottom 0.5s var(--ease), width 0.4s var(--ease), height 0.4s var(--ease);}\n' +
+  '  .easter-cat-btn{position:absolute;width:96px;height:96px;cursor:pointer;background:transparent;border:none;padding:0;outline:none;z-index:10;touch-action:manipulation;user-select:none;-webkit-tap-highlight-color:transparent;transition:left 0.42s cubic-bezier(0.25, 1, 0.5, 1), bottom 0.42s cubic-bezier(0.25, 1, 0.5, 1), width 0.35s ease, height 0.35s ease;}\n' +
   '  .easter-cat-btn:focus-visible{outline:2px dashed #E22B23;outline-offset:4px;border-radius:50%;}\n' +
   '  .easter-cat-btn.sleeping{cursor:default;width:118px;height:68px;}\n' +
-  '  .easter-cat-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transform-origin:center bottom;transition:transform 0.25s ease-out;}\n' +
-  '  .easter-cat-img{width:100%;height:100%;object-fit:contain;display:block;pointer-events:none;transform-origin:center bottom;filter:drop-shadow(0 4px 10px rgba(18,18,16,0.07));}\n' +
-  '  .easter-cat-btn.idle .easter-cat-img{animation:catBreathing 3.6s ease-in-out infinite;}\n' +
-  '  .easter-cat-btn.sleeping .easter-cat-img{animation:catSleepingBreathe 3.8s ease-in-out infinite;}\n' +
+  '  .easter-cat-inner{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;transform-origin:center bottom;transition:transform 0.25s ease-out;}\n' +
+  '  .easter-cat-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;pointer-events:none;transform-origin:center bottom;filter:drop-shadow(0 4px 10px rgba(18,18,16,0.07));opacity:0;visibility:hidden;transition:opacity 0.15s ease;}\n' +
+  '  .easter-cat-img.is-active{opacity:1;visibility:visible;}\n' +
+  '  .easter-cat-btn.idle .easter-cat-img.is-active{animation:catBreathing 3.6s ease-in-out infinite;}\n' +
+  '  .easter-cat-btn.sleeping .easter-cat-img.is-active{animation:catSleepingBreathe 3.8s ease-in-out infinite;}\n' +
   '  @keyframes catBreathing{0%, 100%{transform:scale(1, 1);}50%{transform:scale(1.03, 0.97);}}\n' +
   '  @keyframes catSleepingBreathe{0%, 100%{transform:scale(1, 1);}50%{transform:scale(1.025, 0.975);}}\n' +
   '  .cat-toast{position:absolute;top:-20px;left:50%;transform:translateX(-50%) translateY(4px) scale(0.88);font-family:var(--font-display);font-size:0.68rem;font-weight:700;letter-spacing:0.03em;font-style:italic;color:#BB1B12;background:rgba(254,250,241,0.98);border:1px solid rgba(187,27,18,0.30);padding:2px 7px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.25s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);box-shadow:0 3px 10px rgba(18,18,16,0.08), 0 1px 3px rgba(187,27,18,0.06);z-index:20;display:inline-flex;align-items:center;}\n' +
@@ -2630,6 +2631,11 @@ function generateFullHTML(d) {
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
     '<link href="' + f.googleFontsUrl + '" rel="stylesheet">\n' +
+    '<link rel="preload" href="images/cat_idle.png" as="image">\n' +
+    '<link rel="preload" href="images/cat_walk.png" as="image">\n' +
+    '<link rel="preload" href="images/cat_run.png" as="image">\n' +
+    '<link rel="preload" href="images/cat_peek.png" as="image">\n' +
+    '<link rel="preload" href="images/cat_sleep.png" as="image">\n' +
     '<style>\n' + css + '\n</style>\n</head>\n<body class="is-loading">\n\n' +
     '<!-- Custom Illustrated Japanese Art Cursor & Action Badges -->\n' +
     '<div class="custom-cursor cursor-state-default" id="customCursor" aria-hidden="true">\n' +
@@ -2852,7 +2858,11 @@ function generateFullHTML(d) {
     '      <!-- Easter Egg Cat -->\n' +
     '      <button class="easter-cat-btn idle" id="easterCat" aria-label="A little hidden cat" tabindex="0">\n' +
     '        <div class="easter-cat-inner" id="catInner">\n' +
-    '          <img class="easter-cat-img" id="catSprite" src="images/cat_idle.png" alt="Little cat" draggable="false">\n' +
+    '          <img class="easter-cat-img cat-sprite-0 is-active" id="catSprite0" src="images/cat_idle.png" alt="Little cat" draggable="false">\n' +
+    '          <img class="easter-cat-img cat-sprite-1" id="catSprite1" src="images/cat_walk.png" alt="" draggable="false">\n' +
+    '          <img class="easter-cat-img cat-sprite-2" id="catSprite2" src="images/cat_run.png" alt="" draggable="false">\n' +
+    '          <img class="easter-cat-img cat-sprite-3" id="catSprite3" src="images/cat_peek.png" alt="" draggable="false">\n' +
+    '          <img class="easter-cat-img cat-sprite-4" id="catSprite4" src="images/cat_sleep.png" alt="" draggable="false">\n' +
     '        </div>\n' +
     '        <span class="cat-toast" id="catToast" aria-live="polite"></span>\n' +
     '        <span class="cat-zzz" id="catZzz" aria-hidden="true"><span>z</span><span>z</span><span>z</span></span>\n' +
@@ -3163,7 +3173,7 @@ function generateFullHTML(d) {
     '  /* Easter Egg Cat Game */\n' +
     '  var catBtn=document.getElementById("easterCat");\n' +
     '  var catInner=document.getElementById("catInner");\n' +
-    '  var catSprite=document.getElementById("catSprite");\n' +
+    '  var catSprites=catInner?Array.from(catInner.querySelectorAll(".easter-cat-img")):[];\n' +
     '  var catToast=document.getElementById("catToast");\n' +
     '  var catHint=document.getElementById("catHint");\n' +
     '  var questBox=document.getElementById("catQuestComplete");\n' +
@@ -3194,7 +3204,7 @@ function generateFullHTML(d) {
     '    chime.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();playChimeSound();chime.style.transform="rotate(8deg) scale(1.05)";setTimeout(function(){chime.style.transform="";},450);}});\n' +
     '  }\n' +
     '  var catBounds=document.getElementById("catBounds");\n' +
-    '  if(catBtn&&catSprite){\n' +
+    '  if(catBtn&&catInner&&catSprites.length>0){\n' +
     '    var stages=[\n' +
     '      {normX:0.037,normBottom:0.088,baseW:96,baseH:96,pose:"images/cat_idle.png",flip:false,toast:""},\n' +
     '      {normX:0.042,normBottom:0.505,baseW:104,baseH:104,pose:"images/cat_walk.png",flip:false,toast:"Meow! 🐾"},\n' +
@@ -3213,8 +3223,9 @@ function generateFullHTML(d) {
     '      else{rh=sh;rw=sh*imgAspect;ox=(sw-rw)/2;ob=0;}\n' +
     '      return {left:ox,bottom:ob,width:rw,height:rh};\n' +
     '    }\n' +
-    '    function applyStagePosition(st){\n' +
+    '    function applyStagePosition(st,stageIndex){\n' +
     '      if(!st)return;\n' +
+    '      var idx=(typeof stageIndex==="number")?stageIndex:currentStage;\n' +
     '      var scene=catBounds||catBtn.parentElement;\n' +
     '      var sw=scene?scene.clientWidth:window.innerWidth;\n' +
     '      var sh=scene?scene.clientHeight:window.innerHeight;\n' +
@@ -3228,7 +3239,7 @@ function generateFullHTML(d) {
     '      catBtn.style.left=clampedX+"px";catBtn.style.bottom=clampedB+"px";\n' +
     '      catBtn.style.top="auto";catBtn.style.right="auto";\n' +
     '      catBtn.style.transform=st.center?"translateX(-50%)":"none";\n' +
-    '      catSprite.src=st.pose;\n' +
+    '      catSprites.forEach(function(img,i){if(i===idx){img.classList.add("is-active");}else{img.classList.remove("is-active");}});\n' +
     '      var flipScale=st.flip?-1:1;\n' +
     '      catInner.style.transform="scaleX("+flipScale+")";\n' +
     '    }\n' +
@@ -3289,11 +3300,11 @@ function generateFullHTML(d) {
     '      }\n' +
     '    }\n' +
     '    applyHeroElementsPosition();\n' +
-    '    applyStagePosition(stages[0]);\n' +
+    '    applyStagePosition(stages[0], 0);\n' +
     '    applyWindChimePosition();\n' +
     '    applyLanternGlowPosition();\n' +
     '    applyCherryPosition();\n' +
-    '    window.addEventListener("resize",function(){applyHeroElementsPosition();applyStagePosition(stages[currentStage]);applyWindChimePosition();applyLanternGlowPosition();applyCherryPosition();},{passive:true});\n' +
+    '    window.addEventListener("resize",function(){applyHeroElementsPosition();applyStagePosition(stages[currentStage], currentStage);applyWindChimePosition();applyLanternGlowPosition();applyCherryPosition();},{passive:true});\n' +
     '    var heroIntroStarted=false;window.startHeroIntroTyping=function(){if(heroIntroStarted)return;heroIntroStarted=true;var el=document.getElementById("heroIntroText");if(!el)return;var ft=el.getAttribute("data-text")||el.textContent.trim();if(!ft)return;var c=document.getElementById("heroIntroCursor"),h=document.getElementById("heroHand");if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=ft;if(c)c.remove();if(h)h.classList.add("is-waving");return;}setTimeout(function(){if(c)c.style.display="inline-block";el.textContent="";var idx=0;setTimeout(function tc(){if(idx<ft.length){el.textContent+=ft.charAt(idx);idx++;if(idx===ft.length){if(c)c.remove();if(h)h.classList.add("is-waving");return;}setTimeout(tc,70);}},100);},300);};\n' +
     '    (function(){var l=document.getElementById("loadingScreen");if(!l||l.classList.contains("loaded")||getComputedStyle(l).display==="none"){setTimeout(function(){if(typeof window.startHeroIntroTyping==="function")window.startHeroIntroTyping();},400);}})();\n' +
     '    var toastTimer=null;\n' +
@@ -3323,21 +3334,19 @@ function generateFullHTML(d) {
     '        showToast(nextSt.toast);\n' +
     '        if(currentStage===1&&catHint)catHint.classList.add("hidden");\n' +
     '        catRect=null;\n' +
-    '        setTimeout(function(){\n' +
-    '          applyStagePosition(nextSt);\n' +
-    '          catRect=null;\n' +
-    '          if(currentStage===stages.length-1){\n' +
-    '            isCompleted=true;catBtn.setAttribute("tabindex","-1");catBtn.style.pointerEvents="none";\n' +
-    '            if(questBox)questBox.classList.add("visible");\n' +
-    '            setTimeout(function(){\n' +
-    '              catSprite.src="images/cat_sleep.png";catBtn.classList.add("sleeping");catBtn.classList.remove("idle");\n' +
-    '              catInner.style.transform="none";catRect=null;isBusy=false;\n' +
-    '              if(questLeave)questLeave.classList.add("visible");\n' +
-    '            },700);\n' +
-    '          }else{\n' +
-    '            setTimeout(function(){isBusy=false;catRect=null;catBtn.classList.add("idle");},500);\n' +
-    '          }\n' +
-    '        },120);\n' +
+    '        applyStagePosition(nextSt,currentStage);\n' +
+    '        catRect=null;\n' +
+    '        if(currentStage===stages.length-1){\n' +
+    '          isCompleted=true;catBtn.setAttribute("tabindex","-1");catBtn.style.pointerEvents="none";\n' +
+    '          if(questBox)questBox.classList.add("visible");\n' +
+    '          setTimeout(function(){\n' +
+    '            catBtn.classList.add("sleeping");catBtn.classList.remove("idle");\n' +
+    '            catInner.style.transform="none";catRect=null;isBusy=false;\n' +
+    '            if(questLeave)questLeave.classList.add("visible");\n' +
+    '          },420);\n' +
+    '        }else{\n' +
+    '          setTimeout(function(){isBusy=false;catRect=null;catBtn.classList.add("idle");},430);\n' +
+    '        }\n' +
     '      }\n' +
     '    }\n' +
     '    catBtn.addEventListener("click",onCatch);\n' +
