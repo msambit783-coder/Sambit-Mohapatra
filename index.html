@@ -1018,7 +1018,7 @@
     opacity:0.35 !important;
   }
   .scroll-indicator.drag-ended .scroll-indicator-track{
-    width:3.5px !important;
+    width:4px !important;
     background:rgba(18, 18, 16, 0.08) !important;
   }
   .scroll-indicator.drag-ended .scroll-indicator-thumb{
@@ -1030,16 +1030,16 @@
   }
   .scroll-indicator-track{
     position:relative;
-    width:3.5px;
+    width:4px;
     height:100%;
     background:rgba(18, 18, 16, 0.08);
     border-radius:999px;
     cursor:pointer;
-    transition:width 0.2s ease, background 0.2s ease;
+    transition:background 0.2s ease;
   }
   .scroll-indicator:hover .scroll-indicator-track,
   .scroll-indicator.is-dragging .scroll-indicator-track{
-    width:5px;
+    width:4px;
     background:rgba(18, 18, 16, 0.14);
   }
   .scroll-indicator-fill{
@@ -1094,11 +1094,11 @@
       opacity:0.3;
     }
     .scroll-indicator-track{
-      width:3px;
+      width:3.5px;
     }
     .scroll-indicator:hover .scroll-indicator-track,
     .scroll-indicator.is-dragging .scroll-indicator-track{
-      width:4px;
+      width:3.5px;
     }
   }
 
@@ -5204,6 +5204,7 @@
     const thumb = document.getElementById('scrollThumb');
     if (!indicator || !track || !fill || !thumb) return;
 
+    const thumbHeight = 48;
     let hideTimer = null;
     let isDragging = false;
     let isTicking = false;
@@ -5211,29 +5212,18 @@
     // Cache drag calculations for 120fps stutter-free response
     let cachedIndicatorTop = 0;
     let cachedMaxScroll = 0;
-    let cachedThumbH = 48;
     let cachedAvailableTrack = 1;
     let dragOffsetY = 0;
-
-    function getThumbHeight() {
-      const docH = document.documentElement.scrollHeight;
-      const winH = window.innerHeight;
-      if (docH <= winH) return 48;
-      const ratio = winH / docH;
-      return Math.min(100, Math.max(44, winH * ratio));
-    }
 
     function render(scrollPos) {
       const maxScroll = cachedMaxScroll || Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
       const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollPos / maxScroll)) : 0;
-      const curThumbH = cachedThumbH || getThumbHeight();
-      thumb.style.height = curThumbH.toFixed(0) + 'px';
       const trackHeight = track.clientHeight || window.innerHeight;
-      const availableTrack = Math.max(0, trackHeight - curThumbH);
+      const availableTrack = Math.max(0, trackHeight - thumbHeight);
       const thumbY = progress * availableTrack;
 
       thumb.style.transform = 'translateY(' + thumbY.toFixed(1) + 'px)';
-      fill.style.height = (thumbY + curThumbH).toFixed(1) + 'px';
+      fill.style.height = (thumbY + thumbHeight).toFixed(1) + 'px';
     }
 
     function update() {
@@ -5277,7 +5267,7 @@
 
       // Immediately sync thumb transform without waiting
       thumb.style.transform = 'translateY(' + thumbY.toFixed(1) + 'px)';
-      fill.style.height = (thumbY + cachedThumbH).toFixed(1) + 'px';
+      fill.style.height = (thumbY + thumbHeight).toFixed(1) + 'px';
     }
 
     function onPointerUp(upEvent) {
@@ -5327,8 +5317,7 @@
       const docH = document.documentElement.scrollHeight;
       const winH = window.innerHeight;
       cachedMaxScroll = Math.max(1, docH - winH);
-      cachedThumbH = getThumbHeight();
-      cachedAvailableTrack = Math.max(1, totalH - cachedThumbH);
+      cachedAvailableTrack = Math.max(1, totalH - thumbHeight);
 
       const thumbRect = thumb.getBoundingClientRect();
       if (e.clientY >= thumbRect.top && e.clientY <= thumbRect.bottom) {
@@ -5336,12 +5325,12 @@
         dragOffsetY = e.clientY - thumbRect.top;
       } else {
         // Clicked outside on track: jump immediately to position
-        dragOffsetY = cachedThumbH / 2;
+        dragOffsetY = thumbHeight / 2;
         const thumbY = Math.min(cachedAvailableTrack, Math.max(0, e.clientY - cachedIndicatorTop - dragOffsetY));
         const progress = thumbY / cachedAvailableTrack;
         window.scrollTo(0, progress * cachedMaxScroll);
         thumb.style.transform = 'translateY(' + thumbY.toFixed(1) + 'px)';
-        fill.style.height = (thumbY + cachedThumbH).toFixed(1) + 'px';
+        fill.style.height = (thumbY + thumbHeight).toFixed(1) + 'px';
       }
 
       window.addEventListener('pointermove', onPointerMove, { passive: false });
