@@ -2556,7 +2556,8 @@ function generateFullHTML(d) {
   '  .back-to-top:hover .back-to-top-icon{transform:translateY(-1px);}\n' +
   '  @media (max-width:768px){.back-to-top{bottom:20px;right:16px;width:40px;height:40px;}.back-to-top-icon{width:16px;height:16px;}}\n' +
   '  /* video loading screen */\n' +
-  '  #loadingScreen{position:fixed;inset:0;width:100vw;height:100vh;z-index:99999;background:#F3EEE3;display:flex;align-items:center;justify-content:center;overflow:hidden;opacity:1;visibility:visible;transform:none !important;transition:opacity 0.8s cubic-bezier(.16,.8,.24,1), visibility 0.8s cubic-bezier(.16,.8,.24,1);user-select:none;-webkit-user-select:none;cursor:default;}\n' +
+  '  html.is-loading, body.is-loading{overflow:hidden !important;height:100% !important;max-height:100vh !important;touch-action:none !important;overscroll-behavior:none !important;}\n' +
+  '  #loadingScreen{position:fixed;inset:0;width:100vw;height:100vh;z-index:99999;background:#F3EEE3;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;overscroll-behavior:none;opacity:1;visibility:visible;transform:none !important;transition:opacity 0.8s cubic-bezier(.16,.8,.24,1), visibility 0.8s cubic-bezier(.16,.8,.24,1);user-select:none;-webkit-user-select:none;cursor:default;}\n' +
   '  #loadingScreen.loaded{opacity:0 !important;visibility:hidden !important;pointer-events:none;transform:none !important;}\n' +
   '  .loading-video-wrap{position:absolute;inset:0;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#F3EEE3;}\n' +
   '  #loadingVideo{width:100%;height:100%;max-width:100vw;max-height:100vh;object-fit:contain;object-position:center;display:block;}\n' +
@@ -2600,7 +2601,7 @@ function generateFullHTML(d) {
   '    .custom-cursor{display:none !important;}\n' +
   '  }';
 
-  var html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n' +
+  var html = '<!DOCTYPE html>\n<html lang="en" class="is-loading">\n<head>\n' +
     '<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
     '<title>' + d.meta.title + '</title>\n' +
     '<meta name="description" content="' + d.meta.description + '">\n' +
@@ -2612,7 +2613,7 @@ function generateFullHTML(d) {
     '<link rel="preconnect" href="https://fonts.googleapis.com">\n' +
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
     '<link href="' + f.googleFontsUrl + '" rel="stylesheet">\n' +
-    '<style>\n' + css + '\n</style>\n</head>\n<body>\n\n' +
+    '<style>\n' + css + '\n</style>\n</head>\n<body class="is-loading">\n\n' +
     '<!-- Custom Illustrated Japanese Art Cursor & Action Badges -->\n' +
     '<div class="custom-cursor cursor-state-default" id="customCursor" aria-hidden="true">\n' +
     '  <div class="cursor-visual" id="cursorVisual">\n' +
@@ -2866,14 +2867,24 @@ function generateFullHTML(d) {
     '</button>\n\n';
 
   var inlineScript = '(function(){\n' +
+    '  if("scrollRestoration" in history){history.scrollRestoration="manual";}\n' +
+    '  window.scrollTo(0,0);\n' +
     '  var loader=document.getElementById("loadingScreen");\n' +
     '  var video=document.getElementById("loadingVideo");\n' +
     '  var percentEl=document.getElementById("loaderPercent");\n' +
     '  var barEl=document.getElementById("loaderProgressBar");\n' +
     '  if(loader&&video){\n' +
     '    var dismissed=false;\n' +
+    '    function preventScroll(e){if(!dismissed){e.preventDefault();if(e.stopPropagation)e.stopPropagation();return false;}}\n' +
+    '    window.addEventListener("wheel",preventScroll,{passive:false});\n' +
+    '    window.addEventListener("touchmove",preventScroll,{passive:false});\n' +
     '    function dismiss(){\n' +
     '      if(dismissed)return; dismissed=true;\n' +
+    '      document.documentElement.classList.remove("is-loading");\n' +
+    '      document.body.classList.remove("is-loading");\n' +
+    '      window.removeEventListener("wheel",preventScroll);\n' +
+    '      window.removeEventListener("touchmove",preventScroll);\n' +
+    '      window.scrollTo(0,0);\n' +
     '      if(percentEl)percentEl.textContent="100 %";\n' +
     '      if(barEl)barEl.style.width="100%";\n' +
     '      loader.classList.add("loaded");\n' +
@@ -2895,7 +2906,10 @@ function generateFullHTML(d) {
     '    requestAnimationFrame(update);\n' +
     '    video.addEventListener("ended",function(){if(percentEl)percentEl.textContent="100 %";if(barEl)barEl.style.width="100%";setTimeout(dismiss,350);});\n' +
     '    window.addEventListener("keydown",function(e){\n' +
-    '      if(!dismissed&&(e.key==="Escape"||e.key===" "||e.key==="Enter"))dismiss();\n' +
+    '      if(!dismissed){\n' +
+    '        if(e.key==="Escape"||e.key===" "||e.key==="Enter"){e.preventDefault();dismiss();}\n' +
+    '        else if(["ArrowDown","ArrowUp","PageDown","PageUp","Home","End"].indexOf(e.key)!==-1){e.preventDefault();}\n' +
+    '      }\n' +
     '    });\n' +
     '    setTimeout(dismiss,11500);\n' +
     '    var p=video.play();\n' +

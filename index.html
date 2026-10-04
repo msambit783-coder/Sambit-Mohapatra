@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="is-loading">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2776,6 +2776,14 @@
   }
 
   /* ---------- video loading screen ---------- */
+  html.is-loading,
+  body.is-loading{
+    overflow:hidden !important;
+    height:100% !important;
+    max-height:100vh !important;
+    touch-action:none !important;
+    overscroll-behavior:none !important;
+  }
   #loadingScreen{
     position:fixed;
     inset:0;
@@ -2787,6 +2795,8 @@
     align-items:center;
     justify-content:center;
     overflow:hidden;
+    touch-action:none;
+    overscroll-behavior:none;
     opacity:1;
     visibility:visible;
     transform:none !important;
@@ -3092,7 +3102,7 @@
   }
 </style>
 </head>
-<body>
+<body class="is-loading">
 
 <!-- Custom Illustrated Japanese Art Cursor & Action Badges -->
 <div class="custom-cursor cursor-state-default" id="customCursor" aria-hidden="true">
@@ -3592,6 +3602,11 @@
 <script>
   // ---------- VIDEO LOADING SCREEN & STATUS BAR CONTROLLER ----------
   (function() {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     const loader = document.getElementById('loadingScreen');
     const video = document.getElementById('loadingVideo');
     const percentEl = document.getElementById('loaderPercent');
@@ -3599,9 +3614,26 @@
     if (!loader || !video) return;
 
     let dismissed = false;
+
+    // Prevent any scrolling interaction while loader is visible
+    function preventScroll(e) {
+      if (!dismissed) {
+        e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
+        return false;
+      }
+    }
+    window.addEventListener('wheel', preventScroll, { passive: false });
+    window.addEventListener('touchmove', preventScroll, { passive: false });
+
     function dismissLoader() {
       if (dismissed) return;
       dismissed = true;
+      document.documentElement.classList.remove('is-loading');
+      document.body.classList.remove('is-loading');
+      window.removeEventListener('wheel', preventScroll);
+      window.removeEventListener('touchmove', preventScroll);
+      window.scrollTo(0, 0);
       if (percentEl) percentEl.textContent = '100 %';
       if (barEl) barEl.style.width = '100%';
       loader.classList.add('loaded');
@@ -3637,10 +3669,15 @@
       setTimeout(dismissLoader, 150);
     });
 
-    // Keyboard shortcut to skip (Escape, Space, Enter)
+    // Keyboard shortcut to skip (Escape, Space, Enter) & block page scrolling keys
     window.addEventListener('keydown', (e) => {
-      if (!dismissed && (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter')) {
-        dismissLoader();
+      if (!dismissed) {
+        if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          dismissLoader();
+        } else if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End'].includes(e.key)) {
+          e.preventDefault();
+        }
       }
     });
 
