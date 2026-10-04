@@ -1007,12 +1007,26 @@
     -webkit-user-select:none;
     cursor:pointer;
     opacity:0.35;
-    transition:opacity 0.35s cubic-bezier(0.16, 0.8, 0.24, 1);
+    transition:opacity 0.15s ease;
   }
   .scroll-indicator:hover,
   .scroll-indicator.is-scrolling,
   .scroll-indicator.is-dragging{
     opacity:0.9;
+  }
+  .scroll-indicator.drag-ended{
+    opacity:0.35 !important;
+  }
+  .scroll-indicator.drag-ended .scroll-indicator-track{
+    width:3.5px !important;
+    background:rgba(18, 18, 16, 0.08) !important;
+  }
+  .scroll-indicator.drag-ended .scroll-indicator-thumb{
+    background:#121210 !important;
+    box-shadow:0 1px 3px rgba(18, 18, 16, 0.2) !important;
+  }
+  .scroll-indicator.drag-ended .scroll-indicator-fill{
+    background:rgba(18, 18, 16, 0.12) !important;
   }
   .scroll-indicator-track{
     position:relative;
@@ -5239,7 +5253,7 @@
           if (!isDragging) {
             indicator.classList.remove('is-scrolling');
           }
-        }, 1200);
+        }, 400);
       }
     }
 
@@ -5270,19 +5284,34 @@
       if (!isDragging) return;
       isDragging = false;
       indicator.classList.remove('is-dragging');
+      indicator.classList.remove('is-scrolling');
       document.documentElement.classList.remove('is-dragging-scrollbar');
       document.documentElement.style.scrollBehavior = '';
+
+      if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+      }
 
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerup', onPointerUp);
       window.removeEventListener('pointercancel', onPointerUp);
 
-      onScroll();
+      // Immediately return to default color
+      indicator.classList.add('drag-ended');
+      function clearDragEnded() {
+        indicator.classList.remove('drag-ended');
+        window.removeEventListener('mousemove', clearDragEnded);
+      }
+      setTimeout(function() {
+        window.addEventListener('mousemove', clearDragEnded, { once: true });
+      }, 50);
     }
 
     indicator.addEventListener('pointerdown', function(e) {
       if (e.button !== 0 && e.button !== undefined) return;
       e.preventDefault();
+      indicator.classList.remove('drag-ended');
 
       // Immediately disable smooth scrolling so dragging has ZERO lag
       document.documentElement.classList.add('is-dragging-scrollbar');

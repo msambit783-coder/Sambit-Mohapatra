@@ -2307,8 +2307,12 @@ function generateFullHTML(d) {
   '  @keyframes scrollBlink{0%, 100%{opacity:0.3; transform:translate(-50%, 0);}50%{opacity:1; transform:translate(-50%, 5px);}}\n' +
   '  html.is-dragging-scrollbar{scroll-behavior:auto !important;}\n' +
   '  html.is-dragging-scrollbar, html.is-dragging-scrollbar *{user-select:none !important;-webkit-user-select:none !important;}\n' +
-  '  .scroll-indicator{position:fixed;right:0;top:0;bottom:0;width:18px;z-index:900;display:flex;justify-content:flex-end;align-items:stretch;padding-right:3px;pointer-events:auto;user-select:none;-webkit-user-select:none;cursor:pointer;opacity:0.35;transition:opacity 0.35s cubic-bezier(0.16, 0.8, 0.24, 1);}\n' +
+  '  .scroll-indicator{position:fixed;right:0;top:0;bottom:0;width:18px;z-index:900;display:flex;justify-content:flex-end;align-items:stretch;padding-right:3px;pointer-events:auto;user-select:none;-webkit-user-select:none;cursor:pointer;opacity:0.35;transition:opacity 0.15s ease;}\n' +
   '  .scroll-indicator:hover, .scroll-indicator.is-scrolling, .scroll-indicator.is-dragging{opacity:0.9;}\n' +
+  '  .scroll-indicator.drag-ended{opacity:0.35 !important;}\n' +
+  '  .scroll-indicator.drag-ended .scroll-indicator-track{width:3.5px !important;background:rgba(18, 18, 16, 0.08) !important;}\n' +
+  '  .scroll-indicator.drag-ended .scroll-indicator-thumb{background:#121210 !important;box-shadow:0 1px 3px rgba(18, 18, 16, 0.2) !important;}\n' +
+  '  .scroll-indicator.drag-ended .scroll-indicator-fill{background:rgba(18, 18, 16, 0.12) !important;}\n' +
   '  .scroll-indicator-track{position:relative;width:3.5px;height:100%;background:rgba(18, 18, 16, 0.08);border-radius:999px;cursor:pointer;transition:width 0.2s ease, background 0.2s ease;}\n' +
   '  .scroll-indicator:hover .scroll-indicator-track, .scroll-indicator.is-dragging .scroll-indicator-track{width:5px;background:rgba(18, 18, 16, 0.14);}\n' +
   '  .scroll-indicator-fill{position:absolute;top:0;left:0;right:0;width:100%;height:0;background:rgba(18, 18, 16, 0.12);border-radius:999px;pointer-events:none;will-change:height;transition:background 0.2s ease;}\n' +
@@ -3531,7 +3535,7 @@ function generateFullHTML(d) {
     '      if(!isDrag){\n' +
     '        if(!isTick){isTick=true;requestAnimationFrame(upd);}\n' +
     '        ind.classList.add("is-scrolling");if(hTimer)clearTimeout(hTimer);\n' +
-    '        hTimer=setTimeout(function(){if(!isDrag)ind.classList.remove("is-scrolling");},1200);\n' +
+    '        hTimer=setTimeout(function(){if(!isDrag)ind.classList.remove("is-scrolling");},400);\n' +
     '      }\n' +
     '    }\n' +
     '    window.addEventListener("scroll",onSc,{passive:true});\n' +
@@ -3548,16 +3552,21 @@ function generateFullHTML(d) {
     '    function onU(){\n' +
     '      if(!isDrag)return;isDrag=false;\n' +
     '      ind.classList.remove("is-dragging");\n' +
+    '      ind.classList.remove("is-scrolling");\n' +
     '      document.documentElement.classList.remove("is-dragging-scrollbar");\n' +
     '      document.documentElement.style.scrollBehavior="";\n' +
+    '      if(hTimer){clearTimeout(hTimer);hTimer=null;}\n' +
     '      window.removeEventListener("pointermove",onM);\n' +
     '      window.removeEventListener("pointerup",onU);\n' +
     '      window.removeEventListener("pointercancel",onU);\n' +
-    '      onSc();\n' +
+    '      ind.classList.add("drag-ended");\n' +
+    '      function cDE(){ind.classList.remove("drag-ended");window.removeEventListener("mousemove",cDE);}\n' +
+    '      setTimeout(function(){window.addEventListener("mousemove",cDE,{once:true});},50);\n' +
     '    }\n' +
     '    ind.addEventListener("pointerdown",function(e){\n' +
     '      if(e.button!==0&&e.button!==undefined)return;\n' +
     '      e.preventDefault();\n' +
+    '      ind.classList.remove("drag-ended");\n' +
     '      document.documentElement.classList.add("is-dragging-scrollbar");\n' +
     '      document.documentElement.style.scrollBehavior="auto";\n' +
     '      isDrag=true;ind.classList.add("is-dragging");\n' +
