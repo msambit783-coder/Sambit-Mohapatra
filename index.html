@@ -2872,6 +2872,9 @@
     height:100%;
     overflow:hidden;
     background:#F3EEE3;
+    pointer-events:none !important;
+    user-select:none !important;
+    -webkit-user-select:none !important;
   }
   #loadingVideo{
     width:100%;
@@ -2879,6 +2882,21 @@
     object-fit:cover;
     object-position:center;
     display:block;
+    pointer-events:none !important;
+    user-select:none !important;
+    -webkit-user-select:none !important;
+  }
+  #loadingVideo::-webkit-media-controls,
+  #loadingVideo::-webkit-media-controls-enclosure,
+  #loadingVideo::-webkit-media-controls-panel,
+  #loadingVideo::-webkit-media-controls-picture-in-picture-button,
+  #loadingVideo::-webkit-media-controls-play-button,
+  #loadingVideo::-webkit-media-controls-start-playback-button{
+    display:none !important;
+    -webkit-appearance:none !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
   }
 
   /* Status Bar & Percentage Meter (matching reference image) */
@@ -3173,7 +3191,7 @@
 
 <div id="loadingScreen" aria-label="Loading animation" role="dialog">
   <div class="loading-video-wrap">
-    <video id="loadingVideo" autoplay muted playsinline preload="auto">
+    <video id="loadingVideo" autoplay muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate nofullscreen noremoteplayback" pip="false" tabindex="-1" aria-hidden="true">
       <source src="video/Final.mp4" type="video/mp4">
     </video>
   </div>
@@ -3666,6 +3684,11 @@
     const percentEl = document.getElementById('loaderPercent');
     const barEl = document.getElementById('loaderProgressBar');
     if (!loader || !video) return;
+
+    try {
+      video.disablePictureInPicture = true;
+      if ('disableRemotePlayback' in video) video.disableRemotePlayback = true;
+    } catch (e) {}
 
     let dismissed = false;
 
@@ -4379,10 +4402,10 @@
   if (reelFrame) {
     const loadReel = () => {
       const iframe = document.createElement('iframe');
-      iframe.src = 'https://player.vimeo.com/video/995448287?badge=0&autopause=0&player_id=0&app_id=58479&muted=1&autoplay=1';
+      iframe.src = 'https://player.vimeo.com/video/995448287?badge=0&autopause=0&player_id=0&app_id=58479&muted=1&autoplay=1&pip=0';
       iframe.setAttribute('title', '3d Animation Reel');
       iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      iframe.setAttribute('allow', 'autoplay; fullscreen');
       iframe.setAttribute('allowfullscreen', '');
       reelFrame.innerHTML = '';
       reelFrame.appendChild(iframe);
